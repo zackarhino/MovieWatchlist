@@ -6,6 +6,6 @@ import javafx.scene.Scene;
 
 public class FormScene extends Scene {
     public FormScene() {
-        super(new FormPane(),800,600);
+        super(new FormPane(),700,500);
     }
 }

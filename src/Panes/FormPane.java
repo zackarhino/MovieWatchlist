@@ -10,15 +10,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class FormPane extends BorderPane {
-    private TextField movieNameInput = new TextField();
-    private TextField yearInput = new TextField();
+    private TextField movieName = new TextField();
+    private TextField year = new TextField();
     private TextField productionCompany = new TextField();
     private TextField genre = new TextField();
 
     public FormPane(){
         HBox input1 = new HBox();
         input1.getChildren().addAll(new Label("Movie title: "),
-                movieNameInput, new Label("Year: "), yearInput);
+                movieName, new Label("Year: "), year);
         input1.setAlignment(Pos.CENTER);
 
         HBox input2 = new HBox();
@@ -35,7 +35,13 @@ public class FormPane extends BorderPane {
         //enters Movie
         enter.setOnKeyPressed(e->{
                 //movieNameInput.getText()
-                movieNameInput.clear();
+                //year.getText()
+                //productionCompany.getText()
+                //genre.getText()
+                movieName.clear();
+                year.clear();
+                productionCompany.clear();
+                genre.clear();
         });
 
         this.setCenter(inputs);
