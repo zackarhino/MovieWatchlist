@@ -27,7 +27,6 @@ public class ViewWatchlistPane extends BorderPane {
         //ComboBox Row
         HBox selectStatusContainer = new HBox();
         ComboBox<String> selectStatus = new ComboBox<>(FXCollections.observableArrayList(status));
-        selectStatus.getSelectionModel().selectFirst();
         //Display Status Row
         Text statusTxt = new Text();
         HBox statusTxtContainer = new HBox(statusTxt);
@@ -43,13 +42,17 @@ public class ViewWatchlistPane extends BorderPane {
         */
 
         //PUTTING IT ALL TOGETHER...
-
-
+        selectStatusContainer.getChildren().add(selectStatus);
         scrollPane.setContent(movieContainer);
         watchlistWrapper.getChildren().addAll(header, selectStatusContainer, statusTxtContainer, scrollPane);
 
+        //SETUP
+        selectStatus.getSelectionModel().selectFirst();
+        statusTxt.setText(selectStatus.getValue());
         selectStatus.setOnAction(actionEvent -> statusTxt.setText(selectStatus.getValue()));
 
+
+        pane.setCenter(watchlistWrapper);
         this.setCenter(pane);
     }
 }
