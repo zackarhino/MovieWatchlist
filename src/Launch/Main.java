@@ -1,6 +1,7 @@
 package Launch;
 
 import Scenes.MovieDetailsScene;
+import Scenes.ViewWatchlistScene;
 import Util.Constants;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -12,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         mainStage = stage;
-        mainStage.setScene(new MovieDetailsScene());
+        mainStage.setScene(new ViewWatchlistScene());
         mainStage.setTitle(Constants.title);
         mainStage.show();
     }
