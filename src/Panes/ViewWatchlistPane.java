@@ -1,13 +1,11 @@
 package Panes;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -46,11 +44,29 @@ public class ViewWatchlistPane extends BorderPane {
         scrollPane.setContent(movieContainer);
         watchlistWrapper.getChildren().addAll(header, selectStatusContainer, statusTxtContainer, scrollPane);
 
+        //LAYOUT
+        //Size
+        movieContainer.setMinWidth(700);
+        movieContainer.setMinHeight(435);
+
+        //Position
+        header.setAlignment(Pos.TOP_CENTER);
+        statusTxtContainer.setAlignment(Pos.CENTER);
+
+        //Vgrow/Hgrow
+        VBox.setVgrow(scrollPane, Priority.ALWAYS);
+
+        //Color
+        movieContainer.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, null, null)));
+
+        //Scrollbar
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
         //SETUP
         selectStatus.getSelectionModel().selectFirst();
         statusTxt.setText(selectStatus.getValue());
         selectStatus.setOnAction(actionEvent -> statusTxt.setText(selectStatus.getValue()));
-
 
         pane.setCenter(watchlistWrapper);
         this.setCenter(pane);
