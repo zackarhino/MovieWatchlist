@@ -1,7 +1,11 @@
 package Panes;
 
+import Launch.Main;
+import Scenes.MenuScene;
+import Scenes.ViewWatchlistScene;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
@@ -23,7 +27,8 @@ public class ViewWatchlistPane extends BorderPane {
         //Header Row
         HBox header = new HBox(new Text("My Movies"));
         //ComboBox Row
-        HBox selectStatusContainer = new HBox();
+        VBox menuContainer = new VBox();
+        Button backButton = new Button("< Back");
         ComboBox<String> selectStatus = new ComboBox<>(FXCollections.observableArrayList(status));
         //Display Status Row
         Text statusTxt = new Text();
@@ -40,9 +45,9 @@ public class ViewWatchlistPane extends BorderPane {
         */
 
         //PUTTING IT ALL TOGETHER...
-        selectStatusContainer.getChildren().add(selectStatus);
+        menuContainer.getChildren().addAll(backButton, selectStatus);
         scrollPane.setContent(movieContainer);
-        watchlistWrapper.getChildren().addAll(header, selectStatusContainer, statusTxtContainer, scrollPane);
+        watchlistWrapper.getChildren().addAll(header, menuContainer, statusTxtContainer, scrollPane);
 
         //LAYOUT
         //Size
@@ -67,6 +72,7 @@ public class ViewWatchlistPane extends BorderPane {
         selectStatus.getSelectionModel().selectFirst();
         statusTxt.setText(selectStatus.getValue());
         selectStatus.setOnAction(actionEvent -> statusTxt.setText(selectStatus.getValue()));
+        backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
 
         pane.setCenter(watchlistWrapper);
         this.setCenter(pane);
