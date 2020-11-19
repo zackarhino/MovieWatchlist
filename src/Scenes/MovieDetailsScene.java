@@ -1,7 +1,6 @@
 package Scenes;
 
 import Panes.MovieDetailsPane;
-import Panes.ViewWatchlistPane;
 import Util.Constants;
 import javafx.scene.Scene;
 
