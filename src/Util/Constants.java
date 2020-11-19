@@ -6,5 +6,5 @@ public class Constants {
     public static final int screenWidth = 700;
     public static final int screenHeight = 500;
     public static final String title = "Movie Watchlist";
-    public static final File configFile = new File("config.txt");
+    public static final String configFilePath = "Credentials/config.txt";
 }

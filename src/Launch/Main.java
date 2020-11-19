@@ -18,16 +18,17 @@ import java.io.File;
  */
 public class Main extends Application {
     public static Stage mainStage;
+    public static File configFile = new File(Constants.configFilePath);
 
     @Override
     public void start(Stage stage) {
         mainStage = stage;
-        if (Constants.configFile.length() == 0){
-            mainStage.setScene(SettingsScene.getInstance(true));
-        }
-        else{
-            mainStage.setScene(MenuScene.getInstance());
-        }
+//        if (configFile.length() == 0){
+//            mainStage.setScene(SettingsScene.getInstance(true));
+//        }
+//        else{
+//            mainStage.setScene(MenuScene.getInstance());
+//        }
         mainStage.setScene(MenuScene.getInstance());
         mainStage.setTitle(Constants.title);
         mainStage.setResizable(false);
