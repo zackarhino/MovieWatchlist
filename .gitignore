@@ -26,5 +26,4 @@
 hs_err_pid*
 
 # Other
-!/src/Database/Const.java
-!/src/Credentials/config.txt
+/src/Credentials/config.txt
