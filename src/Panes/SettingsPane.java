@@ -1,6 +1,10 @@
 package Panes;
 
+import Database.MySqlVars;
+import Launch.Main;
+import Scenes.MenuScene;
 import Tests.DatabaseConnTest;
+import Util.ConfigFileManager;
 import Util.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -32,48 +36,35 @@ public class SettingsPane extends BorderPane {
         dbName.setPromptText("Enter DB Name");
         dbPassword.setPromptText("Enter DB Password");
 
+        HBox bottomButtons = new HBox();
         Button connectButton = new Button("Connect");
+        Button returnToMenu = new Button("Return to Menu");
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(dbHost, dbUser, dbName, dbPassword);
 
-        this.setCenter(hBox);
-        this.setBottom(connectButton);
+        if (!isFirstTime){
+            bottomButtons.getChildren().addAll(connectButton, returnToMenu);
+        }
+        else{
+            bottomButtons.getChildren().addAll(connectButton);
+        }
 
-//        if (!isFirstTime){
-//            // Add return home button
-//        }
-//        else{
-//            // No return home button
-//        }
+        this.setCenter(hBox);
+        this.setBottom(bottomButtons);
 
         connectButton.setOnAction(e->{
-            try {
-                BufferedWriter out = new BufferedWriter(new FileWriter(new File(Constants.configFilePath)));
-                out.write(dbHost.getText() + " ");
-                out.write(dbUser.getText() + " ");
-                out.write(dbName.getText() + " ");
-                out.write(dbPassword.getText() + " ");
-                //Make sure all content in buffer is written
-                out.flush();
-                out.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            DatabaseConnTest dbTest = new DatabaseConnTest(dbHost.getText(), dbName.getText(), dbUser.getText(), dbPassword.getText());
+            boolean connection = dbTest.testConnection();
+            if (connection){
+                MySqlVars.setAll(dbHost.getText(), dbName.getText(), dbUser.getText(), dbPassword.getText());
+                ConfigFileManager.writeToFile(dbHost.getText(), dbName.getText(), dbUser.getText(), dbPassword.getText());
             }
-            // call test (see below)
+            else{
+              //alert the user and let them retry
+            }
         });
 
-
-
-//      TEST
-//      Once the submit button is clicked, do the following:
-//        DatabaseConnTest dbTest = new DatabaseConnTest("localhost", "dbName", "username", "password");
-//        boolean connection = dbTest.testConnection();
-//        if (connection){
-//          //write to file...
-//        }
-//        else{
-//          //alert the user and let them retry
-//        }
+        returnToMenu.setOnAction(e -> Main.switchScene(MenuScene.getInstance()));
     }
 }
