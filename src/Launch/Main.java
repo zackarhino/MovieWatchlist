@@ -29,7 +29,8 @@ public class Main extends Application {
 //        else{
 //            mainStage.setScene(MenuScene.getInstance());
 //        }
-        mainStage.setScene(MenuScene.getInstance());
+//        mainStage.setScene(MenuScene.getInstance());
+        mainStage.setScene(SettingsScene.getInstance(true));
         mainStage.setTitle(Constants.title);
         mainStage.setResizable(false);
         mainStage.show();
