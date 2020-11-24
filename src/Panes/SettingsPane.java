@@ -1,79 +1,71 @@
 package Panes;
 
+import Database.DB_CRED;
+import Database.Database;
+import Launch.Main;
+import Scenes.MenuScene;
+import Scenes.SettingsScene;
 import Tests.DatabaseConnTest;
-import Util.Constants;
-import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
+import Util.ConfigFileManager;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 public class SettingsPane extends BorderPane {
 
 
     public SettingsPane(boolean isFirstTime) {
-        TextField dbHost = new TextField();
-        TextField dbUser = new TextField();
+        TextField dbHost = new TextField("localhost");
         TextField dbName = new TextField();
+        TextField dbUser = new TextField();
         TextField dbPassword = new TextField();
 
-        dbHost.setPromptText("Enter DB Host");
-        dbUser.setPromptText("Enter DB User");
-        dbName.setPromptText("Enter DB Name");
-        dbPassword.setPromptText("Enter DB Password");
+        dbHost.setPromptText("DB Host");
+        dbName.setPromptText("DB Name");
+        dbUser.setPromptText("DB User");
+        dbPassword.setPromptText("DB Password");
 
+        HBox bottomButtons = new HBox();
         Button connectButton = new Button("Connect");
+        Button returnToMenu = new Button("Return to Menu");
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(dbHost, dbUser, dbName, dbPassword);
+        hBox.getChildren().addAll(dbHost, dbName, dbUser, dbPassword);
+
+        if (!isFirstTime){
+            bottomButtons.getChildren().addAll(connectButton, returnToMenu);
+        }
+        else{
+            bottomButtons.getChildren().addAll(connectButton);
+        }
 
         this.setCenter(hBox);
-        this.setBottom(connectButton);
+        this.setBottom(bottomButtons);
 
-//        if (!isFirstTime){
-//            // Add return home button
-//        }
-//        else{
-//            // No return home button
-//        }
+        // Button Actions
+        connectButton.setOnAction(event->{
+            Database db = Database.getInstance();
 
-        connectButton.setOnAction(e->{
+            String host = dbHost.getText();
+            String name = dbName.getText();
+            String user = dbUser.getText();
+            String pass = dbPassword.getText();
+
             try {
-                BufferedWriter out = new BufferedWriter(new FileWriter(new File(Constants.configFilePath)));
-                out.write(dbHost.getText() + " ");
-                out.write(dbUser.getText() + " ");
-                out.write(dbName.getText() + " ");
-                out.write(dbPassword.getText() + " ");
-                //Make sure all content in buffer is written
-                out.flush();
-                out.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+                db.setConnection(host, name, user, pass);
+
+                if(db.testConnection()){
+                    System.out.println("Connection established and verified.");
+                    Main.switchScene(MenuScene.getInstance());
+                }
+            } catch (Exception e) {
+                System.out.println("Couldn't connect to database.");
             }
-            // call test (see below)
         });
+        returnToMenu.setOnAction(event -> Main.switchScene(MenuScene.getInstance()));
 
-
-
-//      TEST
-//      Once the submit button is clicked, do the following:
-//        DatabaseConnTest dbTest = new DatabaseConnTest("localhost", "dbName", "username", "password");
-//        boolean connection = dbTest.testConnection();
-//        if (connection){
-//          //write to file...
-//        }
-//        else{
-//          //alert the user and let them retry
-//        }
     }
 }

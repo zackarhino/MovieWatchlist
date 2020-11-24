@@ -1,5 +1,6 @@
 package Launch;
 
+import Database.Database;
 import Scenes.MenuScene;
 import Scenes.MovieDetailsScene;
 import Scenes.SettingsScene;
@@ -23,13 +24,14 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         mainStage = stage;
-//        if (configFile.length() == 0){
-//            mainStage.setScene(SettingsScene.getInstance(true));
-//        }
-//        else{
-//            mainStage.setScene(MenuScene.getInstance());
-//        }
-        mainStage.setScene(MenuScene.getInstance());
+
+        // Check if config is set
+        System.out.println("Config file size: " + configFile.length() + " bytes");
+        if (configFile.length() == 0){
+            mainStage.setScene(SettingsScene.getInstance(true));
+        }else{
+            mainStage.setScene(MenuScene.getInstance());
+        }
         mainStage.setTitle(Constants.title);
         mainStage.setResizable(false);
         mainStage.show();
