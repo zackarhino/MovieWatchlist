@@ -1,7 +1,5 @@
 package Tests;
 
-import Database.MySqlVars;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 

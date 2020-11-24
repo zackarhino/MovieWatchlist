@@ -1,47 +1,39 @@
 package Panes;
 
-import Database.MySqlVars;
+import Database.DB_CRED;
+import Database.Database;
 import Launch.Main;
 import Scenes.MenuScene;
+import Scenes.SettingsScene;
 import Tests.DatabaseConnTest;
 import Util.ConfigFileManager;
-import Util.Constants;
-import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 public class SettingsPane extends BorderPane {
 
 
     public SettingsPane(boolean isFirstTime) {
-        TextField dbHost = new TextField();
-        TextField dbUser = new TextField();
+        TextField dbHost = new TextField("localhost");
         TextField dbName = new TextField();
+        TextField dbUser = new TextField();
         TextField dbPassword = new TextField();
 
-        dbHost.setPromptText("Enter DB Host");
-        dbUser.setPromptText("Enter DB User");
-        dbName.setPromptText("Enter DB Name");
-        dbPassword.setPromptText("Enter DB Password");
+        dbHost.setPromptText("DB Host");
+        dbName.setPromptText("DB Name");
+        dbUser.setPromptText("DB User");
+        dbPassword.setPromptText("DB Password");
 
         HBox bottomButtons = new HBox();
         Button connectButton = new Button("Connect");
         Button returnToMenu = new Button("Return to Menu");
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(dbHost, dbUser, dbName, dbPassword);
+        hBox.getChildren().addAll(dbHost, dbName, dbUser, dbPassword);
 
         if (!isFirstTime){
             bottomButtons.getChildren().addAll(connectButton, returnToMenu);
@@ -53,18 +45,27 @@ public class SettingsPane extends BorderPane {
         this.setCenter(hBox);
         this.setBottom(bottomButtons);
 
-        connectButton.setOnAction(e->{
-            DatabaseConnTest dbTest = new DatabaseConnTest(dbHost.getText(), dbName.getText(), dbUser.getText(), dbPassword.getText());
-            boolean connection = dbTest.testConnection();
-            if (connection){
-                MySqlVars.setAll(dbHost.getText(), dbName.getText(), dbUser.getText(), dbPassword.getText());
-                ConfigFileManager.writeToFile(dbHost.getText(), dbName.getText(), dbUser.getText(), dbPassword.getText());
-            }
-            else{
-              //alert the user and let them retry
+        // Button Actions
+        connectButton.setOnAction(event->{
+            Database db = Database.getInstance();
+
+            String host = dbHost.getText();
+            String name = dbName.getText();
+            String user = dbUser.getText();
+            String pass = dbPassword.getText();
+
+            try {
+                db.setConnection(host, name, user, pass);
+
+                if(db.testConnection()){
+                    System.out.println("Connection established and verified.");
+                    Main.switchScene(MenuScene.getInstance());
+                }
+            } catch (Exception e) {
+                System.out.println("Couldn't connect to database.");
             }
         });
+        returnToMenu.setOnAction(event -> Main.switchScene(MenuScene.getInstance()));
 
-        returnToMenu.setOnAction(e -> Main.switchScene(MenuScene.getInstance()));
     }
 }

@@ -1,12 +1,12 @@
 package Util;
 
-import Database.MySqlVars;
+import Database.DB_CRED;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class ConfigFileManager {
-    private static File configFile = new File(Constants.configFilePath);
+    private static File configFile = new File(Util.Constants.configFilePath);
 
     public static void writeToFile(String dbHost, String dbName, String dbUser, String dbPass){
         try {
@@ -20,7 +20,7 @@ public class ConfigFileManager {
             bw.write(dbPass);
             bw.close();
             // Set variables so we don't have to read from file everytime
-            MySqlVars.setAll(dbHost, dbName, dbUser, dbPass);
+            DB_CRED.setAll(dbHost, dbName, dbUser, dbPass);
         } catch (IOException e) {
             e.printStackTrace();
         }

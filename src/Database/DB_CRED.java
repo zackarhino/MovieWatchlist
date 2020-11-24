@@ -2,7 +2,7 @@ package Database;
 
 import java.util.ArrayList;
 
-public class MySqlVars {
+public class DB_CRED {
     private static String DB_HOST;
     private static String DB_NAME;
     private static String DB_USER;
@@ -11,15 +11,12 @@ public class MySqlVars {
     public static String getDbHost() {
         return DB_HOST;
     }
-
     public static String getDbName() {
         return DB_NAME;
     }
-
     public static String getDbUser() {
         return DB_USER;
     }
-
     public static String getDbPass() {
         return DB_PASS;
     }
