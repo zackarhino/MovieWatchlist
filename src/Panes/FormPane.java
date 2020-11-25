@@ -1,5 +1,8 @@
 package Panes;
 
+import Launch.Main;
+import Scenes.FormScene;
+import Scenes.MenuScene;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -47,11 +50,14 @@ public class FormPane extends BorderPane {
         VBox inputs = new VBox();
         inputs.getChildren().addAll(input1, input2);
 
+        Button backButton = new Button("Back");
+        Button enterButton = new Button("Enter Movie");
 
-        Button enter = new Button("Enter Movie");
+        //back
+        backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
 
         //enters Movie
-        enter.setOnKeyPressed(e->{
+        enterButton.setOnKeyPressed(e->{
                 //movieNameInput.getText()
                 //year.getText()
                 //productionCompany.getText()
@@ -61,6 +67,6 @@ public class FormPane extends BorderPane {
         });
 
         this.setCenter(inputs);
-        this.setBottom(enter);
+        this.setBottom(enterButton);
     }
 }

@@ -8,6 +8,7 @@ import Scenes.SettingsScene;
 import Tests.DatabaseConnTest;
 import Util.ConfigFileManager;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -21,7 +22,7 @@ public class SettingsPane extends BorderPane {
         TextField dbHost = new TextField("localhost");
         TextField dbName = new TextField();
         TextField dbUser = new TextField();
-        TextField dbPassword = new TextField();
+        PasswordField dbPassword = new PasswordField();
 
         dbHost.setPromptText("DB Host");
         dbName.setPromptText("DB Name");
@@ -62,6 +63,7 @@ public class SettingsPane extends BorderPane {
                     Main.switchScene(MenuScene.getInstance());
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("Couldn't connect to database.");
             }
         });

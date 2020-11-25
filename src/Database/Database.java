@@ -31,6 +31,7 @@ public class Database {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/"+ database + "?serverTimezone=UTC", user, password);
         }catch (Exception e){
+            e.printStackTrace();
             System.out.println("Error: Connection not established.");
         }
         return connection;
