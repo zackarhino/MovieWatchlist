@@ -66,7 +66,9 @@ public class FormPane extends BorderPane {
                 year.clear();
         });
 
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(backButton, enterButton);
         this.setCenter(inputs);
-        this.setBottom(enterButton);
+        this.setBottom(hbox);
     }
 }
