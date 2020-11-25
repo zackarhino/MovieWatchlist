@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ConfigFileManager {
-    private static File configFile = new File(Util.Constants.configFilePath);
+    private static File configFile = new File(Constants.configFilePath);
 
     public static void writeToFile(String dbHost, String dbName, String dbUser, String dbPass){
         try {
