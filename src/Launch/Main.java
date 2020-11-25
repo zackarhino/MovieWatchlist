@@ -1,10 +1,12 @@
 package Launch;
 
-import Database.Database;
+
+import Database.DB_CRED;
 import Scenes.MenuScene;
 import Scenes.MovieDetailsScene;
 import Scenes.SettingsScene;
 import Scenes.ViewWatchlistScene;
+import Util.ConfigFileManager;
 import Util.Constants;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,6 +14,7 @@ import javafx.scene.control.Menu;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * The Main class to launch the application from
@@ -30,6 +33,8 @@ public class Main extends Application {
         if (configFile.length() == 0){
             mainStage.setScene(SettingsScene.getInstance(true));
         }else{
+            ArrayList<String> dbInfo = ConfigFileManager.readFromFile();
+            DB_CRED.setAll(dbInfo.get(0), dbInfo.get(1), dbInfo.get(2), dbInfo.get(3));
             mainStage.setScene(MenuScene.getInstance());
         }
         mainStage.setTitle(Constants.title);
