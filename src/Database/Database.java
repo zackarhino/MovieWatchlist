@@ -37,7 +37,7 @@ public class Database {
         }
 
         try {
-            createTable(Constants.TABLE_MOVIE, Constants.CREATE_TABLE_MOVIE, connection);
+            createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
         }catch (Exception e){
             e.printStackTrace();
         }
