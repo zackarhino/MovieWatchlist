@@ -30,20 +30,10 @@ public class Database {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/"+ database + "?serverTimezone=UTC", user, password);
-            //Create Table
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Error: Connection not established.");
         }
-
-        try {
-            createTable(Constants.TABLE_PRODUCTION_COMPANIES, Constants.CREATE_TABLE_PRODUCTION_COMPANIES, connection);
-            createTable(Constants.TABLE_GENRES, Constants.CREATE_TABLE_GENRES, connection);
-            createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
         return connection;
     }
 
@@ -89,6 +79,28 @@ public class Database {
         return database;
     }
 
+    /**
+     * Add all of the default watchlist tables to the database
+     * @author Zachary Allard
+     */
+    public void createDefaultTables(){
+        try {
+            createTable(Constants.TABLE_PRODUCTION_COMPANIES, Constants.CREATE_TABLE_PRODUCTION_COMPANIES, connection);
+            createTable(Constants.TABLE_GENRES, Constants.CREATE_TABLE_GENRES, connection);
+            createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates a table in the database
+     * @author ?
+     * @param tableName The table name in SQL
+     * @param tableQuery The Query to execute
+     * @param connection The database's connection
+     * @throws SQLException
+     */
     public void createTable(String tableName, String tableQuery, Connection connection) throws SQLException{
         Statement createTables;
         DatabaseMetaData metaData = connection.getMetaData();

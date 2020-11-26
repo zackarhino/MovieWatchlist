@@ -2,6 +2,7 @@ package Launch;
 
 
 import Database.DB_CRED;
+import Database.Database;
 import Scenes.MenuScene;
 import Scenes.MovieDetailsScene;
 import Scenes.SettingsScene;

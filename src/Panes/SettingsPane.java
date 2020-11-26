@@ -59,6 +59,7 @@ public class SettingsPane extends BorderPane {
                 if(db.testConnection()){
                     System.out.println("Connection established and verified.");
                     DB_CRED.setAll(host, name, user, pass);
+                    db.createDefaultTables();
                     Main.switchScene(MenuScene.getInstance());
                 }
             } catch (Exception e) {
