@@ -38,7 +38,7 @@ public class Database {
 
         try {
             createTable(Constants.TABLE_PRODUCTION_COMPANYS, Constants.CREATE_TABLE_PRODUCTION_COMPANYS, connection);
-            createTable(Constants.TABLE_GENRES, Constants.CREATE_TABLE_GENRES connection);
+            createTable(Constants.TABLE_GENRES, Constants.CREATE_TABLE_GENRES, connection);
             createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
         }catch (Exception e){
             e.printStackTrace();

@@ -25,7 +25,8 @@ public class Constants {
                     WATCHLIST_COLUMN_GENRE + " int(11) NOT NULL DEFAULT 1, " +
                     WATCHLIST_COLUMN_PRODUCTION_COMPANY + " int(11) NOT NULL DEFAULT 1, " +
                     "FOREIGN KEY(" + WATCHLIST_COLUMN_GENRE + ") REFERENCES " + WATCHLIST_COLUMN_GENRE + "(" + WATCHLIST_COLUMN_ID + "), " +
-                    "FOREIGN KEY(" + WATCHLIST_COLUMN_PRODUCTION_COMPANY + ") REFERENCES " + WATCHLIST_COLUMN_PRODUCTION_COMPANY + "(" + WATCHLIST_COLUMN_ID + "))";
+                    "FOREIGN KEY(" + WATCHLIST_COLUMN_PRODUCTION_COMPANY + ") REFERENCES " + WATCHLIST_COLUMN_PRODUCTION_COMPANY + "(" + WATCHLIST_COLUMN_ID + ")" +
+            ")";
 
     public static final String VIEW_TABLE_WATCHLIST =
             "SELECT * FROM " + TABLE_WATCHLIST;
@@ -49,12 +50,21 @@ public class Constants {
     public static final String PD_COLUMN_ID = "id";
     public static final String PD_COLUMN_NAME = "name";
 
-    public static final String CREATE_PRODUCTION_COMPANYS =
-            "CREATE TABLE " 
+    public static final String CREATE_TABLE_PRODUCTION_COMPANYS =
+            "CREATE TABLE " + TABLE_PRODUCTION_COMPANYS + "(" +
+                    PD_COLUMN_ID + " int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                    PD_COLUMN_NAME + " VARCHAR(255) NOT NULL" +
+                    ")";
 
     //Genres Table
-    public static final String TABLE_GENRES = "production_genres";
+    public static final String TABLE_GENRES = "genres";
     public static final String GENRE_COLUMN_ID = "id";
     public static final String GENRE_COLUMN_NAME = "name";
+
+    public static final String CREATE_TABLE_GENRES =
+            "CREATE TABLE " + TABLE_GENRES + "(" +
+                    GENRE_COLUMN_ID + " int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                    GENRE_COLUMN_NAME + " VARCHAR(255) NOT NULL" +
+                    ")";
 
 }
