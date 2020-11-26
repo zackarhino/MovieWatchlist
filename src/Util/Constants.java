@@ -46,12 +46,12 @@ public class Constants {
 
 
     //Production Companies Table
-    public static final String TABLE_PRODUCTION_COMPANYS = "production_companys";
+    public static final String TABLE_PRODUCTION_COMPANIES = "production_companies";
     public static final String PD_COLUMN_ID = "id";
     public static final String PD_COLUMN_NAME = "name";
 
-    public static final String CREATE_TABLE_PRODUCTION_COMPANYS =
-            "CREATE TABLE " + TABLE_PRODUCTION_COMPANYS + "(" +
+    public static final String CREATE_TABLE_PRODUCTION_COMPANIES =
+            "CREATE TABLE " + TABLE_PRODUCTION_COMPANIES + "(" +
                     PD_COLUMN_ID + " int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                     PD_COLUMN_NAME + " VARCHAR(255) NOT NULL" +
                     ")";
