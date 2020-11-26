@@ -30,16 +30,29 @@ public class FormPane extends BorderPane {
 
         //genres
         ArrayList<String> genres = new ArrayList<>();
+        genres.add("Other");
         genres.add("Action");
+        genres.add("Adventure");
+        genres.add("Animation");
         genres.add("Comedy");
+        genres.add("Drama");
         genres.add("Horror");
+        genres.add("Mystery");
+        genres.add("Romance");
+        genres.add("Science Fiction");
         genre.setItems(FXCollections.observableArrayList(genres));
 
         //production companies
         ArrayList<String> productionCompanies = new ArrayList<>();
-        productionCompanies.add("Marvel");
-        productionCompanies.add("Universal Studios");
-        productionCompanies.add("Warner Bros.");
+        productionCompanies.add("Other");
+        productionCompanies.add("Dreamworks Pictures");
+        productionCompanies.add("Lionsgate Films");
+        productionCompanies.add("Sony Pictures");
+        productionCompanies.add("The Weinstein Company");
+        productionCompanies.add("Universal Pictures");
+        productionCompanies.add("Walt Disney Studios");
+        productionCompanies.add("Warner Bros");
+        productionCompanies.add("20th Century Fox");
         productionCompany.setItems(FXCollections.observableArrayList(productionCompanies));
 
         HBox input2 = new HBox();
