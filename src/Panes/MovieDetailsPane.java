@@ -89,7 +89,6 @@ public class MovieDetailsPane extends BorderPane {
         lrWrapper.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, null, null)));
         rightSideContainer.setBackground(new Background(new BackgroundFill(Color.GHOSTWHITE, null, null)));
 
-
         pane.setCenter(screenWrapper);
 
         this.setCenter(pane);

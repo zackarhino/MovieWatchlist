@@ -45,6 +45,7 @@ public class FormPane extends BorderPane {
 
         //production companies
         ArrayList<String> productionCompanies = new ArrayList<>();
+
         productionCompanies.add("Other");
         productionCompanies.add("Dreamworks Pictures");
         productionCompanies.add("Lionsgate Films");

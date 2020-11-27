@@ -1,6 +1,5 @@
 package Launch;
 
-
 import Database.DB_CRED;
 import Database.Database;
 import Scenes.MenuScene;
@@ -13,7 +12,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -24,6 +22,7 @@ import java.util.ArrayList;
 public class Main extends Application {
     public static Stage mainStage;
     public static File configFile = new File(Constants.configFilePath);
+
 
     @Override
     public void start(Stage stage) {
@@ -38,6 +37,7 @@ public class Main extends Application {
             DB_CRED.setAll(dbInfo.get(0), dbInfo.get(1), dbInfo.get(2), dbInfo.get(3));
             mainStage.setScene(MenuScene.getInstance());
         }
+      
         mainStage.setTitle(Constants.title);
         mainStage.setResizable(false);
         mainStage.show();
