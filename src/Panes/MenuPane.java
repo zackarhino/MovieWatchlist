@@ -20,7 +20,6 @@ public class MenuPane extends BorderPane {
         Font headlineFont = Font.font("MV Boli", FontWeight.BOLD, 60);
 
         Button watchlistButton = new Button("VIEW YOUR WATCHLIST >");
-        Button addListButton = new Button("ADD TO WATCHLIST");
         Button statsButton = new Button("Watch stats >");
         Button creditsButton = new Button("view credits");
         Button loginButton = new Button("login");
@@ -36,7 +35,6 @@ public class MenuPane extends BorderPane {
         logoImageView.setPreserveRatio(true);
         logoImageView.setImage(new Image("Images/watchlist.png"));
         watchlistButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
-        addListButton.setOnAction(actionEvent -> Main.switchScene(FormScene.getInstance()));
         statsButton.setOnAction(actionEvent -> Main.switchScene(StatsScene.getInstance()));
         creditsButton.setOnAction(actionEvent -> Main.switchScene(CreditsScene.getInstance()));
         loginButton.setOnAction(actionEvent -> Main.switchScene(SettingsScene.getInstance(false)));
@@ -60,7 +58,6 @@ public class MenuPane extends BorderPane {
         logoImageView.setFitHeight(256);
 
         watchlistButton.setPrefHeight(bigButtonHeight);
-        addListButton.setPrefHeight(bigButtonHeight);
         statsButton.setPrefHeight(bigButtonHeight);
         loginButton.setPrefHeight(smallButtonHeight);
         creditsButton.setPrefHeight(smallButtonHeight);
@@ -74,7 +71,6 @@ public class MenuPane extends BorderPane {
 
         // Maybe not the best implementation, but will stop at the max width of the buttonWrapper
         watchlistButton.setPrefWidth(Constants.screenWidth);
-        addListButton.setPrefHeight(Constants.screenWidth);
         statsButton.setPrefWidth(Constants.screenWidth);
         loginButton.setPrefWidth(Constants.screenWidth);
         creditsButton.setPrefWidth(Constants.screenWidth);
@@ -82,7 +78,7 @@ public class MenuPane extends BorderPane {
         this.setPadding(new Insets(panePaddingSize, panePaddingSize, panePaddingSize, panePaddingSize));
 
         // Adding Everything...Everything!
-        buttonWrapper.getChildren().addAll(watchlistButton, addListButton, statsButton, submenuButtons);
+        buttonWrapper.getChildren().addAll(watchlistButton, statsButton, submenuButtons);
         headerWrapper.getChildren().addAll(logoImageView, buttonWrapper);
         menuWrapper.getChildren().addAll(headerWrapper, headlineText);
 

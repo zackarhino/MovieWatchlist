@@ -4,8 +4,11 @@ public class Constants {
     // APPLICATION CONSTANTS
     public static final int screenWidth = 700;
     public static final int screenHeight = 500;
+
     public static final String title = "Movie Watchlist";
     public static final String configFilePath = "src/Credentials/config.txt";
+
+    public static final int DEFAULT_BUTTON_SPACING = 10;
 
     // SQL COLUMN NAMES
     //WatchList Table
@@ -65,5 +68,4 @@ public class Constants {
 
     public static final String DELETE_FROM_WATCHLIST =
             "DELETE FROM " + TABLE_WATCHLIST + " WHERE " + WATCHLIST_COLUMN_ID + " = id";
-
 }

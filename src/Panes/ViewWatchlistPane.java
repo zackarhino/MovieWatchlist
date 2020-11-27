@@ -1,8 +1,10 @@
 package Panes;
 
 import Launch.Main;
+import Scenes.FormScene;
 import Scenes.MenuScene;
 import Scenes.ViewWatchlistScene;
+import Util.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -24,6 +26,7 @@ public class ViewWatchlistPane extends BorderPane {
         //ComboBox Row
         VBox menuContainer = new VBox();
         Button backButton = new Button("< Back");
+        Button addListButton = new Button("+ New movie");
         //Display Status Row
         Text statusTxt = new Text("Need to Watch");
         HBox statusTxtContainer = new HBox(statusTxt);
@@ -39,7 +42,8 @@ public class ViewWatchlistPane extends BorderPane {
         */
 
         //PUTTING IT ALL TOGETHER...
-        menuContainer.getChildren().addAll(backButton);
+        menuContainer.getChildren().addAll(backButton, addListButton);
+        menuContainer.setSpacing(Constants.DEFAULT_BUTTON_SPACING);
         scrollPane.setContent(movieContainer);
         watchlistWrapper.getChildren().addAll(header, menuContainer, statusTxtContainer, scrollPane);
 
@@ -64,6 +68,7 @@ public class ViewWatchlistPane extends BorderPane {
 
         //SETUP
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
+        addListButton.setOnAction(actionEvent -> Main.switchScene(FormScene.getInstance()));
 
         pane.setCenter(watchlistWrapper);
         this.setCenter(pane);

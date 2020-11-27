@@ -27,3 +27,8 @@ hs_err_pid*
 
 # Other
 /src/Credentials/config.txt
+.src/Credentials/config.txt
+
+/out/
+.out/
+

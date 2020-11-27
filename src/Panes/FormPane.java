@@ -3,6 +3,7 @@ package Panes;
 import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
+import Scenes.ViewWatchlistScene;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -67,7 +68,7 @@ public class FormPane extends BorderPane {
         Button enterButton = new Button("Enter Movie");
 
         //back
-        backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
+        backButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
         //enters Movie
         enterButton.setOnKeyPressed(e->{

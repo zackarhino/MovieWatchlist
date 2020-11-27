@@ -4,14 +4,12 @@ import Database.DB_CRED;
 import Database.Database;
 import Launch.Main;
 import Scenes.MenuScene;
-import Util.ConfigFileManager;
+import Util.Constants;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-
-import java.sql.SQLException;
 
 public class SettingsPane extends BorderPane {
 
@@ -34,6 +32,7 @@ public class SettingsPane extends BorderPane {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(dbHost, dbName, dbUser, dbPassword);
 
+        bottomButtons.setSpacing(Constants.DEFAULT_BUTTON_SPACING);
         if (!isFirstTime){
             bottomButtons.getChildren().addAll(connectButton, returnToMenu);
         }
