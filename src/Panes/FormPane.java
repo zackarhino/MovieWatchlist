@@ -1,5 +1,9 @@
 package Panes;
 
+import Launch.Main;
+import Scenes.FormScene;
+import Scenes.MenuScene;
+import Scenes.ViewWatchlistScene;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -27,16 +31,30 @@ public class FormPane extends BorderPane {
 
         //genres
         ArrayList<String> genres = new ArrayList<>();
+        genres.add("Other");
         genres.add("Action");
+        genres.add("Adventure");
+        genres.add("Animation");
         genres.add("Comedy");
+        genres.add("Drama");
         genres.add("Horror");
+        genres.add("Mystery");
+        genres.add("Romance");
+        genres.add("Science Fiction");
         genre.setItems(FXCollections.observableArrayList(genres));
 
         //production companies
         ArrayList<String> productionCompanies = new ArrayList<>();
-        productionCompanies.add("Marvel");
-        productionCompanies.add("Universal Studios");
-        productionCompanies.add("Warner Bros.");
+
+        productionCompanies.add("Other");
+        productionCompanies.add("Dreamworks Pictures");
+        productionCompanies.add("Lionsgate Films");
+        productionCompanies.add("Sony Pictures");
+        productionCompanies.add("The Weinstein Company");
+        productionCompanies.add("Universal Pictures");
+        productionCompanies.add("Walt Disney Studios");
+        productionCompanies.add("Warner Bros");
+        productionCompanies.add("20th Century Fox");
         productionCompany.setItems(FXCollections.observableArrayList(productionCompanies));
 
         HBox input2 = new HBox();
@@ -47,11 +65,14 @@ public class FormPane extends BorderPane {
         VBox inputs = new VBox();
         inputs.getChildren().addAll(input1, input2);
 
+        Button backButton = new Button("Back");
+        Button enterButton = new Button("Enter Movie");
 
-        Button enter = new Button("Enter Movie");
+        //back
+        backButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
         //enters Movie
-        enter.setOnKeyPressed(e->{
+        enterButton.setOnKeyPressed(e->{
                 //movieNameInput.getText()
                 //year.getText()
                 //productionCompany.getText()
@@ -60,7 +81,9 @@ public class FormPane extends BorderPane {
                 year.clear();
         });
 
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(backButton, enterButton);
         this.setCenter(inputs);
-        this.setBottom(enter);
+        this.setBottom(hbox);
     }
 }

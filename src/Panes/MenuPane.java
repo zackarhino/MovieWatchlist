@@ -1,9 +1,7 @@
 package Panes;
 
 import Launch.Main;
-import Scenes.CreditsScene;
-import Scenes.StatsScene;
-import Scenes.ViewWatchlistScene;
+import Scenes.*;
 import Util.Constants;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -39,8 +37,7 @@ public class MenuPane extends BorderPane {
         watchlistButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
         statsButton.setOnAction(actionEvent -> Main.switchScene(StatsScene.getInstance()));
         creditsButton.setOnAction(actionEvent -> Main.switchScene(CreditsScene.getInstance()));
-        // TODO: Connect login screen
-        //loginButton.setOnAction(actionEvent -> Main.switchScene(LoginScene.getInstance()));
+        loginButton.setOnAction(actionEvent -> Main.switchScene(SettingsScene.getInstance(false)));
 
         // Styling
         this.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, null, null)));

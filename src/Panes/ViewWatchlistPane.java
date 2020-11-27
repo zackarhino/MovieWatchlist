@@ -1,8 +1,10 @@
 package Panes;
 
 import Launch.Main;
+import Scenes.FormScene;
 import Scenes.MenuScene;
 import Scenes.ViewWatchlistScene;
+import Util.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -18,20 +20,15 @@ public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
         BorderPane pane = new BorderPane();
 
-        //Whenever status is mentioned, it refers to either "Need to Watch" or "Watched"
-        ArrayList<String> status = new ArrayList<>();
-        status.add("Need to Watch");
-        status.add("Watched");
-
         VBox watchlistWrapper = new VBox();
         //Header Row
         HBox header = new HBox(new Text("My Movies"));
         //ComboBox Row
         VBox menuContainer = new VBox();
         Button backButton = new Button("< Back");
-        ComboBox<String> selectStatus = new ComboBox<>(FXCollections.observableArrayList(status));
+        Button addListButton = new Button("+ New movie");
         //Display Status Row
-        Text statusTxt = new Text();
+        Text statusTxt = new Text("Need to Watch");
         HBox statusTxtContainer = new HBox(statusTxt);
         VBox movieContainer = new VBox();
         //Put movie Container inside of scrollpane to handle overflow
@@ -45,7 +42,8 @@ public class ViewWatchlistPane extends BorderPane {
         */
 
         //PUTTING IT ALL TOGETHER...
-        menuContainer.getChildren().addAll(backButton, selectStatus);
+        menuContainer.getChildren().addAll(backButton, addListButton);
+        menuContainer.setSpacing(Constants.DEFAULT_BUTTON_SPACING);
         scrollPane.setContent(movieContainer);
         watchlistWrapper.getChildren().addAll(header, menuContainer, statusTxtContainer, scrollPane);
 
@@ -69,10 +67,8 @@ public class ViewWatchlistPane extends BorderPane {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 
         //SETUP
-        selectStatus.getSelectionModel().selectFirst();
-        statusTxt.setText(selectStatus.getValue());
-        selectStatus.setOnAction(actionEvent -> statusTxt.setText(selectStatus.getValue()));
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
+        addListButton.setOnAction(actionEvent -> Main.switchScene(FormScene.getInstance()));
 
         pane.setCenter(watchlistWrapper);
         this.setCenter(pane);
