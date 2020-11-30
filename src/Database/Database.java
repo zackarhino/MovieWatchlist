@@ -134,12 +134,15 @@ public class Database {
      * @author Trevor Slobodnick
      * */
     public void addMovie(String title, int year, int genre, int prodCompany){
+        //Add 1 because these are index values, so they will always be 1 less than they're db counterparts
+        genre += 1;
+        prodCompany += 1;
         String query =
                 "INSERT INTO " + TABLE_WATCHLIST + "(" + WATCHLIST_COLUMN_TITLE + ", " +
                         WATCHLIST_COLUMN_YEAR + ", " +
                         WATCHLIST_COLUMN_GENRE + ", " +
-                        WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")\n" +
-                        "VALUES (" + title + ", " +
+                        WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")" +
+                        " VALUES ('" + title + "', " +
                         year + ", " +
                         genre + ", " +
                         prodCompany + ");";
