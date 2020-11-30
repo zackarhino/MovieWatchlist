@@ -31,36 +31,15 @@ public class FormPane extends BorderPane {
                 movieName, new Label("Year: "), year);
         input1.setAlignment(Pos.CENTER);
 
+        //Get info from database
         Database db = Database.getInstance();
         ArrayList<String> db_genres = db.getGenres();
-        ArrayList<String> db_prodCompany = db.getGenres();
+        ArrayList<String> db_prodCompany = db.getProdCompany();
 
         //genres
-        ArrayList<String> genres = new ArrayList<>();
-        genres.add("Other");
-        genres.add("Action");
-        genres.add("Adventure");
-        genres.add("Animation");
-        genres.add("Comedy");
-        genres.add("Drama");
-        genres.add("Horror");
-        genres.add("Mystery");
-        genres.add("Romance");
-        genres.add("Science Fiction");
         genre.setItems(FXCollections.observableArrayList(db_genres));
 
         //production companies
-        ArrayList<String> productionCompanies = new ArrayList<>();
-
-        productionCompanies.add("Other");
-        productionCompanies.add("Dreamworks Pictures");
-        productionCompanies.add("Lionsgate Films");
-        productionCompanies.add("Sony Pictures");
-        productionCompanies.add("The Weinstein Company");
-        productionCompanies.add("Universal Pictures");
-        productionCompanies.add("Walt Disney Studios");
-        productionCompanies.add("Warner Bros");
-        productionCompanies.add("20th Century Fox");
         productionCompany.setItems(FXCollections.observableArrayList(db_prodCompany));
 
         HBox input2 = new HBox();
@@ -79,29 +58,22 @@ public class FormPane extends BorderPane {
 
         //enters Movie
         enterButton.setOnKeyPressed(e->{
-                //movieNameInput.getText()
-                //year.getText()
-                //productionCompany.getText()
-                //genre.getText()
-                movieName.clear();
-                year.clear();
+            int genreAsInt = db_genres.indexOf(genre.getValue().toString());
+            int productionCompanyAsInt = db_prodCompany.indexOf(productionCompany.getValue().toString());
+            int yearAsInt = 2020;
+            try {
+                yearAsInt = Integer.parseInt(year.getText());
+            } catch (Exception exception){
+                exception.printStackTrace();
+            }
+            db.addMovie(movieName.getText(), yearAsInt, genreAsInt, productionCompanyAsInt);
+            movieName.clear();
+            year.clear();
         });
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(backButton, enterButton);
         this.setCenter(inputs);
         this.setBottom(hbox);
-    }
-
-    public void addMovie(String title, int year, int genre, int prodCompany){
-        String INSERT_INTO_WATCHLIST =
-                "INSERT INTO " + TABLE_WATCHLIST + "(" + WATCHLIST_COLUMN_TITLE + ", " +
-                        WATCHLIST_COLUMN_YEAR + ", " +
-                        WATCHLIST_COLUMN_GENRE + ", " +
-                        WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")\n" +
-                        "VALUES (" + title + ", " +
-                        year + ", " +
-                        genre + ", " +
-                        prodCompany + ")";
     }
 }

@@ -5,6 +5,8 @@ import Util.Constants;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static Util.Constants.*;
+
 public class Database {
 
     private static Database database = null;
@@ -119,6 +121,23 @@ public class Database {
             else if (tableName.equals(Constants.TABLE_PRODUCTION_COMPANIES)){
                 connection.createStatement().execute(Constants.POPULATE_PRODUCTION_COMPANY);
             }
+        }
+    }
+
+    public void addMovie(String title, int year, int genre, int prodCompany){
+        String query =
+                "INSERT INTO " + TABLE_WATCHLIST + "(" + WATCHLIST_COLUMN_TITLE + ", " +
+                        WATCHLIST_COLUMN_YEAR + ", " +
+                        WATCHLIST_COLUMN_GENRE + ", " +
+                        WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")\n" +
+                        "VALUES (" + title + ", " +
+                        year + ", " +
+                        genre + ", " +
+                        prodCompany + ");";
+        try {
+            connection.createStatement().execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
