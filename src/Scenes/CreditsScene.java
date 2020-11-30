@@ -8,7 +8,7 @@ public class CreditsScene extends Scene {
     private static CreditsScene creditsScene;
 
     public CreditsScene() {
-        super(new CreditsPane(), Constants.screenWidth, Constants.screenHeight);
+        super(new CreditsPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Singleton Design Pattern

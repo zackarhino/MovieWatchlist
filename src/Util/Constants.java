@@ -6,12 +6,13 @@ import javafx.scene.text.FontWeight;
 
 public class Constants {
     // APPLICATION CONSTANTS
-    public static final int screenWidth = 700;
-    public static final int screenHeight = 500;
+    public static final int SCREEN_WIDTH = 700;
+    public static final int SCREEN_HEIGHT = 500;
 
     public static final String title = "Movie Watchlist";
     public static final String configFilePath = "src/Credentials/config.txt";
 
+    public static final int MENU_BUTTON_WIDTH = 150;
     public static final int DEFAULT_SPACING = 10;
 
     // STYLING

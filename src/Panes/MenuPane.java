@@ -8,9 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class MenuPane extends BorderPane {
@@ -46,8 +44,8 @@ public class MenuPane extends BorderPane {
 
         // Spacing
         // MAGIC NUMBERS 🙌
-        double panePaddingSize = Constants.screenWidth * 0.1;
-        double paneInnerSize = Constants.screenHeight - (panePaddingSize*2);
+        double panePaddingSize = Constants.SCREEN_WIDTH * 0.1;
+        double paneInnerSize = Constants.SCREEN_HEIGHT - (panePaddingSize*2);
         double buttonWrapperPadding = 10;
         double bigButtonHeight = 60;
         double smallButtonHeight = 30;
@@ -72,10 +70,10 @@ public class MenuPane extends BorderPane {
         menuWrapper.setPrefHeight(paneInnerSize/2);
 
         // Maybe not the best implementation, but will stop at the max width of the buttonWrapper
-        watchlistButton.setPrefWidth(Constants.screenWidth);
-        statsButton.setPrefWidth(Constants.screenWidth);
-        loginButton.setPrefWidth(Constants.screenWidth);
-        creditsButton.setPrefWidth(Constants.screenWidth);
+        watchlistButton.setPrefWidth(Constants.SCREEN_WIDTH);
+        statsButton.setPrefWidth(Constants.SCREEN_WIDTH);
+        loginButton.setPrefWidth(Constants.SCREEN_WIDTH);
+        creditsButton.setPrefWidth(Constants.SCREEN_WIDTH);
 
         this.setPadding(new Insets(panePaddingSize, panePaddingSize, panePaddingSize, panePaddingSize));
 

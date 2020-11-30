@@ -2,14 +2,13 @@ package Scenes;
 
 import Panes.FormPane;
 import Util.Constants;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class FormScene extends Scene {
     private static FormScene formScene;
 
     public FormScene() {
-        super(new FormPane(), Constants.screenWidth, Constants.screenHeight);
+        super(new FormPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Singleton Design Pattern

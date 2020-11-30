@@ -48,6 +48,8 @@ public class ViewWatchlistPane extends BorderPane {
         //Size
         movieContainer.setMinWidth(700);
         movieContainer.setMinHeight(435);
+        backButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+        addListButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
 
         //Position
         header.setAlignment(Pos.TOP_CENTER);

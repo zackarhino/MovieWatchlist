@@ -29,7 +29,7 @@ public class SettingsPane extends BorderPane {
 
         HBox bottomButtons = new HBox();
         Button connectButton = new Button("Connect");
-        Button returnToMenu = new Button("Return to Menu");
+        Button returnToMenu = new Button("< Back");
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(dbHost, dbName, dbUser, dbPassword);
@@ -37,7 +37,7 @@ public class SettingsPane extends BorderPane {
 
         bottomButtons.setSpacing(Constants.DEFAULT_SPACING);
         if (!isFirstTime){
-            bottomButtons.getChildren().addAll(connectButton, returnToMenu);
+            bottomButtons.getChildren().addAll(returnToMenu, connectButton);
         }
         else{
             bottomButtons.getChildren().addAll(connectButton);
