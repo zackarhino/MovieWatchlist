@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class ViewWatchlistPane extends BorderPane {
@@ -16,13 +17,14 @@ public class ViewWatchlistPane extends BorderPane {
 
         VBox watchlistWrapper = new VBox();
         //Header Row
-        HBox header = new HBox(new Text("My Movies"));
+        HBox header = new HBox();
         //ComboBox Row
         VBox menuContainer = new VBox();
         Button backButton = new Button("< Back");
         Button addListButton = new Button("+ New movie");
         //Display Status Row
         Text statusTxt = new Text("Need to Watch");
+        Text titleText = new Text("My Movies");
         HBox statusTxtContainer = new HBox(statusTxt);
         VBox movieContainer = new VBox();
         //Put movie Container inside of scrollpane to handle overflow
@@ -36,6 +38,7 @@ public class ViewWatchlistPane extends BorderPane {
         */
 
         //PUTTING IT ALL TOGETHER...
+        header.getChildren().add(titleText);
         menuContainer.getChildren().addAll(backButton, addListButton);
         menuContainer.setSpacing(Constants.DEFAULT_SPACING);
         scrollPane.setContent(movieContainer);
@@ -53,8 +56,11 @@ public class ViewWatchlistPane extends BorderPane {
         //Vgrow/Hgrow
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
-        //Color
+        //Styling
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_COLOR, null, null)));
+        titleText.setFill(Constants.COLOR_TEXT_ALT);
+        titleText.setFont(Constants.FONT_SUBTITLE_FONT);
+        statusTxt.setFill(Constants.COLOR_TEXT_ALT);
         movieContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
 
         //Scrollbar

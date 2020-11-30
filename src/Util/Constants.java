@@ -1,6 +1,8 @@
 package Util;
 
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class Constants {
     // APPLICATION CONSTANTS
@@ -15,7 +17,13 @@ public class Constants {
     // STYLING
     // Colors
     public static Color COLOR_BACKGROUND_COLOR = Color.rgb(73,85,96);
-    public static Color COLOR_ACCENT_COLOR = Color.rgb(237,66,102);
+    public static Color COLOR_ACCENT_COLOR = Color.rgb(94,13,54);
+    public static Color COLOR_TEXT_MAIN = Color.rgb(0,0,0);
+    public static Color COLOR_TEXT_ALT = Color.rgb(255,255,255);
+
+    // Fonts
+    public static Font FONT_MENU_TITLE_FONT = Font.font("Courier New", FontWeight.BOLD, 60);
+    public static Font FONT_SUBTITLE_FONT = Font.font("Times New Roman", FontWeight.BOLD, 30);
 
     // SQL COLUMN NAMES
     //WatchList Table

@@ -17,7 +17,7 @@ public class MenuPane extends BorderPane {
     public MenuPane(){
         ImageView logoImageView = new ImageView();
         Text headlineText = new Text("MOVIE WATCHLIST");
-        Font headlineFont = Font.font("MV Boli", FontWeight.BOLD, 60);
+        Font headlineFont = Constants.FONT_MENU_TITLE_FONT;
 
         Button watchlistButton = new Button("VIEW YOUR WATCHLIST >");
         Button statsButton = new Button("Watch stats >");
@@ -40,6 +40,7 @@ public class MenuPane extends BorderPane {
         loginButton.setOnAction(actionEvent -> Main.switchScene(SettingsScene.getInstance(false)));
 
         // Styling
+        headlineText.setFill(Constants.COLOR_ACCENT_COLOR);
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
         headlineText.setFont(headlineFont);
 
@@ -61,6 +62,7 @@ public class MenuPane extends BorderPane {
         statsButton.setPrefHeight(bigButtonHeight);
         loginButton.setPrefHeight(smallButtonHeight);
         creditsButton.setPrefHeight(smallButtonHeight);
+        submenuButtons.setSpacing(Constants.DEFAULT_SPACING);
         buttonWrapper.setSpacing(buttonSpacing);
         buttonWrapper.setPadding(new Insets(0, buttonWrapperPadding, 0, buttonWrapperPadding));
 
