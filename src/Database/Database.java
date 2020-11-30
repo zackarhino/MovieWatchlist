@@ -1,5 +1,6 @@
 package Database;
 
+import Movie.Movie;
 import Util.Constants;
 
 import java.sql.*;
@@ -150,20 +151,27 @@ public class Database {
     }
 
     /**
-     * Get all movies/rows from the database
-     * TODO Create movie objects and remove sout statements
+     * Get all rows from the database and create movie objects from them
      * @author Trevor Slobodnick
      * */
-    public void getMovies(){
+    public void createMovies(){
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(VIEW_TABLE_WATCHLIST);
             while (rs.next()){
-                System.out.println(rs.getString(1)); //id
-                System.out.println(rs.getString(2)); //title
-                System.out.println(rs.getString(3)); //year
-                System.out.println(rs.getString(4)); //genreAsInt
-                System.out.println(rs.getString(5)); //prodCompanyAsInt
+                int id = Integer.parseInt(rs.getString(1));
+                String title = rs.getString(2);
+                int year = Integer.parseInt(rs.getString(3));
+                int genreAsInt = Integer.parseInt(rs.getString(4));
+                int prodCompanyAsInt = Integer.parseInt(rs.getString(5));
+                Movie movie = new Movie(id,
+                        title,
+                        year,
+                        genreAsInt,
+                        prodCompanyAsInt,
+                        getGenre(genreAsInt),
+                        getProdCompany(prodCompanyAsInt));
+                System.out.println(movie);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -199,6 +207,7 @@ public class Database {
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
+            rs.next();
             return rs.getString(1);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -235,6 +244,7 @@ public class Database {
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
+            rs.next();
             return rs.getString(1);
         } catch (SQLException throwables) {
             throwables.printStackTrace();

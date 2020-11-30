@@ -4,23 +4,18 @@ import Database.Database;
 import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
-import Scenes.ViewWatchlistScene;
 import Util.Constants;
-import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-
 public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
         Database db = Database.getInstance();
-        db.getMovies();
+        db.createMovies();
 
         BorderPane pane = new BorderPane();
 
