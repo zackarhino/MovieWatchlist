@@ -124,6 +124,14 @@ public class Database {
         }
     }
 
+    /**
+     * Adds a movie to the database
+     * @param title The title of the movie
+     * @param year The year the movie was released
+     * @param genre The genre of the movie
+     * @param prodCompany The company that produced the movie
+     * @author Trevor Slobodnick
+     * */
     public void addMovie(String title, int year, int genre, int prodCompany){
         String query =
                 "INSERT INTO " + TABLE_WATCHLIST + "(" + WATCHLIST_COLUMN_TITLE + ", " +
