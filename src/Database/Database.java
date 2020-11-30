@@ -145,6 +145,7 @@ public class Database {
                         prodCompany + ");";
         try {
             connection.createStatement().execute(query);
+            System.out.println("Movie Successfully Added");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

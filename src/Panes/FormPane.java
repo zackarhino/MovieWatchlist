@@ -53,7 +53,7 @@ public class FormPane extends BorderPane {
         backButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
         //enters Movie
-        enterButton.setOnKeyPressed(e->{
+        enterButton.setOnAction(e->{
             int genreAsInt = db_genres.indexOf(genre.getValue().toString());
             int productionCompanyAsInt = db_prodCompany.indexOf(productionCompany.getValue().toString());
             int yearAsInt = 2020;
