@@ -3,6 +3,7 @@ package Database;
 import Util.Constants;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Database {
 
@@ -88,7 +89,6 @@ public class Database {
             createTable(Constants.TABLE_PRODUCTION_COMPANIES, Constants.CREATE_TABLE_PRODUCTION_COMPANIES, connection);
             createTable(Constants.TABLE_GENRES, Constants.CREATE_TABLE_GENRES, connection);
             createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
-            populateTables();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -113,20 +113,41 @@ public class Database {
             createTables = connection.createStatement();
             createTables.execute(tableQuery);
             System.out.println("The " + tableName + " table has been inserted.");
+            if (tableName.equals(Constants.TABLE_GENRES)){
+                connection.createStatement().execute(Constants.POPULATE_GENRES);
+            }
+            else if (tableName.equals(Constants.TABLE_PRODUCTION_COMPANIES)){
+                connection.createStatement().execute(Constants.POPULATE_PRODUCTION_COMPANY);
+            }
         }
     }
 
-    /**
-     * Populate the genres and production company tables with values.
-     * (Called when the tables are created)
-     * @author Trevor Slobodnick
-    * */
-    private void populateTables(){
+
+    public ArrayList<String> getGenres(){
+        ArrayList<String> genres = new ArrayList<>();
         try {
-            connection.createStatement().execute(Constants.POPULATE_GENRES);
-            connection.createStatement().execute(Constants.POPULATE_PRODUCTION_COMPANY);
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_GENRES);
+            while (rs.next()){
+                genres.add(rs.getString(2));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return genres;
+    }
+
+    public ArrayList<String> getProdCompany(){
+        ArrayList<String> prodCompanies = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_PRODUCTION_COMPANIES);
+            while (rs.next()){
+                prodCompanies.add(rs.getString(2));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return prodCompanies;
     }
 }

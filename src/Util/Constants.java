@@ -85,15 +85,11 @@ public class Constants {
     public static final String VIEW_TABLE_WATCHLIST =
             "SELECT * FROM " + TABLE_WATCHLIST;
 
-    public static final String INSERT_INTO_WATCHLIST =
-            "INSERT INTO " + TABLE_WATCHLIST + "(" + WATCHLIST_COLUMN_TITLE + ", " +
-                                                    WATCHLIST_COLUMN_YEAR + ", " +
-                                                    WATCHLIST_COLUMN_GENRE + ", " +
-                                                    WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")\n" +
-            "VALUES (" + WATCHLIST_COLUMN_TITLE + ", " +
-                    WATCHLIST_COLUMN_YEAR + ", " +
-                    WATCHLIST_COLUMN_GENRE + ", " +
-                    WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")";
+    public static final String VIEW_TABLE_GENRES =
+            "SELECT * FROM " + TABLE_GENRES;
+
+    public static final String VIEW_TABLE_PRODUCTION_COMPANIES =
+            "SELECT * FROM " + TABLE_PRODUCTION_COMPANIES;
 
     public static final String DELETE_FROM_WATCHLIST =
             "DELETE FROM " + TABLE_WATCHLIST + " WHERE " + WATCHLIST_COLUMN_ID + " = id";

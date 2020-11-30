@@ -1,5 +1,6 @@
 package Panes;
 
+import Database.Database;
 import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
@@ -16,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import static Util.Constants.*;
 
 public class FormPane extends BorderPane {
     private TextField movieName = new TextField();
@@ -29,6 +31,10 @@ public class FormPane extends BorderPane {
                 movieName, new Label("Year: "), year);
         input1.setAlignment(Pos.CENTER);
 
+        Database db = Database.getInstance();
+        ArrayList<String> db_genres = db.getGenres();
+        ArrayList<String> db_prodCompany = db.getGenres();
+
         //genres
         ArrayList<String> genres = new ArrayList<>();
         genres.add("Other");
@@ -41,7 +47,7 @@ public class FormPane extends BorderPane {
         genres.add("Mystery");
         genres.add("Romance");
         genres.add("Science Fiction");
-        genre.setItems(FXCollections.observableArrayList(genres));
+        genre.setItems(FXCollections.observableArrayList(db_genres));
 
         //production companies
         ArrayList<String> productionCompanies = new ArrayList<>();
@@ -55,7 +61,7 @@ public class FormPane extends BorderPane {
         productionCompanies.add("Walt Disney Studios");
         productionCompanies.add("Warner Bros");
         productionCompanies.add("20th Century Fox");
-        productionCompany.setItems(FXCollections.observableArrayList(productionCompanies));
+        productionCompany.setItems(FXCollections.observableArrayList(db_prodCompany));
 
         HBox input2 = new HBox();
         input2.getChildren().addAll(new Label("Production Company: "), productionCompany,
@@ -85,5 +91,17 @@ public class FormPane extends BorderPane {
         hbox.getChildren().addAll(backButton, enterButton);
         this.setCenter(inputs);
         this.setBottom(hbox);
+    }
+
+    public void addMovie(String title, int year, int genre, int prodCompany){
+        String INSERT_INTO_WATCHLIST =
+                "INSERT INTO " + TABLE_WATCHLIST + "(" + WATCHLIST_COLUMN_TITLE + ", " +
+                        WATCHLIST_COLUMN_YEAR + ", " +
+                        WATCHLIST_COLUMN_GENRE + ", " +
+                        WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")\n" +
+                        "VALUES (" + title + ", " +
+                        year + ", " +
+                        genre + ", " +
+                        prodCompany + ")";
     }
 }
