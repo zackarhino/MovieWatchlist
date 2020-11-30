@@ -2,8 +2,6 @@ package Panes;
 
 import Database.Database;
 import Launch.Main;
-import Scenes.FormScene;
-import Scenes.MenuScene;
 import Scenes.ViewWatchlistScene;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -11,13 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
-import static Util.Constants.*;
 
 public class FormPane extends BorderPane {
     private TextField movieName = new TextField();
@@ -33,8 +29,8 @@ public class FormPane extends BorderPane {
 
         //Get info from database
         Database db = Database.getInstance();
-        ArrayList<String> db_genres = db.getGenres();
-        ArrayList<String> db_prodCompany = db.getProdCompany();
+        ArrayList<String> db_genres = db.getAllGenres();
+        ArrayList<String> db_prodCompany = db.getAllProdCompanies();
 
         //genres
         genre.setItems(FXCollections.observableArrayList(db_genres));
