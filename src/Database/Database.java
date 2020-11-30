@@ -144,8 +144,8 @@ public class Database {
                         prodCompany + ");";
         try {
             connection.createStatement().execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -158,8 +158,8 @@ public class Database {
             while (rs.next()){
                 genres.add(rs.getString(2));
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return genres;
     }
@@ -172,8 +172,8 @@ public class Database {
             while (rs.next()){
                 prodCompanies.add(rs.getString(2));
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return prodCompanies;
     }

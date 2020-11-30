@@ -3,18 +3,12 @@ package Panes;
 import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
-import Scenes.ViewWatchlistScene;
 import Util.Constants;
-import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
-import java.util.ArrayList;
 
 public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
@@ -43,7 +37,7 @@ public class ViewWatchlistPane extends BorderPane {
 
         //PUTTING IT ALL TOGETHER...
         menuContainer.getChildren().addAll(backButton, addListButton);
-        menuContainer.setSpacing(Constants.DEFAULT_BUTTON_SPACING);
+        menuContainer.setSpacing(Constants.DEFAULT_SPACING);
         scrollPane.setContent(movieContainer);
         watchlistWrapper.getChildren().addAll(header, menuContainer, statusTxtContainer, scrollPane);
 
@@ -60,7 +54,8 @@ public class ViewWatchlistPane extends BorderPane {
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
         //Color
-        movieContainer.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_COLOR, null, null)));
+        movieContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
 
         //Scrollbar
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);

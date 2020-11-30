@@ -5,6 +5,7 @@ import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
 import Scenes.ViewWatchlistScene;
+import Util.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,9 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.util.ArrayList;
 import static Util.Constants.*;
@@ -70,6 +69,9 @@ public class FormPane extends BorderPane {
             movieName.clear();
             year.clear();
         });
+
+        // Styling
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(backButton, enterButton);

@@ -40,7 +40,7 @@ public class MenuPane extends BorderPane {
         loginButton.setOnAction(actionEvent -> Main.switchScene(SettingsScene.getInstance(false)));
 
         // Styling
-        this.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
         headlineText.setFont(headlineFont);
 
         // Spacing

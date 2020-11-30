@@ -1,5 +1,7 @@
 package Util;
 
+import javafx.scene.paint.Color;
+
 public class Constants {
     // APPLICATION CONSTANTS
     public static final int screenWidth = 700;
@@ -8,7 +10,12 @@ public class Constants {
     public static final String title = "Movie Watchlist";
     public static final String configFilePath = "src/Credentials/config.txt";
 
-    public static final int DEFAULT_BUTTON_SPACING = 10;
+    public static final int DEFAULT_SPACING = 10;
+
+    // STYLING
+    // Colors
+    public static Color COLOR_BACKGROUND_COLOR = Color.rgb(73,85,96);
+    public static Color COLOR_ACCENT_COLOR = Color.rgb(237,66,102);
 
     // SQL COLUMN NAMES
     //WatchList Table
