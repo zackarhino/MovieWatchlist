@@ -53,7 +53,7 @@ public class Constants {
             ")";
 
     //Insert Statements
-    public static final String INSERT_INTO_PC =
+    public static final String POPULATE_PRODUCTION_COMPANY =
             "INSERT INTO " + TABLE_PRODUCTION_COMPANIES +
                     "(" + PD_COLUMN_ID + ", " + PD_COLUMN_NAME + ")" + " VALUES " +
                     "(" + 1 + ", Other)" +
@@ -67,7 +67,7 @@ public class Constants {
                     "(" + 9 + ", Warner Bros)" +
                     "(" + 10 + ", 20th Century Fox);";
 
-    public static final String INSERT_INTO_GENRES =
+    public static final String POPULATE_GENRES =
             "INSERT INTO " + TABLE_GENRES +
                     "(" + GENRE_COLUMN_ID + ", " + GENRE_COLUMN_NAME + ")" + " VALUES " +
                     "(" + 1 + ", Other)" +

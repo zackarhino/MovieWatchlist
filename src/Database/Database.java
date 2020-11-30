@@ -88,6 +88,7 @@ public class Database {
             createTable(Constants.TABLE_PRODUCTION_COMPANIES, Constants.CREATE_TABLE_PRODUCTION_COMPANIES, connection);
             createTable(Constants.TABLE_GENRES, Constants.CREATE_TABLE_GENRES, connection);
             createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
+            populateTables();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -111,6 +112,20 @@ public class Database {
             createTables = connection.createStatement();
             createTables.execute(tableQuery);
             System.out.println("The " + tableName + " table has been inserted.");
+        }
+    }
+
+    /**
+     * Populate the genres and production company tables with values.
+     * (Called when the tables are created)
+     * @author Trevor Slobodnick
+    * */
+    private void populateTables(){
+        try {
+            connection.createStatement().execute(Constants.POPULATE_GENRES);
+            connection.createStatement().execute(Constants.POPULATE_PRODUCTION_COMPANY);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }
