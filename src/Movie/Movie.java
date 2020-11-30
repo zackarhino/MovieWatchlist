@@ -13,13 +13,13 @@ public class Movie {
     private String genreAsStr;
     private String prodCompanyAsStr;
 
-    public Movie(String title, int year, int genreAsInt, int prodCompanyAsInt) {
+    public Movie(String title, int year, int genreAsInt, int prodCompanyAsInt, String genreAsStr, String prodCompanyAsStr) {
         this.title = title;
         this.year = year;
         this.genreAsInt = genreAsInt;
         this.prodCompanyAsInt = prodCompanyAsInt;
-//        this.genreAsStr = MethodNotCreatedYet;
-//        this.prodCompanyAsStr = MethodNotCreatedYet;
+        this.genreAsStr = genreAsStr;
+        this.prodCompanyAsStr = prodCompanyAsStr;
         allMovies.add(this);
     }
 }
