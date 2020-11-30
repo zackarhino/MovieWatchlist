@@ -96,6 +96,7 @@ public class Database {
 
     /**
      * Creates a table in the database
+     * Note: must be called after DB_CRED variables are set
      * @author ?
      * @param tableName The table name in SQL
      * @param tableQuery The Query to execute
@@ -105,7 +106,7 @@ public class Database {
     public void createTable(String tableName, String tableQuery, Connection connection) throws SQLException{
         Statement createTables;
         DatabaseMetaData metaData = connection.getMetaData();
-        ResultSet resultSet = metaData.getTables(null, null, tableName, null);
+        ResultSet resultSet = metaData.getTables(DB_CRED.getDbName(), null, tableName, null);
         if(resultSet.next()){
             System.out.println(tableName + " Table already exists!");
         } else {
