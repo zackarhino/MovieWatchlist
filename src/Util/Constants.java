@@ -56,29 +56,29 @@ public class Constants {
     public static final String POPULATE_PRODUCTION_COMPANY =
             "INSERT INTO " + TABLE_PRODUCTION_COMPANIES +
                     "(" + PD_COLUMN_ID + ", " + PD_COLUMN_NAME + ")" + " VALUES " +
-                    "(" + 1 + ", Other)" +
-                    "(" + 2 + ", Dreamworks Pictures)" +
-                    "(" + 3 + ", Lionsgate Films)" +
-                    "(" + 4 + ", Paramount Pictures)" +
-                    "(" + 5 + ", Sony Pictures)" +
-                    "(" + 6 + ", The Weinstein Company)" +
-                    "(" + 7 + ", Universal Studios)" +
-                    "(" + 8 + ", Walt Disney Studios)" +
-                    "(" + 9 + ", Warner Bros)" +
+                    "(" + 1 + ", Other)," +
+                    "(" + 2 + ", Dreamworks Pictures)," +
+                    "(" + 3 + ", Lionsgate Films)," +
+                    "(" + 4 + ", Paramount Pictures)," +
+                    "(" + 5 + ", Sony Pictures)," +
+                    "(" + 6 + ", The Weinstein Company)," +
+                    "(" + 7 + ", Universal Studios)," +
+                    "(" + 8 + ", Walt Disney Studios)," +
+                    "(" + 9 + ", Warner Bros)," +
                     "(" + 10 + ", 20th Century Fox);";
 
     public static final String POPULATE_GENRES =
             "INSERT INTO " + TABLE_GENRES +
                     "(" + GENRE_COLUMN_ID + ", " + GENRE_COLUMN_NAME + ")" + " VALUES " +
-                    "(" + 1 + ", Other)" +
-                    "(" + 2 + ", Action)" +
-                    "(" + 3 + ", Adventure)" +
-                    "(" + 4 + ", Animation)" +
-                    "(" + 5 + ", Comedy)" +
-                    "(" + 6 + ", Drama)" +
-                    "(" + 7 + ", Horror)" +
-                    "(" + 8 + ", Mystery)" +
-                    "(" + 9 + ", Romance)" +
+                    "(" + 1 + ", Other)," +
+                    "(" + 2 + ", Action)," +
+                    "(" + 3 + ", Adventure)," +
+                    "(" + 4 + ", Animation)," +
+                    "(" + 5 + ", Comedy)," +
+                    "(" + 6 + ", Drama)," +
+                    "(" + 7 + ", Horror)," +
+                    "(" + 8 + ", Mystery)," +
+                    "(" + 9 + ", Romance)," +
                     "(" + 10 + ", Science Fiction);";
 
     // CRUD Queries
