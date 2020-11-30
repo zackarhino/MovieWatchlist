@@ -150,6 +150,27 @@ public class Database {
     }
 
     /**
+     * Get all movies/rows from the database
+     * TODO Create movie objects and remove sout statements
+     * @author Trevor Slobodnick
+     * */
+    public void getMovies(){
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(VIEW_TABLE_WATCHLIST);
+            while (rs.next()){
+                System.out.println(rs.getString(1)); //id
+                System.out.println(rs.getString(2)); //title
+                System.out.println(rs.getString(3)); //year
+                System.out.println(rs.getString(4)); //genreAsInt
+                System.out.println(rs.getString(5)); //prodCompanyAsInt
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    /**
      * Gets all genres from database
      * @author Trevor Slobodnick
      * */
