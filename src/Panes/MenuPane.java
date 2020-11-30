@@ -13,9 +13,14 @@ import javafx.scene.text.Text;
 
 public class MenuPane extends BorderPane {
     public MenuPane(){
+        BorderPane root = new BorderPane();
+
         ImageView logoImageView = new ImageView();
         Text headlineText = new Text("MOVIE WATCHLIST");
         Font headlineFont = Constants.FONT_MENU_TITLE_FONT;
+
+        ImageView leftCurtainImageView = new ImageView();
+        ImageView rightCurtainImageView = new ImageView();
 
         Button watchlistButton = new Button("VIEW YOUR WATCHLIST >");
         Button statsButton = new Button("Watch stats >");
@@ -32,6 +37,8 @@ public class MenuPane extends BorderPane {
         // Functionality
         logoImageView.setPreserveRatio(true);
         logoImageView.setImage(new Image("Images/watchlist.png"));
+        leftCurtainImageView.setImage(new Image("Images/curtain_left.png"));
+        rightCurtainImageView.setImage(new Image("Images/curtain_right.png"));
         watchlistButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
         statsButton.setOnAction(actionEvent -> Main.switchScene(StatsScene.getInstance()));
         creditsButton.setOnAction(actionEvent -> Main.switchScene(CreditsScene.getInstance()));
@@ -39,7 +46,7 @@ public class MenuPane extends BorderPane {
 
         // Styling
         headlineText.setFill(Constants.COLOR_ACCENT_COLOR);
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
+        root.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
         headlineText.setFont(headlineFont);
 
         // Spacing
@@ -75,14 +82,15 @@ public class MenuPane extends BorderPane {
         loginButton.setPrefWidth(Constants.SCREEN_WIDTH);
         creditsButton.setPrefWidth(Constants.SCREEN_WIDTH);
 
-        this.setPadding(new Insets(panePaddingSize, panePaddingSize, panePaddingSize, panePaddingSize));
+        root.setPadding(new Insets(panePaddingSize, panePaddingSize, panePaddingSize, panePaddingSize));
 
         // Adding Everything...Everything!
         buttonWrapper.getChildren().addAll(watchlistButton, statsButton, submenuButtons);
         headerWrapper.getChildren().addAll(logoImageView, buttonWrapper);
         menuWrapper.getChildren().addAll(headerWrapper, headlineText);
 
-        this.setCenter(menuWrapper);
+        root.setCenter(menuWrapper);
+        this.setCenter(root);
     }
 
 }

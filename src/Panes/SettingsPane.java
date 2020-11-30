@@ -5,6 +5,7 @@ import Database.Database;
 import Launch.Main;
 import Scenes.MenuScene;
 import Util.Constants;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -34,8 +35,10 @@ public class SettingsPane extends BorderPane {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(dbHost, dbName, dbUser, dbPassword);
         hBox.setSpacing(Constants.DEFAULT_SPACING);
+        hBox.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
         bottomButtons.setSpacing(Constants.DEFAULT_SPACING);
+        bottomButtons.setPadding(new Insets(Constants.DEFAULT_PADDING));
         if (!isFirstTime){
             bottomButtons.getChildren().addAll(returnToMenu, connectButton);
         }

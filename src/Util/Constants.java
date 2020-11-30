@@ -14,6 +14,7 @@ public class Constants {
 
     public static final int MENU_BUTTON_WIDTH = 150;
     public static final int DEFAULT_SPACING = 10;
+    public static final int DEFAULT_PADDING = 10;
 
     // STYLING
     // Colors

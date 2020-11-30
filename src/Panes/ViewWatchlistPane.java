@@ -4,6 +4,7 @@ import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
 import Util.Constants;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -41,6 +42,7 @@ public class ViewWatchlistPane extends BorderPane {
         header.getChildren().add(titleText);
         menuContainer.getChildren().addAll(backButton, addListButton);
         menuContainer.setSpacing(Constants.DEFAULT_SPACING);
+        menuContainer.setPadding(new Insets(Constants.DEFAULT_PADDING));
         scrollPane.setContent(movieContainer);
         watchlistWrapper.getChildren().addAll(header, menuContainer, statusTxtContainer, scrollPane);
 
