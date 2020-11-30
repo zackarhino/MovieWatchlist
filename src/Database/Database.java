@@ -149,8 +149,32 @@ public class Database {
         }
     }
 
+    /**
+     * Get all movies/rows from the database
+     * TODO Create movie objects and remove sout statements
+     * @author Trevor Slobodnick
+     * */
+    public void getMovies(){
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(VIEW_TABLE_WATCHLIST);
+            while (rs.next()){
+                System.out.println(rs.getString(1)); //id
+                System.out.println(rs.getString(2)); //title
+                System.out.println(rs.getString(3)); //year
+                System.out.println(rs.getString(4)); //genreAsInt
+                System.out.println(rs.getString(5)); //prodCompanyAsInt
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
-    public ArrayList<String> getGenres(){
+    /**
+     * Gets all genres from database
+     * @author Trevor Slobodnick
+     * */
+    public ArrayList<String> getAllGenres(){
         ArrayList<String> genres = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -164,7 +188,29 @@ public class Database {
         return genres;
     }
 
-    public ArrayList<String> getProdCompany(){
+    /**
+     * Gets a specific genre based on id given
+     * @param id The id of the genre
+     * @author Trevor Slobodnick
+     * */
+    public String getGenre(int id){
+        String query =
+                "SELECT " + GENRE_COLUMN_NAME + " FROM " + TABLE_GENRES + " WHERE " + GENRE_COLUMN_ID + " = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            return rs.getString(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * Gets all production companies from database
+     * @author Trevor Slobodnick
+     * */
+    public ArrayList<String> getAllProdCompanies(){
         ArrayList<String> prodCompanies = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -176,5 +222,23 @@ public class Database {
             throwables.printStackTrace();
         }
         return prodCompanies;
+    }
+
+    /**
+     * Gets a specific production company based on id given
+     * @param id The id of the production company
+     * @author Trevor Slobodnick
+     * */
+    public String getProdCompany(int id){
+        String query =
+                "SELECT " + PD_COLUMN_NAME + " FROM " + TABLE_PRODUCTION_COMPANIES + " WHERE " + PD_COLUMN_ID + " = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            return rs.getString(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "";
     }
 }

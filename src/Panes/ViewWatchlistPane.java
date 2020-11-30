@@ -1,5 +1,6 @@
 package Panes;
 
+import Database.Database;
 import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 
 public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
+        Database db = Database.getInstance();
+        db.getMovies();
+
         BorderPane pane = new BorderPane();
 
         VBox watchlistWrapper = new VBox();
