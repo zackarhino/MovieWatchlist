@@ -8,7 +8,7 @@ public class StatsScene extends Scene {
     private static StatsScene statsScene;
 
     public StatsScene() {
-        super(new StatsPane(), Constants.screenWidth, Constants.screenHeight);
+        super(new StatsPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Singleton Design Pattern

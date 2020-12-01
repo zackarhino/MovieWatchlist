@@ -8,7 +8,7 @@ public class MenuScene extends Scene {
     private static MenuScene menuScene;
 
     private MenuScene() {
-        super(new MenuPane(), Constants.screenWidth, Constants.screenHeight);
+        super(new MenuPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Singleton Design Pattern

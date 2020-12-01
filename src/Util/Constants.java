@@ -1,14 +1,32 @@
 package Util;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+
 public class Constants {
     // APPLICATION CONSTANTS
-    public static final int screenWidth = 700;
-    public static final int screenHeight = 500;
+    public static final int SCREEN_WIDTH = 700;
+    public static final int SCREEN_HEIGHT = 500;
 
     public static final String title = "Movie Watchlist";
     public static final String configFilePath = "src/Credentials/config.txt";
 
-    public static final int DEFAULT_BUTTON_SPACING = 10;
+    public static final int MENU_BUTTON_WIDTH = 150;
+    public static final int DEFAULT_SPACING = 10;
+    public static final int DEFAULT_PADDING = 10;
+
+    // STYLING
+    // Colors
+    public static Color COLOR_BACKGROUND = Color.rgb(73,85,96);
+    public static Color COLOR_ACCENT = Color.rgb(94,13,54);
+    public static Color COLOR_ACCENT_DARK = Color.rgb(63,13,54);
+    public static Color COLOR_TEXT_MAIN = Color.rgb(0,0,0);
+    public static Color COLOR_TEXT_ALT = Color.rgb(255,255,255);
+
+    // Fonts
+    public static Font FONT_MENU_TITLE_FONT = Font.font("Times New Roman", FontWeight.BOLD, 50);
+    public static Font FONT_SUBTITLE_FONT = Font.font("Courier New", FontWeight.BOLD, 25);
 
     // SQL COLUMN NAMES
     //WatchList Table

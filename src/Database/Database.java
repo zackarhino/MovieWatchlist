@@ -148,9 +148,9 @@ public class Database {
                         prodCompany + ");";
         try {
             connection.createStatement().execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Movie Successfully Added");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
     }
 
@@ -177,8 +177,8 @@ public class Database {
                         getProdCompany(prodCompanyAsInt));
                 System.out.println(movie);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -194,8 +194,8 @@ public class Database {
             while (rs.next()){
                 genres.add(rs.getString(2));
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return genres;
     }
@@ -231,8 +231,8 @@ public class Database {
             while (rs.next()){
                 prodCompanies.add(rs.getString(2));
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return prodCompanies;
     }
@@ -250,8 +250,8 @@ public class Database {
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             return rs.getString(1);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return "";
     }

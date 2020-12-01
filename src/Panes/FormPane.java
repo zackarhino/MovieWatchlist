@@ -3,12 +3,14 @@ package Panes;
 import Database.Database;
 import Launch.Main;
 import Scenes.ViewWatchlistScene;
+import Util.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -66,6 +68,9 @@ public class FormPane extends BorderPane {
             movieName.clear();
             year.clear();
         });
+
+        // Styling
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(backButton, enterButton);

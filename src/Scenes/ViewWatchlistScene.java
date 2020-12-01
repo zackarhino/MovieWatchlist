@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 public class ViewWatchlistScene extends Scene {
     private static ViewWatchlistScene viewWatchlistScene;
     public ViewWatchlistScene() {
-        super(new ViewWatchlistPane(), Constants.screenWidth, Constants.screenHeight);
+        super(new ViewWatchlistPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Singleton Design Pattern
