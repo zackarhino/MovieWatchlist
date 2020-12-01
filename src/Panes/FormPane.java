@@ -1,16 +1,16 @@
 package Panes;
 
+import Database.Database;
 import Launch.Main;
-import Scenes.FormScene;
-import Scenes.MenuScene;
 import Scenes.ViewWatchlistScene;
+import Util.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
+import javafx.scene.layout.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,33 +29,16 @@ public class FormPane extends BorderPane {
                 movieName, new Label("Year: "), year);
         input1.setAlignment(Pos.CENTER);
 
+        //Get info from database
+        Database db = Database.getInstance();
+        ArrayList<String> db_genres = db.getAllGenres();
+        ArrayList<String> db_prodCompany = db.getAllProdCompanies();
+
         //genres
-        ArrayList<String> genres = new ArrayList<>();
-        genres.add("Other");
-        genres.add("Action");
-        genres.add("Adventure");
-        genres.add("Animation");
-        genres.add("Comedy");
-        genres.add("Drama");
-        genres.add("Horror");
-        genres.add("Mystery");
-        genres.add("Romance");
-        genres.add("Science Fiction");
-        genre.setItems(FXCollections.observableArrayList(genres));
+        genre.setItems(FXCollections.observableArrayList(db_genres));
 
         //production companies
-        ArrayList<String> productionCompanies = new ArrayList<>();
-
-        productionCompanies.add("Other");
-        productionCompanies.add("Dreamworks Pictures");
-        productionCompanies.add("Lionsgate Films");
-        productionCompanies.add("Sony Pictures");
-        productionCompanies.add("The Weinstein Company");
-        productionCompanies.add("Universal Pictures");
-        productionCompanies.add("Walt Disney Studios");
-        productionCompanies.add("Warner Bros");
-        productionCompanies.add("20th Century Fox");
-        productionCompany.setItems(FXCollections.observableArrayList(productionCompanies));
+        productionCompany.setItems(FXCollections.observableArrayList(db_prodCompany));
 
         HBox input2 = new HBox();
         input2.getChildren().addAll(new Label("Production Company: "), productionCompany,
@@ -72,14 +55,22 @@ public class FormPane extends BorderPane {
         backButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
         //enters Movie
-        enterButton.setOnKeyPressed(e->{
-                //movieNameInput.getText()
-                //year.getText()
-                //productionCompany.getText()
-                //genre.getText()
-                movieName.clear();
-                year.clear();
+        enterButton.setOnAction(e->{
+            int genreAsInt = db_genres.indexOf(genre.getValue().toString());
+            int productionCompanyAsInt = db_prodCompany.indexOf(productionCompany.getValue().toString());
+            int yearAsInt = 2020;
+            try {
+                yearAsInt = Integer.parseInt(year.getText());
+            } catch (Exception exception){
+                exception.printStackTrace();
+            }
+            db.addMovie(movieName.getText(), yearAsInt, genreAsInt, productionCompanyAsInt);
+            movieName.clear();
+            year.clear();
         });
+
+        // Styling
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(backButton, enterButton);

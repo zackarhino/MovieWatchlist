@@ -5,9 +5,12 @@ import Database.Database;
 import Launch.Main;
 import Scenes.MenuScene;
 import Util.Constants;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -27,14 +30,17 @@ public class SettingsPane extends BorderPane {
 
         HBox bottomButtons = new HBox();
         Button connectButton = new Button("Connect");
-        Button returnToMenu = new Button("Return to Menu");
+        Button returnToMenu = new Button("< Back");
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(dbHost, dbName, dbUser, dbPassword);
+        hBox.setSpacing(Constants.DEFAULT_SPACING);
+        hBox.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
-        bottomButtons.setSpacing(Constants.DEFAULT_BUTTON_SPACING);
+        bottomButtons.setSpacing(Constants.DEFAULT_SPACING);
+        bottomButtons.setPadding(new Insets(Constants.DEFAULT_PADDING));
         if (!isFirstTime){
-            bottomButtons.getChildren().addAll(connectButton, returnToMenu);
+            bottomButtons.getChildren().addAll(returnToMenu, connectButton);
         }
         else{
             bottomButtons.getChildren().addAll(connectButton);
@@ -68,5 +74,7 @@ public class SettingsPane extends BorderPane {
         });
         returnToMenu.setOnAction(event -> Main.switchScene(MenuScene.getInstance()));
 
+        // Styling
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
     }
 }

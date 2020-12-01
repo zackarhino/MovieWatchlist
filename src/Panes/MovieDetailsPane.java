@@ -4,11 +4,7 @@ import Util.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class MovieDetailsPane extends BorderPane {
@@ -69,7 +65,7 @@ public class MovieDetailsPane extends BorderPane {
         HBox.setMargin(removeMovieBtn, new Insets(0, 0, 5, 0));
         HBox.setMargin(movieYear, new Insets(0, 0, 5, 5));
         HBox.setMargin(movieProdCompany, new Insets(0, 5, 5, 0));
-        movieGenre.setPadding(new Insets(0, Constants.screenWidth * 0.2, 0, Constants.screenWidth * 0.2));
+        movieGenre.setPadding(new Insets(0, Constants.SCREEN_WIDTH * 0.2, 0, Constants.SCREEN_WIDTH * 0.2));
         removeMovieBtn.setPadding(new Insets(25));
 
         //Vgrow/Hgrow
@@ -85,9 +81,7 @@ public class MovieDetailsPane extends BorderPane {
         HBox.setHgrow(filler2, Priority.ALWAYS);
 
         //Colors
-        topSection.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, null, null)));
-        lrWrapper.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, null, null)));
-        rightSideContainer.setBackground(new Background(new BackgroundFill(Color.GHOSTWHITE, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         pane.setCenter(screenWrapper);
 

@@ -2,7 +2,6 @@ package Scenes;
 
 import Panes.SettingsPane;
 import Util.Constants;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class SettingsScene extends Scene {
@@ -10,7 +9,7 @@ public class SettingsScene extends Scene {
     private static SettingsScene settingsScene;
 
     private SettingsScene(boolean isFirstTime) {
-        super(new SettingsPane(isFirstTime), Constants.screenWidth, Constants.screenHeight);
+        super(new SettingsPane(isFirstTime), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     /**

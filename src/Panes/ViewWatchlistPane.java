@@ -1,34 +1,35 @@
 package Panes;
 
+import Database.Database;
 import Launch.Main;
 import Scenes.FormScene;
 import Scenes.MenuScene;
-import Scenes.ViewWatchlistScene;
 import Util.Constants;
-import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-
 public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
+        Database db = Database.getInstance();
+        db.createMovies();
+
         BorderPane pane = new BorderPane();
 
         VBox watchlistWrapper = new VBox();
         //Header Row
-        HBox header = new HBox(new Text("My Movies"));
+        HBox header = new HBox();
         //ComboBox Row
         VBox menuContainer = new VBox();
         Button backButton = new Button("< Back");
         Button addListButton = new Button("+ New movie");
         //Display Status Row
         Text statusTxt = new Text("Need to Watch");
+        Text titleText = new Text("My Movies");
         HBox statusTxtContainer = new HBox(statusTxt);
         VBox movieContainer = new VBox();
         //Put movie Container inside of scrollpane to handle overflow
@@ -42,8 +43,10 @@ public class ViewWatchlistPane extends BorderPane {
         */
 
         //PUTTING IT ALL TOGETHER...
+        header.getChildren().add(titleText);
         menuContainer.getChildren().addAll(backButton, addListButton);
-        menuContainer.setSpacing(Constants.DEFAULT_BUTTON_SPACING);
+        menuContainer.setSpacing(Constants.DEFAULT_SPACING);
+        menuContainer.setPadding(new Insets(Constants.DEFAULT_PADDING));
         scrollPane.setContent(movieContainer);
         watchlistWrapper.getChildren().addAll(header, menuContainer, statusTxtContainer, scrollPane);
 
@@ -51,6 +54,8 @@ public class ViewWatchlistPane extends BorderPane {
         //Size
         movieContainer.setMinWidth(700);
         movieContainer.setMinHeight(435);
+        backButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+        addListButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
 
         //Position
         header.setAlignment(Pos.TOP_CENTER);
@@ -59,8 +64,16 @@ public class ViewWatchlistPane extends BorderPane {
         //Vgrow/Hgrow
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
-        //Color
-        movieContainer.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, null, null)));
+        //Styling
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null)));
+        titleText.setFill(Constants.COLOR_TEXT_ALT);
+        titleText.setFont(Constants.FONT_SUBTITLE_FONT);
+        statusTxt.setFill(Constants.COLOR_TEXT_ALT);
+        movieContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        scrollPane.setBackground(
+                new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null))
+        ); // Remove the ScrollPane border
+        scrollPane.setStyle("-fx-focus-color:transparent;"); // Remove the focus border
 
         //Scrollbar
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);

@@ -8,7 +8,7 @@ public class MovieDetailsScene extends Scene {
     private static MovieDetailsScene movieDetailsScene;
 
     public MovieDetailsScene() {
-        super(new MovieDetailsPane(), Constants.screenWidth, Constants.screenHeight);
+        super(new MovieDetailsPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Singleton Design Pattern
