@@ -4,7 +4,6 @@ import Database.DB_CRED;
 import Database.Database;
 import Launch.Main;
 import Scenes.MenuScene;
-import Util.ConfigFileManager;
 import Util.Constants;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -19,8 +18,6 @@ public class SettingsPane extends BorderPane {
 
 
     public SettingsPane(boolean isFirstTime) {
-        Database db = Database.getInstance();
-
         TextField dbHost = new TextField("localhost");
         TextField dbName = new TextField();
         TextField dbUser = new TextField();
@@ -32,9 +29,8 @@ public class SettingsPane extends BorderPane {
         dbPassword.setPromptText("DB Password");
 
         HBox bottomButtons = new HBox();
-        Button returnToMenu = new Button("< Back");
         Button connectButton = new Button("Connect");
-        Button createTablesButton = new Button("Create Tables");
+        Button returnToMenu = new Button("< Back");
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(dbHost, dbName, dbUser, dbPassword);
@@ -43,21 +39,11 @@ public class SettingsPane extends BorderPane {
 
         bottomButtons.setSpacing(Constants.DEFAULT_SPACING);
         bottomButtons.setPadding(new Insets(Constants.DEFAULT_PADDING));
-
-        // Determining which buttons to show
         if (!isFirstTime){
-            bottomButtons.getChildren().addAll(returnToMenu, connectButton, createTablesButton);
+            bottomButtons.getChildren().addAll(returnToMenu, connectButton);
         }
         else{
             bottomButtons.getChildren().addAll(connectButton);
-        }
-
-        // Setting Text values if available
-        if(DB_CRED.isSet()){
-            dbHost.setText(DB_CRED.getDbHost());
-            dbName.setText(DB_CRED.getDbName());
-            dbUser.setText(DB_CRED.getDbUser());
-            dbPassword.setText(DB_CRED.getDbPass());
         }
 
         this.setCenter(hBox);
@@ -65,6 +51,8 @@ public class SettingsPane extends BorderPane {
 
         // Button Actions
         connectButton.setOnAction(event->{
+            Database db = Database.getInstance();
+
             String host = dbHost.getText();
             String name = dbName.getText();
             String user = dbUser.getText();
@@ -76,23 +64,12 @@ public class SettingsPane extends BorderPane {
                 if(db.testConnection()){
                     System.out.println("Connection established and verified.");
                     DB_CRED.setAll(host, name, user, pass);
-                    ConfigFileManager.writeToFile(DB_CRED.getDbHost(), DB_CRED.getDbName(), DB_CRED.getDbUser(), DB_CRED.getDbPass());
-                    Main.switchScene(MenuScene.getInstance());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Couldn't connect to database. Double check your credentials.");
-            }
-        });
-        createTablesButton.setOnAction(event -> {
-            try {
-                if(db.testConnection()){
                     db.createDefaultTables();
                     Main.switchScene(MenuScene.getInstance());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Couldn't create tables.");
+                System.out.println("Couldn't connect to database.");
             }
         });
         returnToMenu.setOnAction(event -> Main.switchScene(MenuScene.getInstance()));

@@ -5,7 +5,6 @@ import Launch.Main;
 import Scenes.ViewWatchlistScene;
 import Util.Constants;
 import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -25,16 +24,10 @@ public class FormPane extends BorderPane {
     private ComboBox genre = new ComboBox();
 
     public FormPane(){
-        movieName.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
-        year.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
-        productionCompany.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
-        genre.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
-
         HBox input1 = new HBox();
         input1.getChildren().addAll(new Label("Movie title: "),
                 movieName, new Label("Year: "), year);
         input1.setAlignment(Pos.CENTER);
-        input1.setSpacing(Constants.DEFAULT_SPACING);
 
         //Get info from database
         Database db = Database.getInstance();
@@ -51,15 +44,11 @@ public class FormPane extends BorderPane {
         input2.getChildren().addAll(new Label("Production Company: "), productionCompany,
                 new Label("Genre: "), genre);
         input2.setAlignment(Pos.CENTER);
-        input2.setSpacing(Constants.DEFAULT_SPACING);
 
         VBox inputs = new VBox();
         inputs.getChildren().addAll(input1, input2);
-        inputs.setSpacing(Constants.DEFAULT_SPACING);
-        inputs.setPrefWidth(Constants.SCREEN_WIDTH);
-        inputs.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
-        Button backButton = new Button("< Back");
+        Button backButton = new Button("Back");
         Button enterButton = new Button("Enter Movie");
 
         //back
@@ -72,10 +61,8 @@ public class FormPane extends BorderPane {
             int yearAsInt = 2020;
             try {
                 yearAsInt = Integer.parseInt(year.getText());
-                System.out.println("Inserted Movie.");
             } catch (Exception exception){
                 exception.printStackTrace();
-                System.out.println("Error: Couldn't Insert Movie.");
             }
             db.addMovie(movieName.getText(), yearAsInt, genreAsInt, productionCompanyAsInt);
             movieName.clear();
@@ -87,9 +74,6 @@ public class FormPane extends BorderPane {
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(backButton, enterButton);
-        hbox.setSpacing(Constants.DEFAULT_SPACING);
-        hbox.setPadding(new Insets(Constants.DEFAULT_PADDING));
-
         this.setCenter(inputs);
         this.setBottom(hbox);
     }

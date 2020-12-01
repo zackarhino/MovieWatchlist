@@ -1,16 +1,8 @@
 package Database;
 
-import Util.Constants;
+import java.util.ArrayList;
 
-import java.io.File;
-
-/**
- * File to store database credentials locally
- * @author Jenny Hoang
- */
 public class DB_CRED {
-    public static File configFile = new File(Constants.configFilePath);
-
     private static String DB_HOST;
     private static String DB_NAME;
     private static String DB_USER;
@@ -29,28 +21,10 @@ public class DB_CRED {
         return DB_PASS;
     }
 
-    /**
-     * Sets all DB_CREDs at once
-     * @author Jenny Hoang
-     * @param dbHost Hostname
-     * @param dbName Database name
-     * @param dbUserName User name
-     * @param dbPassword Password
-     */
     public static void setAll(String dbHost, String dbName, String dbUserName, String dbPassword){
         DB_HOST = dbHost;
         DB_NAME = dbName;
         DB_USER = dbUserName;
         DB_PASS = dbPassword;
-    }
-
-    /**
-     * Returns true if there is data in the config file, otherwise returns false.
-     * WARNING: Doesn't check that the data is valid, only that there is data.
-     * @author Zachary Allard
-     * @return True if contains data, false if not
-     */
-    public static boolean isSet(){
-        return configFile.length() > 0;
     }
 }

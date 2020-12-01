@@ -213,8 +213,8 @@ public class Database {
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             return rs.getString(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return "";
     }
