@@ -4,6 +4,7 @@ import Launch.Main;
 import Scenes.*;
 import Util.Constants;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +14,10 @@ import javafx.scene.text.Text;
 
 public class MenuPane extends BorderPane {
     public MenuPane(){
+        StackPane stackPane = new StackPane();
+
         BorderPane root = new BorderPane();
+        BorderPane curtainOverlay = new BorderPane();
 
         ImageView logoImageView = new ImageView();
         Text headlineText = new Text("MOVIE WATCHLIST");
@@ -38,20 +42,24 @@ public class MenuPane extends BorderPane {
         logoImageView.setPreserveRatio(true);
         logoImageView.setImage(new Image("Images/watchlist.png"));
         leftCurtainImageView.setImage(new Image("Images/curtain_left.png"));
+        leftCurtainImageView.setPreserveRatio(true);
+        leftCurtainImageView.setFitHeight(Constants.SCREEN_HEIGHT);
         rightCurtainImageView.setImage(new Image("Images/curtain_right.png"));
+        rightCurtainImageView.setPreserveRatio(true);
+        rightCurtainImageView.setFitHeight(Constants.SCREEN_HEIGHT);
         watchlistButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
         statsButton.setOnAction(actionEvent -> Main.switchScene(StatsScene.getInstance()));
         creditsButton.setOnAction(actionEvent -> Main.switchScene(CreditsScene.getInstance()));
         loginButton.setOnAction(actionEvent -> Main.switchScene(SettingsScene.getInstance(false)));
 
         // Styling
-        headlineText.setFill(Constants.COLOR_ACCENT_COLOR);
-        root.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
         headlineText.setFont(headlineFont);
+        headlineText.setFill(Constants.COLOR_ACCENT);
+        root.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         // Spacing
         // MAGIC NUMBERS 🙌
-        double panePaddingSize = Constants.SCREEN_WIDTH * 0.1;
+        double panePaddingSize = Constants.SCREEN_WIDTH * 0.135;
         double paneInnerSize = Constants.SCREEN_HEIGHT - (panePaddingSize*2);
         double buttonWrapperPadding = 10;
         double bigButtonHeight = 60;
@@ -88,9 +96,19 @@ public class MenuPane extends BorderPane {
         buttonWrapper.getChildren().addAll(watchlistButton, statsButton, submenuButtons);
         headerWrapper.getChildren().addAll(logoImageView, buttonWrapper);
         menuWrapper.getChildren().addAll(headerWrapper, headlineText);
+        menuWrapper.setAlignment(Pos.CENTER);
+
+        curtainOverlay.setLeft(leftCurtainImageView);
+        curtainOverlay.setRight(rightCurtainImageView);
+
+        curtainOverlay.setMaxWidth(Constants.SCREEN_WIDTH);
+        curtainOverlay.setMaxHeight(Constants.SCREEN_HEIGHT);
+
+        stackPane.getChildren().addAll(root, curtainOverlay);
+        curtainOverlay.setPickOnBounds(false);
 
         root.setCenter(menuWrapper);
-        this.setCenter(root);
+        this.setCenter(stackPane);
     }
 
 }

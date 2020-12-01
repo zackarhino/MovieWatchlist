@@ -13,7 +13,7 @@ public class StatsPane extends BorderPane {
     public StatsPane(){
         Button backButton = new Button("< Back");
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
         this.setCenter(backButton);
     }
 }

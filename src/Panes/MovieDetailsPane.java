@@ -81,7 +81,7 @@ public class MovieDetailsPane extends BorderPane {
         HBox.setHgrow(filler2, Priority.ALWAYS);
 
         //Colors
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         pane.setCenter(screenWrapper);
 

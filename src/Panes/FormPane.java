@@ -2,8 +2,6 @@ package Panes;
 
 import Database.Database;
 import Launch.Main;
-import Scenes.FormScene;
-import Scenes.MenuScene;
 import Scenes.ViewWatchlistScene;
 import Util.Constants;
 import javafx.collections.FXCollections;
@@ -12,11 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 
 import java.util.ArrayList;
-import static Util.Constants.*;
 
 public class FormPane extends BorderPane {
     private TextField movieName = new TextField();
@@ -71,7 +67,7 @@ public class FormPane extends BorderPane {
         });
 
         // Styling
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(backButton, enterButton);

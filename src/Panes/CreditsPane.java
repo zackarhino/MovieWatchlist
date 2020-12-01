@@ -14,7 +14,7 @@ public class CreditsPane extends BorderPane {
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
 
         // Styling
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         this.setCenter(backButton);
     }

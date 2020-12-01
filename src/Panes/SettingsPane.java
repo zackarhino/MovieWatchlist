@@ -75,6 +75,6 @@ public class SettingsPane extends BorderPane {
         returnToMenu.setOnAction(event -> Main.switchScene(MenuScene.getInstance()));
 
         // Styling
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
     }
 }

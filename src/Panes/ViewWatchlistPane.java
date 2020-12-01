@@ -9,7 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class ViewWatchlistPane extends BorderPane {
@@ -61,11 +61,15 @@ public class ViewWatchlistPane extends BorderPane {
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
         //Styling
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_COLOR, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null)));
         titleText.setFill(Constants.COLOR_TEXT_ALT);
         titleText.setFont(Constants.FONT_SUBTITLE_FONT);
         statusTxt.setFill(Constants.COLOR_TEXT_ALT);
-        movieContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND_COLOR, null, null)));
+        movieContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        scrollPane.setBackground(
+                new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null))
+        ); // Remove the ScrollPane border
+        scrollPane.setStyle("-fx-focus-color:transparent;"); // Remove the focus border
 
         //Scrollbar
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
