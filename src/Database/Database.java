@@ -1,5 +1,6 @@
 package Database;
 
+import Movie.Movie;
 import Util.Constants;
 
 import java.sql.*;
@@ -133,12 +134,15 @@ public class Database {
      * @author Trevor Slobodnick
      * */
     public void addMovie(String title, int year, int genre, int prodCompany){
+        //Add 1 because these are index values, so they will always be 1 less than they're db counterparts
+        genre += 1;
+        prodCompany += 1;
         String query =
                 "INSERT INTO " + TABLE_WATCHLIST + "(" + WATCHLIST_COLUMN_TITLE + ", " +
                         WATCHLIST_COLUMN_YEAR + ", " +
                         WATCHLIST_COLUMN_GENRE + ", " +
-                        WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")\n" +
-                        "VALUES (" + title + ", " +
+                        WATCHLIST_COLUMN_PRODUCTION_COMPANY + ")" +
+                        " VALUES ('" + title + "', " +
                         year + ", " +
                         genre + ", " +
                         prodCompany + ");";
@@ -146,11 +150,43 @@ public class Database {
             connection.createStatement().execute(query);
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Movie Successfully Added");
         }
     }
 
+    /**
+     * Get all rows from the database and create movie objects from them
+     * @author Trevor Slobodnick
+     * */
+    public void createMovies(){
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(VIEW_TABLE_WATCHLIST);
+            while (rs.next()){
+                int id = Integer.parseInt(rs.getString(1));
+                String title = rs.getString(2);
+                int year = Integer.parseInt(rs.getString(3));
+                int genreAsInt = Integer.parseInt(rs.getString(4));
+                int prodCompanyAsInt = Integer.parseInt(rs.getString(5));
+                Movie movie = new Movie(id,
+                        title,
+                        year,
+                        genreAsInt,
+                        prodCompanyAsInt,
+                        getGenre(genreAsInt),
+                        getProdCompany(prodCompanyAsInt));
+                System.out.println(movie);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public ArrayList<String> getGenres(){
+    /**
+     * Gets all genres from database
+     * @author Trevor Slobodnick
+     * */
+    public ArrayList<String> getAllGenres(){
         ArrayList<String> genres = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -164,7 +200,30 @@ public class Database {
         return genres;
     }
 
-    public ArrayList<String> getProdCompany(){
+    /**
+     * Gets a specific genre based on id given
+     * @param id The id of the genre
+     * @author Trevor Slobodnick
+     * */
+    public String getGenre(int id){
+        String query =
+                "SELECT " + GENRE_COLUMN_NAME + " FROM " + TABLE_GENRES + " WHERE " + GENRE_COLUMN_ID + " = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * Gets all production companies from database
+     * @author Trevor Slobodnick
+     * */
+    public ArrayList<String> getAllProdCompanies(){
         ArrayList<String> prodCompanies = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -176,5 +235,24 @@ public class Database {
             e.printStackTrace();
         }
         return prodCompanies;
+    }
+
+    /**
+     * Gets a specific production company based on id given
+     * @param id The id of the production company
+     * @author Trevor Slobodnick
+     * */
+    public String getProdCompany(int id){
+        String query =
+                "SELECT " + PD_COLUMN_NAME + " FROM " + TABLE_PRODUCTION_COMPANIES + " WHERE " + PD_COLUMN_ID + " = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

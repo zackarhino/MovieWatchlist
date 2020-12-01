@@ -11,6 +11,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
@@ -28,8 +31,8 @@ public class FormPane extends BorderPane {
 
         //Get info from database
         Database db = Database.getInstance();
-        ArrayList<String> db_genres = db.getGenres();
-        ArrayList<String> db_prodCompany = db.getProdCompany();
+        ArrayList<String> db_genres = db.getAllGenres();
+        ArrayList<String> db_prodCompany = db.getAllProdCompanies();
 
         //genres
         genre.setItems(FXCollections.observableArrayList(db_genres));
@@ -52,7 +55,7 @@ public class FormPane extends BorderPane {
         backButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
         //enters Movie
-        enterButton.setOnKeyPressed(e->{
+        enterButton.setOnAction(e->{
             int genreAsInt = db_genres.indexOf(genre.getValue().toString());
             int productionCompanyAsInt = db_prodCompany.indexOf(productionCompany.getValue().toString());
             int yearAsInt = 2020;
