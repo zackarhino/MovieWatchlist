@@ -155,6 +155,11 @@ public class Database {
         }
     }
 
+    /**
+     * Removes a movie from the watchlist table based on id given
+     * @param id The id of the movie to delete
+     * @author Trevor Slobodnick
+     * */
     public void deleteMovie(int id){
         final String query =
                 "DELETE FROM " + TABLE_WATCHLIST + " WHERE " + WATCHLIST_COLUMN_ID + " = " + id;
