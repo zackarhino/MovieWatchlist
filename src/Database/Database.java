@@ -35,8 +35,7 @@ public class Database {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/"+ database + "?serverTimezone=UTC", user, password);
         }catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error: Connection not established.");
+            System.out.println("Error: Connection not established. Verify that you have putty running.");
         }
         return connection;
     }
@@ -50,6 +49,7 @@ public class Database {
                 this.connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println("Error: The connection could not be closed.");
             }
         }
         this.connection = null;
@@ -66,7 +66,7 @@ public class Database {
                     return true;
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Error: The connection to the database is not valid.");
             }
         }
         return false;
@@ -94,13 +94,14 @@ public class Database {
             createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
         }catch (Exception e){
             e.printStackTrace();
+            System.out.println("Error: The table creation query failed.");
         }
     }
 
     /**
      * Creates a table in the database
      * Note: must be called after DB_CRED variables are set
-     * @author ?
+     * @author Trevor
      * @param tableName The table name in SQL
      * @param tableQuery The Query to execute
      * @param connection The database's connection
@@ -177,8 +178,8 @@ public class Database {
                         getProdCompany(prodCompanyAsInt));
                 System.out.println(movie);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error: Couldn't create table.");
         }
     }
 

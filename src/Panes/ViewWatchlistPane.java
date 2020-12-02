@@ -16,7 +16,6 @@ import javafx.scene.text.Text;
 public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
         Database db = Database.getInstance();
-        db.createMovies();
 
         BorderPane pane = new BorderPane();
 
