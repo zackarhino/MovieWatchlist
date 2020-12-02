@@ -19,8 +19,6 @@ public class ConfigFileManager {
             bw.newLine();
             bw.write(dbPass);
             bw.close();
-            // Set variables so we don't have to read from file everytime
-            DB_CRED.setAll(dbHost, dbName, dbUser, dbPass);
         } catch (IOException e) {
             e.printStackTrace();
         }

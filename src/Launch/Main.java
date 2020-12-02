@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.stage.Stage;
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,6 @@ import java.util.ArrayList;
  */
 public class Main extends Application {
     public static Stage mainStage;
-    public static File configFile = new File(Constants.configFilePath);
 
 
     @Override
@@ -29,12 +29,17 @@ public class Main extends Application {
         mainStage = stage;
 
         // Check if config is set
-        System.out.println("Config file size: " + configFile.length() + " bytes");
-        if (configFile.length() == 0){
+        if (!DB_CRED.isSet()){
             mainStage.setScene(SettingsScene.getInstance(true));
         }else{
             ArrayList<String> dbInfo = ConfigFileManager.readFromFile();
             DB_CRED.setAll(dbInfo.get(0), dbInfo.get(1), dbInfo.get(2), dbInfo.get(3));
+            try{
+                Database db = Database.getInstance();
+                db.setConnection(DB_CRED.getDbHost(), DB_CRED.getDbName(), DB_CRED.getDbUser(), DB_CRED.getDbPass());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             mainStage.setScene(MenuScene.getInstance());
         }
       
