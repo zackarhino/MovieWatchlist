@@ -26,7 +26,7 @@ public class Constants {
 
     // Fonts
     public static Font FONT_MENU_TITLE_FONT = Font.font("Times New Roman", FontWeight.BOLD, 50);
-    public static Font FONT_SUBTITLE_FONT = Font.font("Courier New", FontWeight.BOLD, 25);
+    public static Font FONT_SUBTITLE_FONT = Font.font("Courier New", FontWeight.BOLD, 20);
 
     // SQL COLUMN NAMES
     //WatchList Table
