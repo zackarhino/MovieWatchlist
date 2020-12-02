@@ -80,7 +80,12 @@ public class ViewWatchlistPane extends BorderPane {
 
         //SETUP
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
-        addListButton.setOnAction(actionEvent -> Main.switchScene(FormScene.getInstance()));
+        addListButton.setOnAction(actionEvent -> {
+            if(!db.testConnection()){
+                System.out.println("Error: Connection isn't valid. Movies won't be added to your database.");
+            }
+            Main.switchScene(FormScene.getInstance());
+        });
 
         pane.setCenter(watchlistWrapper);
         this.setCenter(pane);

@@ -1,5 +1,6 @@
 package Panes;
 
+import Database.Database;
 import Launch.Main;
 import Scenes.*;
 import Util.Constants;
@@ -47,7 +48,12 @@ public class MenuPane extends BorderPane {
         rightCurtainImageView.setImage(new Image("Images/curtain_right.png"));
         rightCurtainImageView.setPreserveRatio(true);
         rightCurtainImageView.setFitHeight(Constants.SCREEN_HEIGHT);
-        watchlistButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
+        watchlistButton.setOnAction(actionEvent -> {
+            if(!Database.getInstance().testConnection()){
+                System.out.println("Error: Connection isn't valid. Movies won't be retrieved from your database.");
+            }
+            Main.switchScene(ViewWatchlistScene.getInstance());
+        });
         statsButton.setOnAction(actionEvent -> Main.switchScene(StatsScene.getInstance()));
         creditsButton.setOnAction(actionEvent -> Main.switchScene(CreditsScene.getInstance()));
         loginButton.setOnAction(actionEvent -> Main.switchScene(SettingsScene.getInstance(false)));

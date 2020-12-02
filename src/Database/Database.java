@@ -190,13 +190,15 @@ public class Database {
     public ArrayList<String> getAllGenres(){
         ArrayList<String> genres = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_GENRES);
-            while (rs.next()){
-                genres.add(rs.getString(2));
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_GENRES);
+                while (rs.next()){
+                    genres.add(rs.getString(2));
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: Couldn't get genres. Check your connection.");
         }
         return genres;
     }
@@ -210,10 +212,12 @@ public class Database {
         String query =
                 "SELECT " + GENRE_COLUMN_NAME + " FROM " + TABLE_GENRES + " WHERE " + GENRE_COLUMN_ID + " = " + id;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            rs.next();
-            return rs.getString(1);
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                rs.next();
+                return rs.getString(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -227,13 +231,15 @@ public class Database {
     public ArrayList<String> getAllProdCompanies(){
         ArrayList<String> prodCompanies = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_PRODUCTION_COMPANIES);
-            while (rs.next()){
-                prodCompanies.add(rs.getString(2));
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_PRODUCTION_COMPANIES);
+                while (rs.next()){
+                    prodCompanies.add(rs.getString(2));
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: Couldn't get production companies. Check your connection.");
         }
         return prodCompanies;
     }
@@ -247,10 +253,12 @@ public class Database {
         String query =
                 "SELECT " + PD_COLUMN_NAME + " FROM " + TABLE_PRODUCTION_COMPANIES + " WHERE " + PD_COLUMN_ID + " = " + id;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            rs.next();
-            return rs.getString(1);
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                rs.next();
+                return rs.getString(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
