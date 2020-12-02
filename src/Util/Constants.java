@@ -108,7 +108,4 @@ public class Constants {
 
     public static final String VIEW_TABLE_PRODUCTION_COMPANIES =
             "SELECT * FROM " + TABLE_PRODUCTION_COMPANIES;
-
-    public static final String DELETE_FROM_WATCHLIST =
-            "DELETE FROM " + TABLE_WATCHLIST + " WHERE " + WATCHLIST_COLUMN_ID + " = id";
 }

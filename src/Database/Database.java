@@ -155,6 +155,17 @@ public class Database {
         }
     }
 
+    public void deleteMovie(int id){
+        final String query =
+                "DELETE FROM " + TABLE_WATCHLIST + " WHERE " + WATCHLIST_COLUMN_ID + " = " + id;
+        try {
+            connection.createStatement().execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Movie Successfully Added");
+        }
+    }
+
     /**
      * Get all rows from the database and create movie objects from them
      * @author Trevor Slobodnick
@@ -179,7 +190,7 @@ public class Database {
                 System.out.println(movie);
             }
         } catch (Exception e) {
-            System.out.println("Error: Couldn't create table.");
+            System.out.println("Error: Couldn't create movie object.");
         }
     }
 
