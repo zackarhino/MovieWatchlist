@@ -1,7 +1,12 @@
 package Panes;
 
+import Database.Database;
+import Launch.Main;
 import Movie.Movie;
+import Scenes.ViewWatchlistScene;
 import Util.Constants;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -22,15 +27,15 @@ public class MovieDetailsPane extends BorderPane {
         HBox lrWrapper = new HBox();
         //Left side
         VBox leftSideContainer = new VBox();
-        Text titleTxt = new Text("Movie Title");
+        Text titleTxt = new Text(movie.getTitle());
         HBox movieTitle = new HBox(titleTxt);
-        Text genreText = new Text("Genre");
+        Text genreText = new Text(movie.getGenreAsStr());
         HBox movieGenre = new HBox(genreText);
         HBox additionalInfo = new HBox();
-        Text yearTxt = new Text("Year");
+        Text yearTxt = new Text(String.valueOf(movie.getYear()));
         HBox movieYear = new HBox(yearTxt);
         Region filler2 = new Region();
-        Text prodCompTxt = new Text("Production Company");
+        Text prodCompTxt = new Text(movie.getProdCompanyAsStr());
         HBox movieProdCompany = new HBox(prodCompTxt);
         //Right side
         VBox rightSideContainer = new VBox();
@@ -80,6 +85,14 @@ public class MovieDetailsPane extends BorderPane {
         HBox.setHgrow(leftSideContainer, Priority.ALWAYS);
         HBox.setHgrow(rightSideContainer, Priority.ALWAYS);
         HBox.setHgrow(filler2, Priority.ALWAYS);
+
+        //SETUP
+        removeMovieBtn.setOnAction(actionEvent -> {
+            Database db = Database.getInstance();
+            db.deleteMovie(movie.getId());
+            Main.switchScene(ViewWatchlistScene.getInstance());
+        });
+        closeBtn.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
         //Colors
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));

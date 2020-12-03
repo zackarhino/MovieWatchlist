@@ -69,8 +69,7 @@ public class ViewWatchlistPane extends BorderPane {
             movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT)));
             movieVBox.setCursor(Cursor.HAND);
             movieVBox.setOnMouseClicked(mouseEvent -> {
-                System.out.println("Switching to Movie..." + movieVBox.getMovie());
-                //Main.switchScene(new MovieDetailsScene(movies.get(movieVBox.getIndexVal())));
+                Main.switchScene(new MovieDetailsScene(movieVBox.getMovie()));
             });
             movieVBox.getChildren().addAll(title, year);
             movieInfo.add(movieVBox);
