@@ -3,6 +3,7 @@ package Panes;
 import Database.Database;
 import Launch.Main;
 import Movie.Movie;
+import Movie.MovieVBox;
 import Scenes.FormScene;
 import Scenes.MenuScene;
 import Util.Constants;
@@ -12,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -50,7 +50,11 @@ public class ViewWatchlistPane extends BorderPane {
         ArrayList<VBox> movieInfo = new ArrayList<>();
         HBox row = new HBox();
         for (Movie movie: movies) {
-            Label title = new Label();
+            Label title = new Label(movie.getTitle());
+            Label year = new Label(String.valueOf(movie.getYear()));
+            MovieVBox movieVBox = new MovieVBox(movie.getId(), movies.indexOf(movie));
+            movieVBox.getChildren().addAll(title, year);
+            movieInfo.add(movieVBox);
         }
         for (int i = 0; i < movieInfo.size(); i++) {
             if (i == movies.size() - 1){
