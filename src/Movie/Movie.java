@@ -10,6 +10,34 @@ public class Movie {
         return totalMovies;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getGenreAsInt() {
+        return genreAsInt;
+    }
+
+    public int getProdCompanyAsInt() {
+        return prodCompanyAsInt;
+    }
+
+    public String getGenreAsStr() {
+        return genreAsStr;
+    }
+
+    public String getProdCompanyAsStr() {
+        return prodCompanyAsStr;
+    }
+
     private int id;
     private String title;
     private int year;

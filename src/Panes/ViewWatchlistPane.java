@@ -2,16 +2,20 @@ package Panes;
 
 import Database.Database;
 import Launch.Main;
+import Movie.Movie;
 import Scenes.FormScene;
 import Scenes.MenuScene;
 import Util.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
@@ -40,6 +44,27 @@ public class ViewWatchlistPane extends BorderPane {
         * The "movies" will display the title and year
         * Each "movie" will be clickable
         */
+
+        db.createMovies();
+        ArrayList<Movie> movies = Movie.getTotalMovies();
+        ArrayList<VBox> movieInfo = new ArrayList<>();
+        HBox row = new HBox();
+        for (Movie movie: movies) {
+            Label title = new Label();
+        }
+        for (int i = 0; i < movieInfo.size(); i++) {
+            if (i == movies.size() - 1){
+                //Add to hbox and then add to vbox
+                row.getChildren().add(movieInfo.get(i));
+                movieContainer.getChildren().add(row);
+                break;
+            }
+            if (i % 3 == 0){
+                //Add Hbox to view and clear it
+                movieContainer.getChildren().add(row);
+                row = new HBox();
+            }
+        }
 
         //PUTTING IT ALL TOGETHER...
         header.getChildren().add(titleText);
