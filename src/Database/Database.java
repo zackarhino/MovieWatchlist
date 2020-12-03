@@ -280,4 +280,8 @@ public class Database {
         }
         return "";
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
 }
