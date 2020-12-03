@@ -16,6 +16,11 @@ public class Constants {
     public static final int DEFAULT_SPACING = 10;
     public static final int DEFAULT_PADDING = 10;
 
+    // Movie VBox Styles
+    public static final int MOVIE_PADDING = 5;
+    public static final int MOVIE_BORDER_RADIUS = 25;
+    public static final int MOVIE_MIDDLE_PADDING = 30;
+
     // STYLING
     // Colors
     public static Color COLOR_BACKGROUND = Color.rgb(73,85,96);

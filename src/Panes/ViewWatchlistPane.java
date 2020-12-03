@@ -9,10 +9,13 @@ import Scenes.MenuScene;
 import Util.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -48,25 +51,44 @@ public class ViewWatchlistPane extends BorderPane {
         db.createMovies();
         ArrayList<Movie> movies = Movie.getTotalMovies();
         ArrayList<VBox> movieInfo = new ArrayList<>();
-        HBox row = new HBox();
+        //Create the display (VBox) for the movies
         for (Movie movie: movies) {
             Label title = new Label(movie.getTitle());
+            title.setTextFill(Constants.COLOR_TEXT_MAIN);
+            title.setTextOverrun(OverrunStyle.ELLIPSIS);
+            title.setPadding(new Insets(Constants.MOVIE_PADDING, 0, 0, 0));
             Label year = new Label(String.valueOf(movie.getYear()));
+            year.setTextFill(Constants.COLOR_TEXT_MAIN);
+            year.setPadding(new Insets(0, 0, Constants.MOVIE_PADDING, 0));
             MovieVBox movieVBox = new MovieVBox(movie.getId(), movies.indexOf(movie));
+            movieVBox.setSpacing(Constants.MOVIE_MIDDLE_PADDING);
+            movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT)));
+            movieVBox.setCursor(Cursor.HAND);
             movieVBox.getChildren().addAll(title, year);
             movieInfo.add(movieVBox);
         }
+        //Add movies to HBox (Max of 3), then add to vbox
+        HBox row = new HBox();
+        HBox.setHgrow(row, Priority.ALWAYS);
         for (int i = 0; i < movieInfo.size(); i++) {
-            if (i == movies.size() - 1){
+            movieInfo.get(i).setAlignment(Pos.CENTER);
+            HBox.setHgrow(movieInfo.get(i), Priority.ALWAYS);
+            if (i == movieInfo.size() - 1){
                 //Add to hbox and then add to vbox
                 row.getChildren().add(movieInfo.get(i));
                 movieContainer.getChildren().add(row);
                 break;
             }
-            if (i % 3 == 0){
-                //Add Hbox to view and clear it
-                movieContainer.getChildren().add(row);
-                row = new HBox();
+            else{
+                if (i % 3 == 0 && i != 0){
+                    //Add Hbox to view and create new one
+                    movieContainer.getChildren().add(row);
+                    row = new HBox();
+                    row.getChildren().add(movieInfo.get(i));
+                }
+                else{
+                    row.getChildren().add(movieInfo.get(i));
+                }
             }
         }
 
