@@ -6,6 +6,9 @@ import Movie.Movie;
 import Scenes.MenuScene;
 import Tables.MovieTable;
 import Util.Constants;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -21,7 +24,7 @@ public class StatsPane extends BorderPane {
         Button backButton = new Button("< Back");
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
-        this.setCenter(backButton);
+        this.setBottom(backButton);
 
         chart = new PieChart();
         chart.setTitle("Watched Movies");
@@ -38,6 +41,17 @@ public class StatsPane extends BorderPane {
         //Clear data in chart
         chart.getData().clear();
         //Build list of pieChart data
-        ArrayList<PieChart.Data> data = new ArrayList<>()
+        ArrayList<PieChart.Data> data = new ArrayList<>();
+        for(Movie movie : movies){
+            //dont add record unless there is more than 1 movie
+            if(movieTable.getMovieCount(movie.getId()) > 0){
+                data.add(new PieChart.Data(movie.getTitle(),
+                        movieTable.getMovieCount(movie.getId())));
+            }
+        }
+        //Wrapping
+        ObservableList<PieChart.Data> chartData = FXCollections.observableArrayList(data);
+        //Populate
+        chart.setData(chartData);
     }
 }

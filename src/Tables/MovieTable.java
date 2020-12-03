@@ -5,6 +5,7 @@ import Database.Database;
 import Movie.Movie;
 import Util.Constants;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,5 +63,22 @@ public class MovieTable implements MovieDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int getMovieCount(int movie) {
+        int count = -1;
+        try {
+            PreparedStatement getCount = db.getConnection()
+                    .prepareStatement("SELECT * FROM " + Constants.TABLE_WATCHLIST + " WHERE "
+                                    + Constants.WATCHLIST_COLUMN_TITLE + " = '" + movie + "'", ResultSet.TYPE_SCROLL_SENSITIVE,
+                            ResultSet.CONCUR_UPDATABLE);
+            ResultSet data = getCount.executeQuery();
+            data.last();
+            count = data.getRow();
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 }
