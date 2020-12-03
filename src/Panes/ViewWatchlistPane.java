@@ -52,7 +52,6 @@ public class ViewWatchlistPane extends BorderPane {
         * Each "movie" will be clickable
         */
 
-        db.createMovies();
         ArrayList<Movie> movies = Movie.getTotalMovies();
         ArrayList<VBox> movieInfo = new ArrayList<>();
         //Create the display (VBox) for the movies
