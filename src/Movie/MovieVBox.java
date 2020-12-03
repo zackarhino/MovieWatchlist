@@ -3,19 +3,13 @@ package Movie;
 import javafx.scene.layout.VBox;
 
 public class MovieVBox extends VBox {
-    private int movieId;
-    private int indexVal;
+    private Movie movie;
 
-    public MovieVBox(int movieId, int indexVal) {
-        this.movieId = movieId;
-        this.indexVal = indexVal;
+    public MovieVBox(Movie movie) {
+        this.movie = movie;
     }
 
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public int getIndexVal() {
-        return indexVal;
+    public Movie getMovie() {
+        return movie;
     }
 }

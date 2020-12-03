@@ -64,12 +64,12 @@ public class ViewWatchlistPane extends BorderPane {
             Label year = new Label(String.valueOf(movie.getYear()));
             year.setTextFill(Constants.COLOR_TEXT_MAIN);
             year.setPadding(new Insets(0, 0, Constants.MOVIE_PADDING, 0));
-            MovieVBox movieVBox = new MovieVBox(movie.getId(), movies.indexOf(movie));
+            MovieVBox movieVBox = new MovieVBox(movie);
             movieVBox.setSpacing(Constants.MOVIE_MIDDLE_PADDING);
             movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT)));
             movieVBox.setCursor(Cursor.HAND);
             movieVBox.setOnMouseClicked(mouseEvent -> {
-                System.out.println("Switching to Movie..." + movies.get(movieVBox.getIndexVal()));
+                System.out.println("Switching to Movie..." + movieVBox.getMovie());
                 //Main.switchScene(new MovieDetailsScene(movies.get(movieVBox.getIndexVal())));
             });
             movieVBox.getChildren().addAll(title, year);
