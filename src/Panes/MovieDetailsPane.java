@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -75,8 +76,6 @@ public class MovieDetailsPane extends BorderPane {
         removeMovieBtn.setPadding(new Insets(25));
 
         //Vgrow/Hgrow
-        /*  Assigning Vgrow/Hgrow to a container allows it to fill all available space,
-            similar to flex: 1 in css, which is why some individual nodes are wrapped in HBoxes */
         VBox.setVgrow(lrWrapper, Priority.ALWAYS);
         VBox.setVgrow(movieTitle, Priority.ALWAYS);
         VBox.setVgrow(movieGenre, Priority.ALWAYS);
@@ -94,8 +93,13 @@ public class MovieDetailsPane extends BorderPane {
         });
         closeBtn.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
+        //Style
+        removeMovieBtn.setCursor(Cursor.HAND);
+        closeBtn.setCursor(Cursor.HAND);
         //Colors
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        topSection.setBackground(new Background(new BackgroundFill(Constants.COLOR_TOP_BAR, null, null)));
+        leftSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        rightSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_LIGHTER_BACKGROUND, null, null)));
 
         pane.setCenter(screenWrapper);
 
