@@ -80,21 +80,19 @@ public class ViewWatchlistPane extends BorderPane {
         for (int i = 0; i < movieInfo.size(); i++) {
             movieInfo.get(i).setAlignment(Pos.CENTER);
             HBox.setHgrow(movieInfo.get(i), Priority.ALWAYS);
-            if (i == movieInfo.size() - 1){
-                //Add to hbox and then add to vbox
-                row.getChildren().add(movieInfo.get(i));
+            if (i % 3 == 0 && i != 0){
+                //Add Hbox to view and create new one
                 movieContainer.getChildren().add(row);
-                break;
+                row = new HBox();
+                row.getChildren().add(movieInfo.get(i));
+                if (i == movieInfo.size() - 1){
+                    movieContainer.getChildren().add(row);
+                }
             }
             else{
-                if (i % 3 == 0 && i != 0){
-                    //Add Hbox to view and create new one
+                row.getChildren().add(movieInfo.get(i));
+                if (i == movieInfo.size() - 1){
                     movieContainer.getChildren().add(row);
-                    row = new HBox();
-                    row.getChildren().add(movieInfo.get(i));
-                }
-                else{
-                    row.getChildren().add(movieInfo.get(i));
                 }
             }
         }
