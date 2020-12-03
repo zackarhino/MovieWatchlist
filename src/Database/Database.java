@@ -84,7 +84,7 @@ public class Database {
     }
 
     /**
-     * Add all of the default watchlist tables to the database
+     * Add all of the default watchlist Tables to the database
      * @author Zachary Allard
      */
     public void createDefaultTables(){
