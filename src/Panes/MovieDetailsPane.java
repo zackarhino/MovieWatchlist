@@ -1,5 +1,6 @@
 package Panes;
 
+import Movie.Movie;
 import Util.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,7 +9,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class MovieDetailsPane extends BorderPane {
-    public MovieDetailsPane(){
+    public MovieDetailsPane(Movie movie){
         BorderPane pane = new BorderPane();
 
         //Entire Screen
