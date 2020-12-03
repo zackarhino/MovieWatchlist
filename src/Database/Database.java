@@ -34,9 +34,9 @@ public class Database {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/"+ database + "?serverTimezone=UTC", user, password);
+            this.createMovies();
         }catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error: Connection not established.");
+            System.out.println("Error: Connection not established. Verify that you have putty running.");
         }
         return connection;
     }
@@ -50,6 +50,7 @@ public class Database {
                 this.connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println("Error: The connection could not be closed.");
             }
         }
         this.connection = null;
@@ -66,7 +67,7 @@ public class Database {
                     return true;
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Error: The connection to the database is not valid.");
             }
         }
         return false;
@@ -84,7 +85,7 @@ public class Database {
     }
 
     /**
-     * Add all of the default watchlist tables to the database
+     * Add all of the default watchlist Tables to the database
      * @author Zachary Allard
      */
     public void createDefaultTables(){
@@ -94,13 +95,14 @@ public class Database {
             createTable(Constants.TABLE_WATCHLIST, Constants.CREATE_TABLE_WATCHLIST, connection);
         }catch (Exception e){
             e.printStackTrace();
+            System.out.println("Error: The table creation query failed.");
         }
     }
 
     /**
      * Creates a table in the database
      * Note: must be called after DB_CRED variables are set
-     * @author ?
+     * @author Trevor
      * @param tableName The table name in SQL
      * @param tableQuery The Query to execute
      * @param connection The database's connection
@@ -155,6 +157,22 @@ public class Database {
     }
 
     /**
+     * Removes a movie from the watchlist table based on id given
+     * @param id The id of the movie to delete
+     * @author Trevor Slobodnick
+     * */
+    public void deleteMovie(int id){
+        final String query =
+                "DELETE FROM " + TABLE_WATCHLIST + " WHERE " + WATCHLIST_COLUMN_ID + " = " + id;
+        try {
+            connection.createStatement().execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Movie Successfully Added");
+        }
+    }
+
+    /**
      * Get all rows from the database and create movie objects from them
      * @author Trevor Slobodnick
      * */
@@ -175,10 +193,10 @@ public class Database {
                         prodCompanyAsInt,
                         getGenre(genreAsInt),
                         getProdCompany(prodCompanyAsInt));
-                System.out.println(movie);
+                //System.out.println(movie);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error: Couldn't create movie object.");
         }
     }
 
@@ -189,13 +207,15 @@ public class Database {
     public ArrayList<String> getAllGenres(){
         ArrayList<String> genres = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_GENRES);
-            while (rs.next()){
-                genres.add(rs.getString(2));
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_GENRES);
+                while (rs.next()){
+                    genres.add(rs.getString(2));
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: Couldn't get genres. Check your connection.");
         }
         return genres;
     }
@@ -209,10 +229,12 @@ public class Database {
         String query =
                 "SELECT " + GENRE_COLUMN_NAME + " FROM " + TABLE_GENRES + " WHERE " + GENRE_COLUMN_ID + " = " + id;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            rs.next();
-            return rs.getString(1);
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                rs.next();
+                return rs.getString(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -226,13 +248,15 @@ public class Database {
     public ArrayList<String> getAllProdCompanies(){
         ArrayList<String> prodCompanies = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_PRODUCTION_COMPANIES);
-            while (rs.next()){
-                prodCompanies.add(rs.getString(2));
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(Constants.VIEW_TABLE_PRODUCTION_COMPANIES);
+                while (rs.next()){
+                    prodCompanies.add(rs.getString(2));
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: Couldn't get production companies. Check your connection.");
         }
         return prodCompanies;
     }
@@ -246,13 +270,19 @@ public class Database {
         String query =
                 "SELECT " + PD_COLUMN_NAME + " FROM " + TABLE_PRODUCTION_COMPANIES + " WHERE " + PD_COLUMN_ID + " = " + id;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            rs.next();
-            return rs.getString(1);
+            if(testConnection()){
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                rs.next();
+                return rs.getString(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }

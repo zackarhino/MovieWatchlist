@@ -16,6 +16,11 @@ public class Constants {
     public static final int DEFAULT_SPACING = 10;
     public static final int DEFAULT_PADDING = 10;
 
+    // Movie VBox Styles
+    public static final int MOVIE_PADDING = 5;
+    public static final int MOVIE_BORDER_RADIUS = 25;
+    public static final int MOVIE_MIDDLE_PADDING = 30;
+
     // STYLING
     // Colors
     public static Color COLOR_BACKGROUND = Color.rgb(73,85,96);
@@ -23,10 +28,13 @@ public class Constants {
     public static Color COLOR_ACCENT_DARK = Color.rgb(63,13,54);
     public static Color COLOR_TEXT_MAIN = Color.rgb(0,0,0);
     public static Color COLOR_TEXT_ALT = Color.rgb(255,255,255);
+    public static Color COLOR_TOP_BAR = Color.rgb(182,182,182);
+    public static Color COLOR_LIGHTER_BACKGROUND = Color.rgb(99,109,118);
+    public static Color COLOR_DARKER_BACKGROUND = Color.rgb(52,56,68);
 
     // Fonts
     public static Font FONT_MENU_TITLE_FONT = Font.font("Times New Roman", FontWeight.BOLD, 50);
-    public static Font FONT_SUBTITLE_FONT = Font.font("Courier New", FontWeight.BOLD, 25);
+    public static Font FONT_SUBTITLE_FONT = Font.font("Courier New", FontWeight.BOLD, 20);
 
     // SQL COLUMN NAMES
     //WatchList Table
@@ -108,7 +116,4 @@ public class Constants {
 
     public static final String VIEW_TABLE_PRODUCTION_COMPANIES =
             "SELECT * FROM " + TABLE_PRODUCTION_COMPANIES;
-
-    public static final String DELETE_FROM_WATCHLIST =
-            "DELETE FROM " + TABLE_WATCHLIST + " WHERE " + WATCHLIST_COLUMN_ID + " = id";
 }

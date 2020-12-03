@@ -2,21 +2,31 @@ package Panes;
 
 import Database.Database;
 import Launch.Main;
+import Movie.Movie;
+import Movie.MovieVBox;
 import Scenes.FormScene;
 import Scenes.MenuScene;
+import Scenes.MovieDetailsScene;
 import Util.Constants;
+import com.sun.javafx.scene.control.LabeledText;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+
 public class ViewWatchlistPane extends BorderPane {
     public ViewWatchlistPane(){
         Database db = Database.getInstance();
-        db.createMovies();
 
         BorderPane pane = new BorderPane();
 
@@ -41,6 +51,50 @@ public class ViewWatchlistPane extends BorderPane {
         * The "movies" will display the title and year
         * Each "movie" will be clickable
         */
+
+        ArrayList<Movie> movies = Movie.getTotalMovies();
+        ArrayList<VBox> movieInfo = new ArrayList<>();
+        //Create the display (VBox) for the movies
+        for (Movie movie: movies) {
+            Label title = new Label(movie.getTitle());
+            title.setTextFill(Constants.COLOR_TEXT_MAIN);
+            title.setTextOverrun(OverrunStyle.ELLIPSIS);
+            title.setPadding(new Insets(Constants.MOVIE_PADDING, 0, 0, 0));
+            Label year = new Label(String.valueOf(movie.getYear()));
+            year.setTextFill(Constants.COLOR_TEXT_MAIN);
+            year.setPadding(new Insets(0, 0, Constants.MOVIE_PADDING, 0));
+            MovieVBox movieVBox = new MovieVBox(movie);
+            movieVBox.setSpacing(Constants.MOVIE_MIDDLE_PADDING);
+            movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT)));
+            movieVBox.setCursor(Cursor.HAND);
+            movieVBox.setOnMouseClicked(mouseEvent -> {
+                Main.switchScene(new MovieDetailsScene(movieVBox.getMovie()));
+            });
+            movieVBox.getChildren().addAll(title, year);
+            movieInfo.add(movieVBox);
+        }
+        //Add movies to HBox (Max of 3), then add to vbox
+        HBox row = new HBox();
+        HBox.setHgrow(row, Priority.ALWAYS);
+        for (int i = 0; i < movieInfo.size(); i++) {
+            movieInfo.get(i).setAlignment(Pos.CENTER);
+            HBox.setHgrow(movieInfo.get(i), Priority.ALWAYS);
+            if (i % 3 == 0 && i != 0){
+                //Add Hbox to view and create new one
+                movieContainer.getChildren().add(row);
+                row = new HBox();
+                row.getChildren().add(movieInfo.get(i));
+                if (i == movieInfo.size() - 1){
+                    movieContainer.getChildren().add(row);
+                }
+            }
+            else{
+                row.getChildren().add(movieInfo.get(i));
+                if (i == movieInfo.size() - 1){
+                    movieContainer.getChildren().add(row);
+                }
+            }
+        }
 
         //PUTTING IT ALL TOGETHER...
         header.getChildren().add(titleText);
@@ -81,7 +135,12 @@ public class ViewWatchlistPane extends BorderPane {
 
         //SETUP
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
-        addListButton.setOnAction(actionEvent -> Main.switchScene(FormScene.getInstance()));
+        addListButton.setOnAction(actionEvent -> {
+            if(!db.testConnection()){
+                System.out.println("Error: Connection isn't valid. Movies won't be added to your database.");
+            }
+            Main.switchScene(FormScene.getInstance());
+        });
 
         pane.setCenter(watchlistWrapper);
         this.setCenter(pane);

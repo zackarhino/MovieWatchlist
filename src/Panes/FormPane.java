@@ -66,20 +66,20 @@ public class FormPane extends BorderPane {
         backButton.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
 
         //enters Movie
-        enterButton.setOnAction(e->{
-            int genreAsInt = db_genres.indexOf(genre.getValue().toString());
-            int productionCompanyAsInt = db_prodCompany.indexOf(productionCompany.getValue().toString());
-            int yearAsInt = 2020;
+        enterButton.setOnAction(event->{
             try {
+                int genreAsInt = db_genres.indexOf(genre.getValue().toString());
+                int productionCompanyAsInt = db_prodCompany.indexOf(productionCompany.getValue().toString());
+                int yearAsInt = 2020;
                 yearAsInt = Integer.parseInt(year.getText());
+
+                db.addMovie(movieName.getText(), yearAsInt, genreAsInt, productionCompanyAsInt);
+                movieName.clear();
+                year.clear();
                 System.out.println("Inserted Movie.");
-            } catch (Exception exception){
-                exception.printStackTrace();
-                System.out.println("Error: Couldn't Insert Movie.");
+            } catch (Exception e){
+                System.out.println("Error: Couldn't Insert Movie. Please check to make sure you have entered all required values.");
             }
-            db.addMovie(movieName.getText(), yearAsInt, genreAsInt, productionCompanyAsInt);
-            movieName.clear();
-            year.clear();
         });
 
         // Styling

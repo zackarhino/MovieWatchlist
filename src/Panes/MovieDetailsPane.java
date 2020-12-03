@@ -1,14 +1,21 @@
 package Panes;
 
+import Database.Database;
+import Launch.Main;
+import Movie.Movie;
+import Scenes.ViewWatchlistScene;
 import Util.Constants;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class MovieDetailsPane extends BorderPane {
-    public MovieDetailsPane(){
+    public MovieDetailsPane(Movie movie){
         BorderPane pane = new BorderPane();
 
         //Entire Screen
@@ -21,15 +28,15 @@ public class MovieDetailsPane extends BorderPane {
         HBox lrWrapper = new HBox();
         //Left side
         VBox leftSideContainer = new VBox();
-        Text titleTxt = new Text("Movie Title");
+        Text titleTxt = new Text(movie.getTitle());
         HBox movieTitle = new HBox(titleTxt);
-        Text genreText = new Text("Genre");
+        Text genreText = new Text(movie.getGenreAsStr());
         HBox movieGenre = new HBox(genreText);
         HBox additionalInfo = new HBox();
-        Text yearTxt = new Text("Year");
+        Text yearTxt = new Text(String.valueOf(movie.getYear()));
         HBox movieYear = new HBox(yearTxt);
         Region filler2 = new Region();
-        Text prodCompTxt = new Text("Production Company");
+        Text prodCompTxt = new Text(movie.getProdCompanyAsStr());
         HBox movieProdCompany = new HBox(prodCompTxt);
         //Right side
         VBox rightSideContainer = new VBox();
@@ -69,8 +76,6 @@ public class MovieDetailsPane extends BorderPane {
         removeMovieBtn.setPadding(new Insets(25));
 
         //Vgrow/Hgrow
-        /*  Assigning Vgrow/Hgrow to a container allows it to fill all available space,
-            similar to flex: 1 in css, which is why some individual nodes are wrapped in HBoxes */
         VBox.setVgrow(lrWrapper, Priority.ALWAYS);
         VBox.setVgrow(movieTitle, Priority.ALWAYS);
         VBox.setVgrow(movieGenre, Priority.ALWAYS);
@@ -80,8 +85,21 @@ public class MovieDetailsPane extends BorderPane {
         HBox.setHgrow(rightSideContainer, Priority.ALWAYS);
         HBox.setHgrow(filler2, Priority.ALWAYS);
 
+        //SETUP
+        removeMovieBtn.setOnAction(actionEvent -> {
+            Database db = Database.getInstance();
+            db.deleteMovie(movie.getId());
+            Main.switchScene(ViewWatchlistScene.getInstance());
+        });
+        closeBtn.setOnAction(actionEvent -> Main.switchScene(ViewWatchlistScene.getInstance()));
+
+        //Style
+        removeMovieBtn.setCursor(Cursor.HAND);
+        closeBtn.setCursor(Cursor.HAND);
         //Colors
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        topSection.setBackground(new Background(new BackgroundFill(Constants.COLOR_TOP_BAR, null, null)));
+        leftSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        rightSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_LIGHTER_BACKGROUND, null, null)));
 
         pane.setCenter(screenWrapper);
 
