@@ -70,12 +70,30 @@ public class StatsPane extends BorderPane {
                 // TODO: display something else
                 String genre = movie.getGenreAsStr();
                 genreCount(genre);
-                data.add(new PieChart.Data(movie.getGenreAsStr(), movie.getGenreAsInt()));
+//                data.add(new PieChart.Data(genre, movie.getGenreAsInt()));
+                System.out.println(actionCount + "\n" +
+                        adventureCount + "\n" +
+                        animationCount + "\n" +
+                        comedyCount + "\n" +
+                        dramaCount + "\n" +
+                        horrorCount + "\n" +
+                        mysteryCount + "\n" +
+                        romanceCount + "\n" +
+                        scienceCount + "\n" +
+                        otherCount + "\n"
+
+                        );
             }
-//            for(Movie movie : movies){
-//                String genre = movie.getGenreAsStr();
-//                data.add(new PieChart.Data(movie.getGenreAsStr(), genreCount(genre)));
-//            }
+            data.add(new PieChart.Data("Action", actionCount));
+            data.add(new PieChart.Data("Adventure", adventureCount));
+            data.add(new PieChart.Data("Animation", animationCount));
+            data.add(new PieChart.Data("Comedy", comedyCount));
+            data.add(new PieChart.Data("Drama", dramaCount));
+            data.add(new PieChart.Data("Horror", horrorCount));
+            data.add(new PieChart.Data("Mystery", mysteryCount));
+            data.add(new PieChart.Data("Romance", romanceCount));
+            data.add(new PieChart.Data("Science Fiction", scienceCount));
+            data.add(new PieChart.Data("Other", otherCount));
 
         }
 
@@ -88,38 +106,38 @@ public class StatsPane extends BorderPane {
         return chart;
     }
 
-    private int genreCount(String genre){
+    private void genreCount(String genre){
         switch (genre){
             case "Action":
                 actionCount += 1;
-                return actionCount;
+                break;
             case "Adventure":
                 adventureCount += 1;
-                return adventureCount;
+                break;
             case "Animation":
                 animationCount += 1;
-                return animationCount;
+                break;
             case "Comedy":
                 comedyCount += 1;
-                return comedyCount;
+                break;
             case "Drama":
                 dramaCount += 1;
-                return dramaCount;
+                break;
             case "Horror":
                 horrorCount += 1;
-                return horrorCount;
+                break;
             case "Mystery":
                 mysteryCount += 1;
-                return mysteryCount;
+                break;
             case "Romance":
                 romanceCount += 1;
-                return romanceCount;
+                break;
             case "Science Fiction":
                 scienceCount += 1;
-                return scienceCount;
+                break;
             default:
                 otherCount += 1;
-                return otherCount;
+                break;
         }
 
 
