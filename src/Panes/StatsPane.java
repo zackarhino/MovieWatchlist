@@ -32,14 +32,11 @@ public class StatsPane extends BorderPane {
         buttons.setPadding(new Insets(Constants.DEFAULT_PADDING));
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
 
-        this.chart = createPieChart();
-        this.chart.setPrefWidth(Constants.SCREEN_WIDTH);
-
-        Group group = new Group(this.chart);
-
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
-        this.setBottom(buttons);
-        this.setCenter(group);
+        chart = new PieChart();
+        chart.setTitle("Genres Watched");
+        chart.setLabelsVisible(true);
+        pieChart();
+        this.setCenter(chart);
     }
 
     /**
@@ -52,13 +49,13 @@ public class StatsPane extends BorderPane {
         ArrayList<Movie> movies = Movie.getAllMovies();
 
         //Build list of pieChart data
-        ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
-        //dont add record unless there is more than 1 movie
-        if(!movies.isEmpty()){
-            for(Movie movie : movies){
-                // TODO: display something else
-                System.out.println(movie.getTitle() + ", id: " + movie.getId());
-                data.add(new PieChart.Data(movie.getGenreAsStr(), movie.getGenreAsInt()));
+        ArrayList<PieChart.Data> data = new ArrayList<>();
+        for(Movie movie : movies){
+            //dont add record unless there is more than 1 movie
+
+            if(movieTable.getMovieCount(movie.getId()) > 0){
+                data.add(new PieChart.Data(movie.getGenreAsStr(),
+                        movieTable.getMovieCount(movie.getGenreAsInt())));
             }
         }
 
