@@ -27,7 +27,7 @@ public class StatsPane extends BorderPane {
         this.setBottom(backButton);
 
         chart = new PieChart();
-        chart.setTitle("Watched Movies");
+        chart.setTitle("Genres Watched");
         chart.setLabelsVisible(true);
         pieChart();
         this.setCenter(chart);
@@ -44,9 +44,10 @@ public class StatsPane extends BorderPane {
         ArrayList<PieChart.Data> data = new ArrayList<>();
         for(Movie movie : movies){
             //dont add record unless there is more than 1 movie
+
             if(movieTable.getMovieCount(movie.getId()) > 0){
-                data.add(new PieChart.Data(movie.getTitle(),
-                        movieTable.getMovieCount(movie.getId())));
+                data.add(new PieChart.Data(movie.getGenreAsStr(),
+                        movieTable.getMovieCount(movie.getGenreAsInt())));
             }
         }
         //Wrapping
