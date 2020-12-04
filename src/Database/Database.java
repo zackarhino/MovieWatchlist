@@ -34,6 +34,7 @@ public class Database {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/"+ database + "?serverTimezone=UTC", user, password);
+            this.createMovies();
         }catch (Exception e){
             System.out.println("Error: Connection not established. Verify that you have putty running.");
         }
@@ -192,7 +193,7 @@ public class Database {
                         prodCompanyAsInt,
                         getGenre(genreAsInt),
                         getProdCompany(prodCompanyAsInt));
-                System.out.println(movie);
+                //System.out.println(movie);
             }
         } catch (Exception e) {
             System.out.println("Error: Couldn't create movie object.");

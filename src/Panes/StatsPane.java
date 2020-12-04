@@ -4,27 +4,33 @@ package Panes;
 import Launch.Main;
 import Movie.Movie;
 import Scenes.MenuScene;
-import Tables.MovieTable;
 import Util.Constants;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 
+/**
+ * Pane for displaying watch stats
+ * @author Jenny Hoang, Zachary Allard
+ */
 public class StatsPane extends BorderPane {
     private PieChart chart;
 
     public StatsPane(){
+        HBox buttons = new HBox();
         Button backButton = new Button("< Back");
+        buttons.getChildren().addAll(backButton);
+        buttons.setPadding(new Insets(Constants.DEFAULT_PADDING));
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
-        this.setBottom(backButton);
 
         chart = new PieChart();
         chart.setTitle("Genres Watched");
@@ -33,13 +39,15 @@ public class StatsPane extends BorderPane {
         this.setCenter(chart);
     }
 
-    public void pieChart(){
-        //Access to database
-        MovieTable movieTable = new MovieTable();
+    /**
+     * Create a new PieChart and return it
+     * @return PieChart of local data
+     * @author Jenny Hoang
+     */
+    private PieChart createPieChart(){
         //Grab list of movies
-        ArrayList<Movie> movies = movieTable.getAllMovies();
-        //Clear data in chart
-        chart.getData().clear();
+        ArrayList<Movie> movies = Movie.getAllMovies();
+
         //Build list of pieChart data
         ArrayList<PieChart.Data> data = new ArrayList<>();
         for(Movie movie : movies){
@@ -50,9 +58,13 @@ public class StatsPane extends BorderPane {
                         movieTable.getMovieCount(movie.getGenreAsInt())));
             }
         }
-        //Wrapping
-        ObservableList<PieChart.Data> chartData = FXCollections.observableArrayList(data);
+
+        PieChart chart = new PieChart(data);
+
         //Populate
-        chart.setData(chartData);
+        chart.setTitle("Watched Movies");
+        chart.setLabelsVisible(true);
+        chart.setLegendVisible(false);
+        return chart;
     }
 }

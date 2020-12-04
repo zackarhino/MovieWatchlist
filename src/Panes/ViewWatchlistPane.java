@@ -8,8 +8,6 @@ import Scenes.FormScene;
 import Scenes.MenuScene;
 import Scenes.MovieDetailsScene;
 import Util.Constants;
-import com.sun.javafx.scene.control.LabeledText;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -17,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -52,8 +49,7 @@ public class ViewWatchlistPane extends BorderPane {
         * Each "movie" will be clickable
         */
 
-        db.createMovies();
-        ArrayList<Movie> movies = Movie.getTotalMovies();
+        ArrayList<Movie> movies = Movie.getAllMovies();
         ArrayList<VBox> movieInfo = new ArrayList<>();
         //Create the display (VBox) for the movies
         for (Movie movie: movies) {

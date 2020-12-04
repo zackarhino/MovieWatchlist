@@ -1,0 +1,13 @@
+.chart-title{
+    -fx-font: 50px "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(94,13,54);
+}
+.chart-pie-label{
+    -fx-font: 14px "Courier New";
+    -fx-fill: rgb(94,13,54);
+}
+.chart-pie-label-line {
+     -fx-stroke: rgb(94,13,54);
+     -fx-fill: rgb(0,0,0);
+ }
