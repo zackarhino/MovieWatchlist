@@ -4,7 +4,6 @@ package Panes;
 import Launch.Main;
 import Movie.Movie;
 import Scenes.MenuScene;
-import Tables.MovieTable;
 import Util.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,7 +49,7 @@ public class StatsPane extends BorderPane {
      */
     private PieChart createPieChart(){
         //Grab list of movies
-        ArrayList<Movie> movies = Movie.getTotalMovies();
+        ArrayList<Movie> movies = Movie.getAllMovies();
 
         //Build list of pieChart data
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();

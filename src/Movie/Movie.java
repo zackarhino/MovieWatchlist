@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Movie {
 
-    private static ArrayList<Movie> totalMovies = new ArrayList<>();
+    private static ArrayList<Movie> allMovies = new ArrayList<>();
 
-    public static ArrayList<Movie> getTotalMovies() {
-        return totalMovies;
+    public static ArrayList<Movie> getAllMovies() {
+        return allMovies;
     }
 
     public int getId() {
@@ -54,7 +54,7 @@ public class Movie {
         this.prodCompanyAsInt = prodCompanyAsInt;
         this.genreAsStr = genreAsStr;
         this.prodCompanyAsStr = prodCompanyAsStr;
-        totalMovies.add(this);
+        allMovies.add(this);
     }
 
     @Override
