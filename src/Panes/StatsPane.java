@@ -59,7 +59,7 @@ public class StatsPane extends BorderPane {
             for(Movie movie : movies){
                 // TODO: display something else
                 System.out.println(movie.getTitle() + ", id: " + movie.getId());
-                data.add(new PieChart.Data(movie.getTitle(), movie.getId()));
+                data.add(new PieChart.Data(movie.getGenreAsStr(), movie.getGenreAsInt()));
             }
         }
 
