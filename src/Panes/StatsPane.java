@@ -24,6 +24,16 @@ import java.util.ArrayList;
  */
 public class StatsPane extends BorderPane {
     private PieChart chart;
+    int otherCount = 0;
+    int actionCount = 0;
+    int adventureCount = 0;
+    int animationCount = 0;
+    int comedyCount = 0;
+    int dramaCount = 0;
+    int horrorCount = 0;
+    int mysteryCount = 0;
+    int romanceCount = 0;
+    int scienceCount = 0;
 
     public StatsPane(){
         HBox buttons = new HBox();
@@ -53,12 +63,20 @@ public class StatsPane extends BorderPane {
 
         //Build list of pieChart data
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
+
         //dont add record unless there is more than 1 movie
         if(!movies.isEmpty()){
             for(Movie movie : movies){
                 // TODO: display something else
-                data.add(new PieChart.Data(movie.getTitle(), movie.getId()));
+                String genre = movie.getGenreAsStr();
+                genreCount(genre);
+                data.add(new PieChart.Data(movie.getGenreAsStr(), movie.getGenreAsInt()));
             }
+//            for(Movie movie : movies){
+//                String genre = movie.getGenreAsStr();
+//                data.add(new PieChart.Data(movie.getGenreAsStr(), genreCount(genre)));
+//            }
+
         }
 
         PieChart chart = new PieChart(data);
@@ -68,5 +86,50 @@ public class StatsPane extends BorderPane {
         chart.setLabelsVisible(true);
         chart.setLegendVisible(false);
         return chart;
+    }
+
+    private int genreCount(String genre){
+        switch (genre){
+            case "Action":
+                actionCount += 1;
+                return actionCount;
+            case "Adventure":
+                adventureCount += 1;
+                return adventureCount;
+            case "Animation":
+                animationCount += 1;
+                return animationCount;
+            case "Comedy":
+                comedyCount += 1;
+                return comedyCount;
+            case "Drama":
+                dramaCount += 1;
+                return dramaCount;
+            case "Horror":
+                horrorCount += 1;
+                return horrorCount;
+            case "Mystery":
+                mysteryCount += 1;
+                return mysteryCount;
+            case "Romance":
+                romanceCount += 1;
+                return romanceCount;
+            case "Science Fiction":
+                scienceCount += 1;
+                return scienceCount;
+            default:
+                otherCount += 1;
+                return otherCount;
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
