@@ -1,6 +1,7 @@
 package Panes;
 
 
+import Database.Database;
 import Launch.Main;
 import Movie.Movie;
 import Scenes.MenuScene;
@@ -50,6 +51,7 @@ public class StatsPane extends BorderPane {
      * @author Jenny Hoang
      */
     private PieChart createPieChart(){
+        Database.getInstance().updateMovies();
         //Grab list of movies
         ArrayList<Movie> movies = Movie.getAllMovies();
 
