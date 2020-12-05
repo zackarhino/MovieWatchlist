@@ -24,16 +24,8 @@ import java.util.ArrayList;
  */
 public class StatsPane extends BorderPane {
     private PieChart chart;
-    int otherCount = 0;
-    int actionCount = 0;
-    int adventureCount = 0;
-    int animationCount = 0;
-    int comedyCount = 0;
-    int dramaCount = 0;
-    int horrorCount = 0;
-    int mysteryCount = 0;
-    int romanceCount = 0;
-    int scienceCount = 0;
+    int[] genresCount = new int[10];
+    String[] genres = {"Action","Adventure","Animation","Comedy","Drama","Horror","Mystery","Romance","Science Fiction","Other"};
 
     public StatsPane(){
         HBox buttons = new HBox();
@@ -67,34 +59,16 @@ public class StatsPane extends BorderPane {
         //dont add record unless there is more than 1 movie
         if(!movies.isEmpty()){
             for(Movie movie : movies){
-                // TODO: display something else
+                 // TODO: display something else
                 String genre = movie.getGenreAsStr();
-                genreCount(genre);
-//                data.add(new PieChart.Data(genre, movie.getGenreAsInt()));
-                System.out.println(actionCount + "\n" +
-                        adventureCount + "\n" +
-                        animationCount + "\n" +
-                        comedyCount + "\n" +
-                        dramaCount + "\n" +
-                        horrorCount + "\n" +
-                        mysteryCount + "\n" +
-                        romanceCount + "\n" +
-                        scienceCount + "\n" +
-                        otherCount + "\n"
-
-                        );
+                numberOfGenres(genre);
+//                data.add(new PieChart.Data(genre, genreCount(genre)));
             }
-            data.add(new PieChart.Data("Action", actionCount));
-            data.add(new PieChart.Data("Adventure", adventureCount));
-            data.add(new PieChart.Data("Animation", animationCount));
-            data.add(new PieChart.Data("Comedy", comedyCount));
-            data.add(new PieChart.Data("Drama", dramaCount));
-            data.add(new PieChart.Data("Horror", horrorCount));
-            data.add(new PieChart.Data("Mystery", mysteryCount));
-            data.add(new PieChart.Data("Romance", romanceCount));
-            data.add(new PieChart.Data("Science Fiction", scienceCount));
-            data.add(new PieChart.Data("Other", otherCount));
-
+            for(int i = 0;i < genresCount.length;i++) {
+                if(genresCount[i] > 0){
+                    data.add(new PieChart.Data(genres[i], genresCount[i]));
+                }
+            }
         }
 
         PieChart chart = new PieChart(data);
@@ -106,48 +80,38 @@ public class StatsPane extends BorderPane {
         return chart;
     }
 
-    private void genreCount(String genre){
-        switch (genre){
+    private void numberOfGenres(String genre) {
+        switch (genre) {
             case "Action":
-                actionCount += 1;
+                genresCount[0] += 1;
                 break;
             case "Adventure":
-                adventureCount += 1;
+                genresCount[1] += 1;
                 break;
             case "Animation":
-                animationCount += 1;
+                genresCount[2] += 1;
                 break;
             case "Comedy":
-                comedyCount += 1;
+                genresCount[3] += 1;
                 break;
             case "Drama":
-                dramaCount += 1;
+                genresCount[4] += 1;
                 break;
             case "Horror":
-                horrorCount += 1;
+                genresCount[5] += 1;
                 break;
             case "Mystery":
-                mysteryCount += 1;
+                genresCount[6] += 1;
                 break;
             case "Romance":
-                romanceCount += 1;
+                genresCount[7] += 1;
                 break;
             case "Science Fiction":
-                scienceCount += 1;
+                genresCount[8] += 1;
                 break;
             default:
-                otherCount += 1;
+                genresCount[9] += 1;
                 break;
         }
-
-
-
-
-
-
-
-
-
-
     }
 }
