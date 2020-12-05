@@ -59,10 +59,8 @@ public class StatsPane extends BorderPane {
         //dont add record unless there is more than 1 movie
         if(!movies.isEmpty()){
             for(Movie movie : movies){
-                 // TODO: display something else
                 String genre = movie.getGenreAsStr();
                 numberOfGenres(genre);
-//                data.add(new PieChart.Data(genre, genreCount(genre)));
             }
             for(int i = 0;i < genresCount.length;i++) {
                 if(genresCount[i] > 0){
