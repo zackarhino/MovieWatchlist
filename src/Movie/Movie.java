@@ -2,12 +2,20 @@ package Movie;
 
 import java.util.ArrayList;
 
+/**
+ * The Movie object used to store Movies from the database locally
+ * @author Trevor Slobodnick, Zachary Allard
+ */
 public class Movie {
 
     private static ArrayList<Movie> allMovies = new ArrayList<>();
 
     public static ArrayList<Movie> getAllMovies() {
         return allMovies;
+    }
+
+    public static void setAllMovies(ArrayList<Movie> allMovies) {
+        Movie.allMovies = allMovies;
     }
 
     public int getId() {
@@ -54,9 +62,22 @@ public class Movie {
         this.prodCompanyAsInt = prodCompanyAsInt;
         this.genreAsStr = genreAsStr;
         this.prodCompanyAsStr = prodCompanyAsStr;
-        allMovies.add(this);
     }
 
+    /**
+     * Adds a Movie object to allMovies
+     * @author Zachary Allard
+     * @param movie The movie to add
+     */
+    public static void addMovie(Movie movie){
+        allMovies.add(movie);
+    }
+
+    /**
+     * toString() method
+     * @author Trevor Slobodnick
+     * @return String interpretation of Movie
+     */
     @Override
     public String toString() {
         return "Movie{" +

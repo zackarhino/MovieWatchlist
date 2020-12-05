@@ -2,6 +2,7 @@ package Launch;
 
 import Database.DB_CRED;
 import Database.Database;
+import Panes.ViewWatchlistPane;
 import Scenes.MenuScene;
 import Scenes.MovieDetailsScene;
 import Scenes.SettingsScene;
@@ -48,8 +49,18 @@ public class Main extends Application {
         mainStage.show();
     }
 
-    // Swap to a new scene
+    /**
+     * Swap to a scene. If the scene is the watchlist, update the local Movies and then update the watchlist VBoxes for said Movies
+     * @auther Zachary Allard
+     * @param scene
+     */
     public static void switchScene(Scene scene){
+        if(scene instanceof ViewWatchlistScene){
+            if(Database.getInstance().testConnection()){
+                Database.getInstance().updateMovies();
+                ViewWatchlistPane.updateData();
+            }
+        }
         mainStage.setScene(scene);
         mainStage.show();
     }

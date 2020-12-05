@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class ViewWatchlistPane extends BorderPane {
+    private static VBox movieContainer;
     public ViewWatchlistPane(){
         Database db = Database.getInstance();
 
@@ -38,60 +39,10 @@ public class ViewWatchlistPane extends BorderPane {
         Text statusTxt = new Text("Need to Watch");
         Text titleText = new Text("My Movies");
         HBox statusTxtContainer = new HBox(statusTxt);
-        VBox movieContainer = new VBox();
+        movieContainer = new VBox();
         //Put movie Container inside of scrollpane to handle overflow
         ScrollPane scrollPane = new ScrollPane(movieContainer);
 
-        /*
-        * The movieContainer will contain Hboxes
-        * These Hboxes will contain 3 "movies" (Subject to change)
-        * The "movies" will display the title and year
-        * Each "movie" will be clickable
-        */
-
-        ArrayList<Movie> movies = Movie.getAllMovies();
-        ArrayList<VBox> movieInfo = new ArrayList<>();
-        //Create the display (VBox) for the movies
-        for (Movie movie: movies) {
-            Label title = new Label(movie.getTitle());
-            title.setTextFill(Constants.COLOR_TEXT_MAIN);
-            title.setTextOverrun(OverrunStyle.ELLIPSIS);
-            title.setPadding(new Insets(Constants.MOVIE_PADDING, 0, 0, 0));
-            Label year = new Label(String.valueOf(movie.getYear()));
-            year.setTextFill(Constants.COLOR_TEXT_MAIN);
-            year.setPadding(new Insets(0, 0, Constants.MOVIE_PADDING, 0));
-            MovieVBox movieVBox = new MovieVBox(movie);
-            movieVBox.setSpacing(Constants.MOVIE_MIDDLE_PADDING);
-            movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT)));
-            movieVBox.setCursor(Cursor.HAND);
-            movieVBox.setOnMouseClicked(mouseEvent -> {
-                Main.switchScene(new MovieDetailsScene(movieVBox.getMovie()));
-            });
-            movieVBox.getChildren().addAll(title, year);
-            movieInfo.add(movieVBox);
-        }
-        //Add movies to HBox (Max of 3), then add to vbox
-        HBox row = new HBox();
-        HBox.setHgrow(row, Priority.ALWAYS);
-        for (int i = 0; i < movieInfo.size(); i++) {
-            movieInfo.get(i).setAlignment(Pos.CENTER);
-            HBox.setHgrow(movieInfo.get(i), Priority.ALWAYS);
-            if (i % 3 == 0 && i != 0){
-                //Add Hbox to view and create new one
-                movieContainer.getChildren().add(row);
-                row = new HBox();
-                row.getChildren().add(movieInfo.get(i));
-                if (i == movieInfo.size() - 1){
-                    movieContainer.getChildren().add(row);
-                }
-            }
-            else{
-                row.getChildren().add(movieInfo.get(i));
-                if (i == movieInfo.size() - 1){
-                    movieContainer.getChildren().add(row);
-                }
-            }
-        }
 
         //PUTTING IT ALL TOGETHER...
         header.getChildren().add(titleText);
@@ -141,5 +92,66 @@ public class ViewWatchlistPane extends BorderPane {
 
         pane.setCenter(watchlistWrapper);
         this.setCenter(pane);
+    }
+
+    /**
+     * Updates/Refreshing the movieContainer by removing all the items and then adding them back
+     * @author Trevor Slobodnick, Zachary Allard
+     */
+    public static void updateData(){
+        // Emptying the data before adding everything back
+        if(movieContainer != null){
+            movieContainer.getChildren().clear();
+        }
+
+        /*
+         * The movieContainer will contain Hboxes
+         * These Hboxes will contain 3 "movies" (Subject to change)
+         * The "movies" will display the title and year
+         * Each "movie" will be clickable
+         */
+        ArrayList<Movie> movies = Movie.getAllMovies();
+        ArrayList<VBox> movieInfo = new ArrayList<>();
+        //Create the display (VBox) for the movies
+        for (Movie movie: movies) {
+            Label title = new Label(movie.getTitle());
+            title.setTextFill(Constants.COLOR_TEXT_MAIN);
+            title.setTextOverrun(OverrunStyle.ELLIPSIS);
+            title.setPadding(new Insets(Constants.MOVIE_PADDING, 0, 0, 0));
+            Label year = new Label(String.valueOf(movie.getYear()));
+            year.setTextFill(Constants.COLOR_TEXT_MAIN);
+            year.setPadding(new Insets(0, 0, Constants.MOVIE_PADDING, 0));
+            MovieVBox movieVBox = new MovieVBox(movie);
+            movieVBox.setSpacing(Constants.MOVIE_MIDDLE_PADDING);
+            movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT)));
+            movieVBox.setCursor(Cursor.HAND);
+            movieVBox.setOnMouseClicked(mouseEvent -> {
+                Main.switchScene(new MovieDetailsScene(movieVBox.getMovie()));
+            });
+            movieVBox.getChildren().addAll(title, year);
+            movieInfo.add(movieVBox);
+        }
+        //Add movies to HBox (Max of 3), then add to vbox
+        HBox row = new HBox();
+        HBox.setHgrow(row, Priority.ALWAYS);
+        for (int i = 0; i < movieInfo.size(); i++) {
+            movieInfo.get(i).setAlignment(Pos.CENTER);
+            HBox.setHgrow(movieInfo.get(i), Priority.ALWAYS);
+            if (i % 3 == 0 && i != 0){
+                //Add Hbox to view and create new one
+                movieContainer.getChildren().add(row);
+                row = new HBox();
+                row.getChildren().add(movieInfo.get(i));
+                if (i == movieInfo.size() - 1){
+                    movieContainer.getChildren().add(row);
+                }
+            }
+            else{
+                row.getChildren().add(movieInfo.get(i));
+                if (i == movieInfo.size() - 1){
+                    movieContainer.getChildren().add(row);
+                }
+            }
+        }
     }
 }
