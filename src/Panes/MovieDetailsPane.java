@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class MovieDetailsPane extends BorderPane {
@@ -96,6 +97,11 @@ public class MovieDetailsPane extends BorderPane {
         //Style
         removeMovieBtn.setCursor(Cursor.HAND);
         closeBtn.setCursor(Cursor.HAND);
+        titleTxt.setFont(new Font(30));
+        titleTxt.setUnderline(true);
+        genreText.setFont(new Font(40));
+        yearTxt.setFont(new Font(20));
+        prodCompTxt.setFont(new Font(20));
         //Colors
         topSection.setBackground(new Background(new BackgroundFill(Constants.COLOR_TOP_BAR, null, null)));
         leftSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
