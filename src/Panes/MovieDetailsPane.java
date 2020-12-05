@@ -99,13 +99,14 @@ public class MovieDetailsPane extends BorderPane {
         closeBtn.setCursor(Cursor.HAND);
         titleTxt.setFont(new Font(30));
         titleTxt.setUnderline(true);
-        genreText.setFont(new Font(40));
+        genreText.setFont(new Font(35));
         yearTxt.setFont(new Font(20));
         prodCompTxt.setFont(new Font(20));
         //Colors
-        topSection.setBackground(new Background(new BackgroundFill(Constants.COLOR_TOP_BAR, null, null)));
+        titleTxt.setFill(Constants.COLOR_TEXT_ALT);
+        topSection.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null)));
         leftSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
-        rightSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_LIGHTER_BACKGROUND, null, null)));
+        rightSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT, null, null)));
 
         pane.setCenter(screenWrapper);
 
