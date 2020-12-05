@@ -21,6 +21,9 @@ public class Constants {
     public static final int MOVIE_BORDER_RADIUS = 25;
     public static final int MOVIE_MIDDLE_PADDING = 30;
 
+    public static final int NUM_WATCHLIST_COLUMNS = 2;
+    public static final double SCROLLBAR_OFFSET = 10;
+
     // STYLING
     // Colors
     public static Color COLOR_BACKGROUND = Color.rgb(73,85,96);
@@ -28,9 +31,6 @@ public class Constants {
     public static Color COLOR_ACCENT_DARK = Color.rgb(63,13,54);
     public static Color COLOR_TEXT_MAIN = Color.rgb(0,0,0);
     public static Color COLOR_TEXT_ALT = Color.rgb(255,255,255);
-    public static Color COLOR_TOP_BAR = Color.rgb(182,182,182);
-    public static Color COLOR_LIGHTER_BACKGROUND = Color.rgb(99,109,118);
-    public static Color COLOR_DARKER_BACKGROUND = Color.rgb(52,56,68);
 
     // Fonts
     public static Font FONT_MENU_TITLE_FONT = Font.font("Times New Roman", FontWeight.BOLD, 50);
