@@ -31,6 +31,7 @@ public class StatsPane extends BorderPane {
     public StatsPane(){
         HBox buttons = new HBox();
         Button backButton = new Button("< Back");
+        backButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
         buttons.getChildren().addAll(backButton);
         buttons.setPadding(new Insets(Constants.DEFAULT_PADDING));
         backButton.setOnAction(actionEvent -> Main.switchScene(MenuScene.getInstance()));

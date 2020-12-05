@@ -12,19 +12,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class MovieDetailsPane extends BorderPane {
     public MovieDetailsPane(Movie movie){
-        BorderPane pane = new BorderPane();
-
-        //Entire Screen
-        VBox screenWrapper = new VBox();
         //Top Bar
         HBox topSection = new HBox();
-        Region region1 = new Region();
-        Button closeBtn = new Button("X");
+        Button closeBtn = new Button("< Back");
         //Content
         HBox lrWrapper = new HBox();
         //Left side
@@ -55,13 +51,11 @@ public class MovieDetailsPane extends BorderPane {
         rightSideContainer.getChildren().addAll(removeBtnContainer);
         //Wrap Left and Right Sides
         lrWrapper.getChildren().addAll(leftSideContainer, rightSideContainer);
-        //Adding final containers to screen
-        screenWrapper.getChildren().addAll(topSection, lrWrapper);
 
 
         //LAYOUT...
         //Alignment
-        topSection.setAlignment(Pos.CENTER_RIGHT);
+        topSection.setAlignment(Pos.CENTER_LEFT);
         movieTitle.setAlignment(Pos.TOP_CENTER);
         movieGenre.setAlignment(Pos.CENTER);
         additionalInfo.setAlignment(Pos.BOTTOM_CENTER);
@@ -70,11 +64,12 @@ public class MovieDetailsPane extends BorderPane {
         removeBtnContainer.setAlignment(Pos.BOTTOM_CENTER);
 
         //Margin & Padding
-        HBox.setMargin(removeMovieBtn, new Insets(0, 0, 5, 0));
-        HBox.setMargin(movieYear, new Insets(0, 0, 5, 5));
-        HBox.setMargin(movieProdCompany, new Insets(0, 5, 5, 0));
+        topSection.setPadding(new Insets(Constants.DEFAULT_PADDING));
+        leftSideContainer.setPadding(new Insets(Constants.DEFAULT_PADDING));
+        removeBtnContainer.setPadding(new Insets(Constants.DEFAULT_PADDING));
         movieGenre.setPadding(new Insets(0, Constants.SCREEN_WIDTH * 0.2, 0, Constants.SCREEN_WIDTH * 0.2));
-        removeMovieBtn.setPadding(new Insets(25));
+        removeMovieBtn.setPadding(new Insets(20));
+        closeBtn.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
 
         //Vgrow/Hgrow
         VBox.setVgrow(lrWrapper, Priority.ALWAYS);
@@ -96,20 +91,21 @@ public class MovieDetailsPane extends BorderPane {
 
         //Style
         removeMovieBtn.setCursor(Cursor.HAND);
-        closeBtn.setCursor(Cursor.HAND);
-        titleTxt.setFont(new Font(30));
+        titleTxt.setFont(Constants.FONT_SUBTITLE_FONT);
         titleTxt.setUnderline(true);
-        genreText.setFont(new Font(35));
-        yearTxt.setFont(new Font(20));
-        prodCompTxt.setFont(new Font(20));
+        genreText.setFont(Constants.FONT_SUBTITLE_FONT);
+        yearTxt.setFont(Constants.FONT_SUBTITLE_FONT);
+        prodCompTxt.setFont(Constants.FONT_SUBTITLE_FONT);
         //Colors
-        titleTxt.setFill(Constants.COLOR_TEXT_ALT);
+        titleTxt.setFill(Constants.COLOR_ACCENT);
+        prodCompTxt.setFill(Constants.COLOR_TEXT_MAIN);
+        yearTxt.setFill(Constants.COLOR_TEXT_MAIN);
         topSection.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null)));
         leftSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
         rightSideContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT, null, null)));
 
-        pane.setCenter(screenWrapper);
-
-        this.setCenter(pane);
+        this.setTop(topSection);
+        this.setCenter(leftSideContainer);
+        this.setRight(rightSideContainer);
     }
 }

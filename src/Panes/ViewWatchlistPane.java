@@ -67,6 +67,7 @@ public class ViewWatchlistPane extends BorderPane {
         statusTxtContainer.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
 
+
         //Position
         header.setAlignment(Pos.TOP_CENTER);
         statusTxtContainer.setAlignment(Pos.CENTER);
@@ -76,6 +77,11 @@ public class ViewWatchlistPane extends BorderPane {
 
         //Styling
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null)));
+        statusTxtContainer.setBorder(new Border(
+                new BorderStroke(null, null, Color.WHITE, null,
+                        BorderStrokeStyle.NONE, BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
+                        CornerRadii.EMPTY, new BorderWidths(2), Insets.EMPTY))
+        );
         titleText.setFill(Constants.COLOR_TEXT_ALT);
         titleText.setFont(Constants.FONT_SUBTITLE_FONT);
         statusTxt.setFill(Constants.COLOR_TEXT_ALT);

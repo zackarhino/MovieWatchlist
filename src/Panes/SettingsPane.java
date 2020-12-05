@@ -31,7 +31,7 @@ public class SettingsPane extends BorderPane {
         dbUser.setPromptText("DB User");
         dbPassword.setPromptText("DB Password");
 
-        HBox bottomButtons = new HBox();
+        HBox buttons = new HBox();
         Button returnToMenu = new Button("< Back");
         Button connectButton = new Button("Connect");
         Button createTablesButton = new Button("Create Tables");
@@ -41,15 +41,19 @@ public class SettingsPane extends BorderPane {
         hBox.setSpacing(Constants.DEFAULT_SPACING);
         hBox.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
-        bottomButtons.setSpacing(Constants.DEFAULT_SPACING);
-        bottomButtons.setPadding(new Insets(Constants.DEFAULT_PADDING));
+        returnToMenu.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+        connectButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+        createTablesButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+
+        buttons.setSpacing(Constants.DEFAULT_SPACING);
+        buttons.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
         // Determining which buttons to show
         if (!isFirstTime){
-            bottomButtons.getChildren().addAll(returnToMenu, connectButton, createTablesButton);
+            buttons.getChildren().addAll(returnToMenu, connectButton, createTablesButton);
         }
         else{
-            bottomButtons.getChildren().addAll(connectButton);
+            buttons.getChildren().addAll(connectButton);
         }
 
         // Setting Text values if available
@@ -61,7 +65,7 @@ public class SettingsPane extends BorderPane {
         }
 
         this.setCenter(hBox);
-        this.setBottom(bottomButtons);
+        this.setBottom(buttons);
 
         // Button Actions
         connectButton.setOnAction(event->{
@@ -97,7 +101,6 @@ public class SettingsPane extends BorderPane {
         });
         returnToMenu.setOnAction(event -> Main.switchScene(MenuScene.getInstance()));
 
-        // Styling
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
     }
 }

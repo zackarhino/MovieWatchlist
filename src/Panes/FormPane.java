@@ -100,12 +100,15 @@ public class FormPane extends BorderPane {
         // Styling
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
-        HBox hbox = new HBox();
-        hbox.getChildren().addAll(backButton, enterButton);
-        hbox.setSpacing(Constants.DEFAULT_SPACING);
-        hbox.setPadding(new Insets(Constants.DEFAULT_PADDING));
+        backButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+        enterButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+
+        HBox buttons = new HBox();
+        buttons.getChildren().addAll(backButton, enterButton);
+        buttons.setSpacing(Constants.DEFAULT_SPACING);
+        buttons.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
         this.setCenter(inputs);
-        this.setBottom(hbox);
+        this.setTop(buttons);
     }
 }

@@ -34,6 +34,7 @@ public class CreditsPane extends BorderPane {
         buttons.getChildren().addAll(backButton);
 
         // Styling
+        backButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
         this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
 
         label_appName.setTextFill(Constants.COLOR_ACCENT);
