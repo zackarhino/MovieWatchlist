@@ -21,6 +21,9 @@ public class Constants {
     public static final int MOVIE_BORDER_RADIUS = 25;
     public static final int MOVIE_MIDDLE_PADDING = 30;
 
+    public static final int NUM_WATCHLIST_COLUMNS = 2;
+    public static final double SCROLLBAR_OFFSET = 10;
+
     // STYLING
     // Colors
     public static Color COLOR_BACKGROUND = Color.rgb(73,85,96);

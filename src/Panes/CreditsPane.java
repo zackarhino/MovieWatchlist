@@ -19,7 +19,7 @@ public class CreditsPane extends BorderPane {
 
         Label label_appName = new Label("MOVIE WATCHLIST");
         Label label_watchlistWarriors_header = new Label("\nCreated by:");
-        Label label_watchlistWarriors = new Label("Created by The Watchlist Warriors!");
+        Label label_watchlistWarriors = new Label("The Watchlist Warriors!");
         Label label_codeCredits_header = new Label("\nCode authored by:");
         Label label_codeCredits = new Label("Zachary Allard, Trevor Slobodnick, and Jenny Hoang");
         Label label_artCredits_header = new Label("\nArt assets created by:");

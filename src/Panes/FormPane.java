@@ -30,11 +30,21 @@ public class FormPane extends BorderPane {
         productionCompany.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
         genre.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
 
+        Label movieName_label = new Label("Movie title: ");
+        Label year_label = new Label("Year: ");
+        Label productionCompany_label = new Label("Production Company: ");
+        Label genre_label = new Label("Genre: ");
+
+        movieName_label.setTextFill(Constants.COLOR_TEXT_ALT);
+        year_label.setTextFill(Constants.COLOR_TEXT_ALT);
+        productionCompany_label.setTextFill(Constants.COLOR_TEXT_ALT);
+        genre_label.setTextFill(Constants.COLOR_TEXT_ALT);
+
         HBox input1 = new HBox();
-        input1.getChildren().addAll(new Label("Movie title: "),
-                movieName, new Label("Year: "), year);
+        input1.getChildren().addAll(movieName_label, movieName, year_label, year);
         input1.setAlignment(Pos.CENTER);
         input1.setSpacing(Constants.DEFAULT_SPACING);
+        input1.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
         //Get info from database
         Database db = Database.getInstance();
@@ -48,16 +58,19 @@ public class FormPane extends BorderPane {
         productionCompany.setItems(FXCollections.observableArrayList(db_prodCompany));
 
         HBox input2 = new HBox();
-        input2.getChildren().addAll(new Label("Production Company: "), productionCompany,
-                new Label("Genre: "), genre);
+        input2.getChildren().addAll(productionCompany_label, productionCompany, genre_label, genre);
         input2.setAlignment(Pos.CENTER);
         input2.setSpacing(Constants.DEFAULT_SPACING);
+        input2.setPadding(new Insets(Constants.DEFAULT_PADDING));
 
         VBox inputs = new VBox();
         inputs.getChildren().addAll(input1, input2);
         inputs.setSpacing(Constants.DEFAULT_SPACING);
         inputs.setPrefWidth(Constants.SCREEN_WIDTH);
         inputs.setPadding(new Insets(Constants.DEFAULT_PADDING));
+        inputs.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, new Insets(Constants.DEFAULT_PADDING))));
+
+
 
         Button backButton = new Button("< Back");
         Button enterButton = new Button("Enter Movie");

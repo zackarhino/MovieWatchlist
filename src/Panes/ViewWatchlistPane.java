@@ -56,8 +56,15 @@ public class ViewWatchlistPane extends BorderPane {
         //Size
         movieContainer.setMinWidth(700);
         movieContainer.setMinHeight(435);
+        movieContainer.setPadding(new Insets(
+                Constants.DEFAULT_PADDING,
+                Constants.DEFAULT_PADDING+Constants.SCROLLBAR_OFFSET,
+                Constants.DEFAULT_PADDING,
+                Constants.DEFAULT_PADDING));
         backButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
         addListButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
+        statusTxtContainer.setPadding(new Insets(Constants.DEFAULT_PADDING));
+
 
         //Position
         header.setAlignment(Pos.TOP_CENTER);
@@ -74,7 +81,7 @@ public class ViewWatchlistPane extends BorderPane {
         movieContainer.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
         scrollPane.setBackground(
                 new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, null, null))
-        ); // Remove the ScrollPane border
+        );// Remove the ScrollPane border
         scrollPane.setStyle("-fx-focus-color:transparent;"); // Remove the focus border
 
         //Scrollbar
@@ -115,19 +122,22 @@ public class ViewWatchlistPane extends BorderPane {
         //Create the display (VBox) for the movies
         for (Movie movie: movies) {
             Label title = new Label(movie.getTitle());
-            title.setTextFill(Constants.COLOR_TEXT_MAIN);
+            title.setTextFill(Constants.COLOR_TEXT_ALT);
             title.setTextOverrun(OverrunStyle.ELLIPSIS);
             title.setPadding(new Insets(Constants.MOVIE_PADDING, 0, 0, 0));
             Label year = new Label(String.valueOf(movie.getYear()));
-            year.setTextFill(Constants.COLOR_TEXT_MAIN);
+            year.setTextFill(Constants.COLOR_TEXT_ALT);
             year.setPadding(new Insets(0, 0, Constants.MOVIE_PADDING, 0));
+
             MovieVBox movieVBox = new MovieVBox(movie);
             movieVBox.setSpacing(Constants.MOVIE_MIDDLE_PADDING);
-            movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT)));
+            movieVBox.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), BorderWidths.DEFAULT, new Insets(Constants.MOVIE_PADDING))));
+            movieVBox.setBackground(new Background(new BackgroundFill(Constants.COLOR_ACCENT_DARK, new CornerRadii(Constants.MOVIE_BORDER_RADIUS), new Insets(Constants.MOVIE_PADDING))));
             movieVBox.setCursor(Cursor.HAND);
             movieVBox.setOnMouseClicked(mouseEvent -> {
                 Main.switchScene(new MovieDetailsScene(movieVBox.getMovie()));
             });
+            movieVBox.setPrefWidth((((double)Constants.SCREEN_WIDTH/2) - (Constants.DEFAULT_PADDING*2)) - Constants.SCROLLBAR_OFFSET);
             movieVBox.getChildren().addAll(title, year);
             movieInfo.add(movieVBox);
         }
@@ -137,7 +147,7 @@ public class ViewWatchlistPane extends BorderPane {
         for (int i = 0; i < movieInfo.size(); i++) {
             movieInfo.get(i).setAlignment(Pos.CENTER);
             HBox.setHgrow(movieInfo.get(i), Priority.ALWAYS);
-            if (i % 3 == 0 && i != 0){
+            if (i % Constants.NUM_WATCHLIST_COLUMNS == 0 && i != 0){
                 //Add Hbox to view and create new one
                 movieContainer.getChildren().add(row);
                 row = new HBox();
