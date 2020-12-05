@@ -17,6 +17,7 @@ import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -125,6 +126,8 @@ public class ViewWatchlistPane extends BorderPane {
             title.setTextFill(Constants.COLOR_TEXT_ALT);
             title.setTextOverrun(OverrunStyle.ELLIPSIS);
             title.setPadding(new Insets(Constants.MOVIE_PADDING, 0, 0, 0));
+            title.setUnderline(true);
+            title.setFont(new Font(15));
             Label year = new Label(String.valueOf(movie.getYear()));
             year.setTextFill(Constants.COLOR_TEXT_ALT);
             year.setPadding(new Insets(0, 0, Constants.MOVIE_PADDING, 0));
