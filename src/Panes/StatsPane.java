@@ -24,6 +24,8 @@ import java.util.ArrayList;
  */
 public class StatsPane extends BorderPane {
     private PieChart chart;
+    int[] genresCount = new int[10];
+    String[] genres = {"Action","Adventure","Animation","Comedy","Drama","Horror","Mystery","Romance","Science Fiction","Other"};
 
     public StatsPane(){
         HBox buttons = new HBox();
@@ -53,12 +55,17 @@ public class StatsPane extends BorderPane {
 
         //Build list of pieChart data
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
+
         //dont add record unless there is more than 1 movie
         if(!movies.isEmpty()){
             for(Movie movie : movies){
-                // TODO: display something else
-                System.out.println(movie.getTitle() + ", id: " + movie.getId());
-                data.add(new PieChart.Data(movie.getGenreAsStr(), movie.getGenreAsInt()));
+                String genre = movie.getGenreAsStr();
+                numberOfGenres(genre);
+            }
+            for(int i = 0;i < genresCount.length;i++) {
+                if(genresCount[i] > 0){
+                    data.add(new PieChart.Data(genres[i], genresCount[i]));
+                }
             }
         }
 
@@ -69,5 +76,40 @@ public class StatsPane extends BorderPane {
         chart.setLabelsVisible(true);
         chart.setLegendVisible(false);
         return chart;
+    }
+
+    private void numberOfGenres(String genre) {
+        switch (genre) {
+            case "Action":
+                genresCount[0] += 1;
+                break;
+            case "Adventure":
+                genresCount[1] += 1;
+                break;
+            case "Animation":
+                genresCount[2] += 1;
+                break;
+            case "Comedy":
+                genresCount[3] += 1;
+                break;
+            case "Drama":
+                genresCount[4] += 1;
+                break;
+            case "Horror":
+                genresCount[5] += 1;
+                break;
+            case "Mystery":
+                genresCount[6] += 1;
+                break;
+            case "Romance":
+                genresCount[7] += 1;
+                break;
+            case "Science Fiction":
+                genresCount[8] += 1;
+                break;
+            default:
+                genresCount[9] += 1;
+                break;
+        }
     }
 }

@@ -77,6 +77,8 @@ public class FormPane extends BorderPane {
                 movieName.clear();
                 year.clear();
                 System.out.println("Inserted Movie.");
+
+                Main.switchScene(ViewWatchlistScene.getInstance());
             } catch (Exception e){
                 System.out.println("Error: Couldn't Insert Movie. Please check to make sure you have entered all required values.");
             }
