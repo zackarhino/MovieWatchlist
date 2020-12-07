@@ -10,6 +10,33 @@ public class Movie {
 
     private static ArrayList<Movie> allMovies = new ArrayList<>();
 
+    private int id;
+    private String title;
+    private int year;
+    private int genreAsInt;
+    private int prodCompanyAsInt;
+    private String genreAsStr;
+    private String prodCompanyAsStr;
+
+    /**
+     * @param id id of movie in watchlist table
+     * @param title title of the movie
+     * @param year year the movie was released
+     * @param genreAsInt id of the genre in the genres table
+     * @param prodCompanyAsInt id of production company in the production_companies table
+     * @param genreAsStr genre of the film
+     * @param prodCompanyAsStr production company of the film
+     * */
+    public Movie(int id, String title, int year, int genreAsInt, int prodCompanyAsInt, String genreAsStr, String prodCompanyAsStr) {
+        this.id = id;
+        this.title = title;
+        this.year = year;
+        this.genreAsInt = genreAsInt;
+        this.prodCompanyAsInt = prodCompanyAsInt;
+        this.genreAsStr = genreAsStr;
+        this.prodCompanyAsStr = prodCompanyAsStr;
+    }
+
     /**
      * Get allMovies
      * @return ArrayList<Movie>
@@ -79,34 +106,6 @@ public class Movie {
      * */
     public String getProdCompanyAsStr() {
         return prodCompanyAsStr;
-    }
-
-    private int id;
-    private String title;
-    private int year;
-    private int genreAsInt;
-    private int prodCompanyAsInt;
-    private String genreAsStr;
-    private String prodCompanyAsStr;
-
-
-    /**
-     * @param id id of movie in watchlist table
-     * @param title title of the movie
-     * @param year year the movie was released
-     * @param genreAsInt id of the genre in the genres table
-     * @param prodCompanyAsInt id of production company in the production_companies table
-     * @param genreAsStr genre of the film
-     * @param prodCompanyAsStr production company of the film
-     * */
-    public Movie(int id, String title, int year, int genreAsInt, int prodCompanyAsInt, String genreAsStr, String prodCompanyAsStr) {
-        this.id = id;
-        this.title = title;
-        this.year = year;
-        this.genreAsInt = genreAsInt;
-        this.prodCompanyAsInt = prodCompanyAsInt;
-        this.genreAsStr = genreAsStr;
-        this.prodCompanyAsStr = prodCompanyAsStr;
     }
 
     /**
