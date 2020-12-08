@@ -16,6 +16,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * The movie details screen that appears when you select a movie
+ * @author Trevor Slobodnick
+ */
 public class MovieDetailsPane extends BorderPane {
     public MovieDetailsPane(Movie movie){
         //Top Bar

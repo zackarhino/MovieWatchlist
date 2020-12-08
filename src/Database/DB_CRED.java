@@ -11,10 +11,10 @@ import java.io.File;
 public class DB_CRED {
     public static File configFile = new File(Constants.configFilePath);
 
-    private static String DB_HOST;
-    private static String DB_NAME;
-    private static String DB_USER;
-    private static String DB_PASS;
+    private static String DB_HOST; // The database host
+    private static String DB_NAME; // The database name
+    private static String DB_USER; // The database user
+    private static String DB_PASS; // The database password
 
     /**
      * Gets DB_HOST

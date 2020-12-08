@@ -13,6 +13,11 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+
+/**
+ * The main menu pane. Holds buttons linking to all the major functions
+ * @author Zachary Allard
+ */
 public class MenuPane extends BorderPane {
     public MenuPane(){
         StackPane stackPane = new StackPane();

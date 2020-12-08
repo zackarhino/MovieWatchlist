@@ -15,9 +15,12 @@ import javafx.scene.layout.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.util.ArrayList;
 
+/**
+ * The form pane used for entering database credentials
+ * @author Jenny Hoang
+ */
 public class FormPane extends BorderPane {
     private TextField movieName = new TextField();
     private TextField year = new TextField();
@@ -83,7 +86,7 @@ public class FormPane extends BorderPane {
             try {
                 int genreAsInt = db_genres.indexOf(genre.getValue().toString());
                 int productionCompanyAsInt = db_prodCompany.indexOf(productionCompany.getValue().toString());
-                int yearAsInt = 2020;
+                int yearAsInt;
                 yearAsInt = Integer.parseInt(year.getText());
 
                 db.addMovie(movieName.getText(), yearAsInt, genreAsInt, productionCompanyAsInt);

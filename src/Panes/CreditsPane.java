@@ -12,6 +12,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * The credits pane that holds author info
+ * @author Zachary Allard
+ */
 public class CreditsPane extends BorderPane {
     public CreditsPane(){
         Button backButton = new Button("< Back");

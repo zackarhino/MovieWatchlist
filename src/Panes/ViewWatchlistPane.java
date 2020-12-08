@@ -22,6 +22,10 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
+/**
+ * The main watchlist pane. Displays a list of all the user's movies.
+ * @author Trevor Slobodnick, Zachary Allard
+ */
 public class ViewWatchlistPane extends BorderPane {
     private static VBox movieContainer;
     public ViewWatchlistPane(){
@@ -65,8 +69,6 @@ public class ViewWatchlistPane extends BorderPane {
         backButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
         addListButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
         statusTxtContainer.setPadding(new Insets(Constants.DEFAULT_PADDING));
-
-
 
         //Position
         header.setAlignment(Pos.TOP_CENTER);

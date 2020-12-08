@@ -16,9 +16,12 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
+/**
+ * SettingsPane used for entering login info
+ * @author Jenny Hoang, Zachary Allard
+ */
 public class SettingsPane extends BorderPane {
     private static SettingsPane settingsPane;
-
 
     private static HBox buttons = new HBox();
     private static Button returnToMenu = new Button("< Back");
@@ -30,6 +33,10 @@ public class SettingsPane extends BorderPane {
     TextField dbUser = new TextField();
     PasswordField dbPassword = new PasswordField();
 
+    /**
+     * Constructor
+     * @param isFirstTime The first time entering login details
+     */
     public SettingsPane(boolean isFirstTime) {
         dbHost.setPromptText("DB Host");
         dbName.setPromptText("DB Name");
@@ -65,6 +72,7 @@ public class SettingsPane extends BorderPane {
      * Determining which buttons to display based on the context that the scene is accessed from
      * This works by removing all the buttons and then re-adding them, similarly to the watchlist
      * @param isFirstTime Whether it's the user's first time seeing the FormPane
+     * @author Zachary Allard
      */
     public static void addButtons(boolean isFirstTime){
         Database db = Database.getInstance();
@@ -120,8 +128,8 @@ public class SettingsPane extends BorderPane {
     /**
      * Get an instance of a SettingsPane
      * This uses singleton design pattern so that the SettingScene can reference it in the super call instead of an anonymous SettingsPane
-     * @param isFirstTime
-     * @return
+     * @param isFirstTime The first time entering login info
+     * @return The instance of the SettingsPane
      */
     public static SettingsPane getInstance(boolean isFirstTime){
         if(settingsPane == null){

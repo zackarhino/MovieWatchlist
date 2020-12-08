@@ -12,18 +12,6 @@ public class Constants {
     public static final String title = "Movie Watchlist";
     public static final String configFilePath = "src/Credentials/config.txt";
 
-    public static final int MENU_BUTTON_WIDTH = 150;
-    public static final int DEFAULT_SPACING = 10;
-    public static final int DEFAULT_PADDING = 10;
-
-    // Movie VBox Styles
-    public static final int MOVIE_PADDING = 5;
-    public static final int MOVIE_BORDER_RADIUS = 25;
-    public static final int MOVIE_MIDDLE_PADDING = 30;
-
-    public static final int NUM_WATCHLIST_COLUMNS = 2;
-    public static final double SCROLLBAR_OFFSET = 10;
-
     // STYLING
     // Colors
     public static Color COLOR_BACKGROUND = Color.rgb(73,85,96);
@@ -35,6 +23,19 @@ public class Constants {
     // Fonts
     public static Font FONT_MENU_TITLE_FONT = Font.font("Times New Roman", FontWeight.BOLD, 50);
     public static Font FONT_SUBTITLE_FONT = Font.font("Courier New", FontWeight.BOLD, 20);
+
+    // Spacing/Padding
+    public static final int MENU_BUTTON_WIDTH = 150;
+    public static final int DEFAULT_SPACING = 10;
+    public static final int DEFAULT_PADDING = 10;
+
+    // Movie VBox Styles
+    public static final int MOVIE_PADDING = 5;
+    public static final int MOVIE_BORDER_RADIUS = 25;
+    public static final int MOVIE_MIDDLE_PADDING = 30;
+
+    public static final int NUM_WATCHLIST_COLUMNS = 2;
+    public static final double SCROLLBAR_OFFSET = 10;
 
     // SQL COLUMN NAMES
     //WatchList Table

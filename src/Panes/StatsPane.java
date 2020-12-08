@@ -81,6 +81,11 @@ public class StatsPane extends BorderPane {
         return chart;
     }
 
+    /**
+     * Gets the count for each of the genres
+     * @author Jenny Hoang
+     * @param genre
+     */
     private void numberOfGenres(String genre) {
         switch (genre) {
             case "Action":

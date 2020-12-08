@@ -4,16 +4,13 @@ import Database.DB_CRED;
 import Database.Database;
 import Panes.ViewWatchlistPane;
 import Scenes.MenuScene;
-import Scenes.MovieDetailsScene;
 import Scenes.SettingsScene;
 import Scenes.ViewWatchlistScene;
 import Util.ConfigFileManager;
 import Util.Constants;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
 import javafx.stage.Stage;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -23,7 +20,6 @@ import java.util.ArrayList;
  */
 public class Main extends Application {
     public static Stage mainStage;
-
 
     @Override
     public void start(Stage stage) {
