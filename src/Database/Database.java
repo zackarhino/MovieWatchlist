@@ -101,7 +101,7 @@ public class Database {
     /**
      * Creates a table in the database
      * Note: must be called after DB_CRED variables are set
-     * @author Trevor
+     * @author Trevor Slobodnick, Jenny
      * @param tableName The table name in SQL
      * @param tableQuery The Query to execute
      * @param connection The database's connection
@@ -199,6 +199,10 @@ public class Database {
         }
     }
 
+    /**
+     * Updates Movie objects to reflect any changes (movies added or deleted)
+     * @author Zachary Allard
+     * */
     public void updateMovies(){
         // Remove the current Movie objects
         Movie.setAllMovies(new ArrayList<Movie>());

@@ -9,7 +9,7 @@ public class SettingsScene extends Scene {
     private static SettingsScene settingsScene;
 
     private SettingsScene(boolean isFirstTime) {
-        super(new SettingsPane(isFirstTime), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        super(SettingsPane.getInstance(isFirstTime), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     /**
@@ -20,6 +20,7 @@ public class SettingsScene extends Scene {
         if(settingsScene == null){
             settingsScene = new SettingsScene(isFirstTime);
         }
+        SettingsPane.addButtons(isFirstTime);
         return settingsScene;
     }
 }

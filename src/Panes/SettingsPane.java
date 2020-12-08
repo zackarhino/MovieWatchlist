@@ -4,6 +4,7 @@ import Database.DB_CRED;
 import Database.Database;
 import Launch.Main;
 import Scenes.MenuScene;
+import Scenes.SettingsScene;
 import Util.ConfigFileManager;
 import Util.Constants;
 import javafx.geometry.Insets;
@@ -16,22 +17,25 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 public class SettingsPane extends BorderPane {
+    private static SettingsPane settingsPane;
 
+
+    private static HBox buttons = new HBox();
+    private static Button returnToMenu = new Button("< Back");
+    private static Button connectButton = new Button("Connect");
+    private static Button createTablesButton = new Button("Create Tables");
+
+    TextField dbHost = new TextField("localhost");
+    TextField dbName = new TextField();
+    TextField dbUser = new TextField();
+    PasswordField dbPassword = new PasswordField();
 
     public SettingsPane(boolean isFirstTime) {
-        Database db = Database.getInstance();
-
-        TextField dbHost = new TextField("localhost");
-        TextField dbName = new TextField();
-        TextField dbUser = new TextField();
-        PasswordField dbPassword = new PasswordField();
-
         dbHost.setPromptText("DB Host");
         dbName.setPromptText("DB Name");
         dbUser.setPromptText("DB User");
         dbPassword.setPromptText("DB Password");
 
-        HBox buttons = new HBox();
         Button returnToMenu = new Button("< Back");
         Button connectButton = new Button("Connect");
         Button createTablesButton = new Button("Create Tables");
@@ -45,17 +49,6 @@ public class SettingsPane extends BorderPane {
         connectButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
         createTablesButton.setPrefWidth(Constants.MENU_BUTTON_WIDTH);
 
-        buttons.setSpacing(Constants.DEFAULT_SPACING);
-        buttons.setPadding(new Insets(Constants.DEFAULT_PADDING));
-
-        // Determining which buttons to show
-        if (!isFirstTime){
-            buttons.getChildren().addAll(returnToMenu, connectButton, createTablesButton);
-        }
-        else{
-            buttons.getChildren().addAll(connectButton);
-        }
-
         // Setting Text values if available
         if(DB_CRED.isSet()){
             dbHost.setText(DB_CRED.getDbHost());
@@ -66,13 +59,32 @@ public class SettingsPane extends BorderPane {
 
         this.setCenter(hBox);
         this.setBottom(buttons);
+    }
 
-        // Button Actions
+    /**
+     * Determining which buttons to display based on the context that the scene is accessed from
+     * This works by removing all the buttons and then re-adding them, similarly to the watchlist
+     * @param isFirstTime Whether it's the user's first time seeing the FormPane
+     */
+    public static void addButtons(boolean isFirstTime){
+        Database db = Database.getInstance();
+
+        buttons = new HBox();
+        buttons.setSpacing(Constants.DEFAULT_SPACING);
+        buttons.setPadding(new Insets(Constants.DEFAULT_PADDING));
+        if (!isFirstTime){
+            buttons.getChildren().addAll(returnToMenu, connectButton, createTablesButton);
+        }
+        else{
+            buttons.getChildren().addAll(connectButton);
+        }
+        settingsPane = SettingsPane.getInstance(isFirstTime);
+
         connectButton.setOnAction(event->{
-            String host = dbHost.getText();
-            String name = dbName.getText();
-            String user = dbUser.getText();
-            String pass = dbPassword.getText();
+            String host = settingsPane.dbHost.getText();
+            String name = settingsPane.dbName.getText();
+            String user = settingsPane.dbUser.getText();
+            String pass = settingsPane.dbPassword.getText();
 
             try {
                 db.setConnection(host, name, user, pass);
@@ -101,6 +113,20 @@ public class SettingsPane extends BorderPane {
         });
         returnToMenu.setOnAction(event -> Main.switchScene(MenuScene.getInstance()));
 
-        this.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        settingsPane.setBackground(new Background(new BackgroundFill(Constants.COLOR_BACKGROUND, null, null)));
+        settingsPane.setBottom(buttons);
+    }
+
+    /**
+     * Get an instance of a SettingsPane
+     * This uses singleton design pattern so that the SettingScene can reference it in the super call instead of an anonymous SettingsPane
+     * @param isFirstTime
+     * @return
+     */
+    public static SettingsPane getInstance(boolean isFirstTime){
+        if(settingsPane == null){
+            settingsPane = new SettingsPane(isFirstTime);
+        }
+        return settingsPane;
     }
 }

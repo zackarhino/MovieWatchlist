@@ -10,42 +10,6 @@ public class Movie {
 
     private static ArrayList<Movie> allMovies = new ArrayList<>();
 
-    public static ArrayList<Movie> getAllMovies() {
-        return allMovies;
-    }
-
-    public static void setAllMovies(ArrayList<Movie> allMovies) {
-        Movie.allMovies = allMovies;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getGenreAsInt() {
-        return genreAsInt;
-    }
-
-    public int getProdCompanyAsInt() {
-        return prodCompanyAsInt;
-    }
-
-    public String getGenreAsStr() {
-        return genreAsStr;
-    }
-
-    public String getProdCompanyAsStr() {
-        return prodCompanyAsStr;
-    }
-
     private int id;
     private String title;
     private int year;
@@ -54,6 +18,15 @@ public class Movie {
     private String genreAsStr;
     private String prodCompanyAsStr;
 
+    /**
+     * @param id id of movie in watchlist table
+     * @param title title of the movie
+     * @param year year the movie was released
+     * @param genreAsInt id of the genre in the genres table
+     * @param prodCompanyAsInt id of production company in the production_companies table
+     * @param genreAsStr genre of the film
+     * @param prodCompanyAsStr production company of the film
+     * */
     public Movie(int id, String title, int year, int genreAsInt, int prodCompanyAsInt, String genreAsStr, String prodCompanyAsStr) {
         this.id = id;
         this.title = title;
@@ -62,6 +35,77 @@ public class Movie {
         this.prodCompanyAsInt = prodCompanyAsInt;
         this.genreAsStr = genreAsStr;
         this.prodCompanyAsStr = prodCompanyAsStr;
+    }
+
+    /**
+     * Get allMovies
+     * @return ArrayList<Movie>
+     * */
+    public static ArrayList<Movie> getAllMovies() {
+        return allMovies;
+    }
+
+    /**
+     * Set allMovies
+     * */
+    public static void setAllMovies(ArrayList<Movie> allMovies) {
+        Movie.allMovies = allMovies;
+    }
+
+    /**
+     * Get Movie id
+     * @return int
+     * */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Get Movie title
+     * @return String
+     * */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Get Movie year
+     * @return int
+     * */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * Get Movie genre corresponding id in genres table
+     * @return int
+     * */
+    public int getGenreAsInt() {
+        return genreAsInt;
+    }
+
+    /**
+     * Get Movie production company corresponding id in production_companies table
+     * @return int
+     * */
+    public int getProdCompanyAsInt() {
+        return prodCompanyAsInt;
+    }
+
+    /**
+     * Get Movie genre
+     * @return String
+     * */
+    public String getGenreAsStr() {
+        return genreAsStr;
+    }
+
+    /**
+     * Get Movie production company
+     * @return String
+     * */
+    public String getProdCompanyAsStr() {
+        return prodCompanyAsStr;
     }
 
     /**

@@ -6,7 +6,7 @@ import java.io.File;
 
 /**
  * File to store database credentials locally
- * @author Jenny Hoang
+ * @author Trevor Slobodnick, Jenny Hoang
  */
 public class DB_CRED {
     public static File configFile = new File(Constants.configFilePath);
@@ -16,22 +16,41 @@ public class DB_CRED {
     private static String DB_USER;
     private static String DB_PASS;
 
+    /**
+     * Gets DB_HOST
+     * @return String
+     * */
     public static String getDbHost() {
         return DB_HOST;
     }
+
+    /**
+     * Gets DB_NAME
+     * @return String
+     * */
     public static String getDbName() {
         return DB_NAME;
     }
+
+    /**
+     * Gets DB_USER
+     * @return String
+     * */
     public static String getDbUser() {
         return DB_USER;
     }
+
+    /**
+     * Gets DB_PASS
+     * @return String
+     * */
     public static String getDbPass() {
         return DB_PASS;
     }
 
     /**
      * Sets all DB_CREDs at once
-     * @author Jenny Hoang
+     * @author Trevor Slobodnick, Jenny Hoang
      * @param dbHost Hostname
      * @param dbName Database name
      * @param dbUserName User name
